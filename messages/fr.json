@@ -23,11 +23,59 @@
   "home": {
     "hero": {
       "title": "Arrêtez de deviner.",
-      "subtitle": "Laissez l'IA trouver votre <highlight>tissu</highlight> en quelques secondes."
+      "subtitle": "Laissez l'IA trouver votre <highlight>tissu</highlight> en quelques secondes.",
+      "lead": "Décrivez votre projet : notre IA analyse plus de mille références et vous propose le tissu en stock qui lui correspond, avec composition, poids, largeur et usage.",
+      "ctaPrimary": "Lancer la recherche",
+      "ctaSecondary": "Explorer le catalogue"
+    },
+    "values": {
+      "title": "Pourquoi SATEX",
+      "ai": {
+        "title": "Recherche par IA",
+        "body": "Dites-nous pour qui vous créez, le style et l'esprit de votre marque : nous trouvons le bon tissu en quelques secondes."
+      },
+      "stock": {
+        "title": "Stock en temps réel",
+        "body": "Chaque rayon affiche le stock réel : vous savez toujours ce qui est prêt à expédier."
+      },
+      "showroom": {
+        "title": "Showroom 3D",
+        "body": "Parcourez nos deux étages, des halls de tissus au studio de création, depuis votre écran."
+      }
+    },
+    "categories": {
+      "title": "Nos univers"
+    },
+    "featured": {
+      "title": "Tissus à la une",
+      "all": "Tout le catalogue",
+      "from": "À partir de {price} / m"
+    },
+    "showroom": {
+      "eyebrow": "Showroom",
+      "title": "Entrez dans le showroom SATEX en 3D",
+      "body": "Deux étages : les halls de tissus en bas, le studio de création et les bureaux à l'étage. Chaque département affiche son stock en temps réel.",
+      "cta": "Visiter le showroom"
+    },
+    "since": {
+      "title": "Expert textile depuis {year}",
+      "body": "Depuis plus de {years} ans, nous accompagnons les créateurs et les industriels avec des tissus fiables, disponibles et livrés à temps."
+    },
+    "contact": {
+      "title": "Demandez un échantillon ou un devis",
+      "body": "Commandes, livraisons et coupes sont gérées au même endroit. Parlez-nous de votre projet.",
+      "cta": "Nous contacter"
     }
   },
   "footer": {
-    "since": "Expert textile depuis 1995"
+    "since": "Expert textile depuis {year}",
+    "tagline": "Vente des tissus en gros",
+    "linksTitle": "Explorer",
+    "legalTitle": "Informations légales",
+    "privacy": "Politique de confidentialité",
+    "terms": "Conditions d'utilisation",
+    "contactTitle": "Contact",
+    "rights": "Tous droits réservés."
   },
   "errors": {
     "notFound": {
@@ -47,7 +95,15 @@
     "account": "Mon compte",
     "profile": "Mon profil",
     "admin": "Back-office",
-    "signOut": "Se déconnecter"
+    "signOut": "Se déconnecter",
+    "main": "Navigation principale",
+    "openMenu": "Ouvrir le menu",
+    "closeMenu": "Fermer le menu",
+    "catalog": "Catalogue",
+    "match": "Recherche IA",
+    "showroom": "Showroom",
+    "about": "À propos",
+    "contact": "Contact"
   },
   "auth": {
     "signIn": {
@@ -187,5 +243,109 @@
   "admin": {
     "title": "Back-office",
     "placeholder": "Le tableau de bord et les outils de gestion arrivent bientôt."
+  },
+  "structures": {
+    "jersey": "Jersey",
+    "pique": "Piqué",
+    "rib": "Côtelé",
+    "interlock": "Interlock",
+    "fleece": "Molleton",
+    "french_terry": "Molleton gratté",
+    "mesh": "Maille filet",
+    "plain": "Toile",
+    "twill": "Sergé",
+    "satin": "Satin",
+    "denim": "Denim",
+    "canvas": "Toile épaisse",
+    "poplin": "Popeline",
+    "oxford": "Oxford",
+    "gabardine": "Gabardine",
+    "crepe": "Crêpe",
+    "chiffon": "Mousseline",
+    "velvet": "Velours",
+    "jacquard": "Jacquard",
+    "tulle": "Tulle",
+    "felt": "Feutre",
+    "other": "Autre"
+  },
+  "comingSoon": {
+    "catalog": "Le catalogue complet arrive très bientôt.",
+    "match": "L'assistant de recherche de tissus par IA arrive très bientôt.",
+    "showroom": "Le showroom 3D arrive très bientôt.",
+    "back": "Retour à l'accueil"
+  },
+  "about": {
+    "eyebrow": "Depuis {year}",
+    "title": "SATEX Commerce, votre partenaire tissus",
+    "lead": "Vente de tissus en gros, avec un stock visible en temps réel et une recherche assistée par IA.",
+    "story": {
+      "title": "Notre histoire",
+      "p1": "SATEX Commerce est un expert textile depuis {year}. Nous vendons des tissus en gros aux créateurs, ateliers et industriels.",
+      "p2": "Aujourd'hui, notre plateforme réunit la recherche par IA, le stock en temps réel et la gestion des commandes, des livraisons et des coupes au même endroit."
+    },
+    "departments": {
+      "title": "Nos départements",
+      "fabricHalls": {
+        "title": "Halls de tissus",
+        "body": "Fibres naturelles, maille, denim, chemiserie, ameublement, soirée : chaque hall affiche son stock."
+      },
+      "cutting": {
+        "title": "Atelier de coupe",
+        "body": "Les coupes sont préparées et suivies jusqu'à l'expédition."
+      },
+      "shipping": {
+        "title": "Expédition",
+        "body": "Les commandes sont emballées et livrées avec suivi."
+      },
+      "studio": {
+        "title": "Studio et bureaux",
+        "body": "À l'étage : le studio de création, le salon client et les bureaux."
+      }
+    },
+    "values": {
+      "title": "Nos engagements",
+      "service": {
+        "title": "Service",
+        "body": "Un interlocuteur pour vos devis, échantillons et commandes."
+      },
+      "transparency": {
+        "title": "Transparence",
+        "body": "Des fiches techniques claires : composition, poids, largeur, usage."
+      },
+      "availability": {
+        "title": "Disponibilité",
+        "body": "Un stock visible en temps réel pour décider vite."
+      }
+    },
+    "cta": "Parlez-nous de votre projet"
+  },
+  "contact": {
+    "title": "Contactez-nous",
+    "lead": "Demandez un échantillon, un devis ou des conseils sur vos tissus. Nous vous répondons rapidement.",
+    "detailsTitle": "Nos coordonnées",
+    "mapTitle": "Nous trouver",
+    "mapPlaceholder": "Le plan d'accès sera ajouté prochainement.",
+    "form": {
+      "name": "Nom complet",
+      "company": "Société (facultatif)",
+      "email": "E-mail",
+      "phone": "Téléphone (facultatif)",
+      "message": "Votre message",
+      "consent": "J'accepte que mes données soient utilisées pour répondre à ma demande, conformément à la <privacy>politique de confidentialité</privacy>.",
+      "submit": "Envoyer le message",
+      "successTitle": "Message envoyé",
+      "successBody": "Merci ! Nous avons bien reçu votre message et nous vous répondrons très vite.",
+      "rateLimited": "Trop de messages envoyés. Réessayez dans une heure ou écrivez-nous par e-mail.",
+      "serverError": "Envoi impossible pour le moment. Réessayez ou écrivez-nous par e-mail."
+    },
+    "validation": {
+      "required": "Ce champ est obligatoire.",
+      "email": "Adresse e-mail invalide.",
+      "nameMin": "Indiquez votre nom.",
+      "tooLong": "Texte trop long.",
+      "phone": "Numéro de téléphone invalide.",
+      "messageMin": "Votre message est trop court (10 caractères minimum).",
+      "consentRequired": "Vous devez accepter pour envoyer le message."
+    }
   }
 }

@@ -39,6 +39,8 @@ export async function generateMetadata({ params }: Pick<Props, "params">): Promi
   };
 }
 
+export const revalidate = 300; // ISR: settings shown in the footer refresh every 5 minutes
+
 export default async function LocaleLayout({ children, params }: Props) {
   const { locale } = await params;
   if (!hasLocale(routing.locales, locale)) notFound();

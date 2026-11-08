@@ -23,11 +23,59 @@
   "home": {
     "hero": {
       "title": "Stop guessing.",
-      "subtitle": "Let AI find your <highlight>fabric</highlight> in seconds."
+      "subtitle": "Let AI find your <highlight>fabric</highlight> in seconds.",
+      "lead": "Describe your project: our AI scans over a thousand references and suggests the in-stock fabric that fits, with composition, weight, width and best use.",
+      "ctaPrimary": "Start matching",
+      "ctaSecondary": "Explore the catalog"
+    },
+    "values": {
+      "title": "Why SATEX",
+      "ai": {
+        "title": "AI fabric matching",
+        "body": "Tell us who you design for, the style and the brand feel: we find the right fabric in seconds."
+      },
+      "stock": {
+        "title": "Real-time stock",
+        "body": "Every department shows real stock, so you always know what is ready to ship."
+      },
+      "showroom": {
+        "title": "3D showroom",
+        "body": "Walk through our two floors, from the fabric halls to the design studio, right from your screen."
+      }
+    },
+    "categories": {
+      "title": "Our worlds"
+    },
+    "featured": {
+      "title": "Featured fabrics",
+      "all": "Full catalog",
+      "from": "From {price} / m"
+    },
+    "showroom": {
+      "eyebrow": "Showroom",
+      "title": "Step inside the SATEX showroom in 3D",
+      "body": "Two floors: the fabric halls downstairs, the design studio and offices upstairs. Every department shows its stock in real time.",
+      "cta": "Visit the showroom"
+    },
+    "since": {
+      "title": "Textile expert since {year}",
+      "body": "For more than {years} years we have supported designers and manufacturers with reliable fabrics, available and delivered on time."
+    },
+    "contact": {
+      "title": "Request a sample or a quote",
+      "body": "Orders, deliveries and cutting jobs are managed in one place. Tell us about your project.",
+      "cta": "Get in touch"
     }
   },
   "footer": {
-    "since": "Textile expert since 1995"
+    "since": "Textile expert since {year}",
+    "tagline": "Wholesale fabrics",
+    "linksTitle": "Explore",
+    "legalTitle": "Legal",
+    "privacy": "Privacy policy",
+    "terms": "Terms of use",
+    "contactTitle": "Contact",
+    "rights": "All rights reserved."
   },
   "errors": {
     "notFound": {
@@ -47,7 +95,15 @@
     "account": "My account",
     "profile": "My profile",
     "admin": "Back-office",
-    "signOut": "Sign out"
+    "signOut": "Sign out",
+    "main": "Main navigation",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu",
+    "catalog": "Catalog",
+    "match": "AI Match",
+    "showroom": "Showroom",
+    "about": "About",
+    "contact": "Contact"
   },
   "auth": {
     "signIn": {
@@ -187,5 +243,109 @@
   "admin": {
     "title": "Back-office",
     "placeholder": "The dashboard and management tools are coming soon."
+  },
+  "structures": {
+    "jersey": "Jersey",
+    "pique": "Piqué",
+    "rib": "Rib knit",
+    "interlock": "Interlock",
+    "fleece": "Fleece",
+    "french_terry": "French terry",
+    "mesh": "Mesh",
+    "plain": "Plain weave",
+    "twill": "Twill",
+    "satin": "Satin",
+    "denim": "Denim",
+    "canvas": "Canvas",
+    "poplin": "Poplin",
+    "oxford": "Oxford",
+    "gabardine": "Gabardine",
+    "crepe": "Crepe",
+    "chiffon": "Chiffon",
+    "velvet": "Velvet",
+    "jacquard": "Jacquard",
+    "tulle": "Tulle",
+    "felt": "Felt",
+    "other": "Other"
+  },
+  "comingSoon": {
+    "catalog": "The full catalog is coming very soon.",
+    "match": "The AI fabric-matching assistant is coming very soon.",
+    "showroom": "The 3D showroom is coming very soon.",
+    "back": "Back to home"
+  },
+  "about": {
+    "eyebrow": "Since {year}",
+    "title": "SATEX Commerce, your fabric partner",
+    "lead": "Wholesale fabrics, with stock visible in real time and AI-assisted search.",
+    "story": {
+      "title": "Our story",
+      "p1": "SATEX Commerce has been a textile expert since {year}. We sell fabrics wholesale to designers, workshops and manufacturers.",
+      "p2": "Today our platform brings together AI search, real-time stock and the management of orders, deliveries and cutting jobs in one place."
+    },
+    "departments": {
+      "title": "Our departments",
+      "fabricHalls": {
+        "title": "Fabric halls",
+        "body": "Natural fibers, knits, denim, shirting, upholstery, eveningwear: each hall shows its stock."
+      },
+      "cutting": {
+        "title": "Cutting room",
+        "body": "Cutting jobs are prepared and tracked through to shipping."
+      },
+      "shipping": {
+        "title": "Shipping",
+        "body": "Orders are packed and delivered with tracking."
+      },
+      "studio": {
+        "title": "Studio and offices",
+        "body": "Upstairs: the design studio, the client suite and the offices."
+      }
+    },
+    "values": {
+      "title": "Our commitments",
+      "service": {
+        "title": "Service",
+        "body": "One contact for your quotes, samples and orders."
+      },
+      "transparency": {
+        "title": "Transparency",
+        "body": "Clear technical sheets: composition, weight, width, use."
+      },
+      "availability": {
+        "title": "Availability",
+        "body": "Stock visible in real time so you can decide fast."
+      }
+    },
+    "cta": "Tell us about your project"
+  },
+  "contact": {
+    "title": "Contact us",
+    "lead": "Request a sample, a quote or advice on your fabrics. We reply quickly.",
+    "detailsTitle": "Our details",
+    "mapTitle": "Find us",
+    "mapPlaceholder": "The access map will be added soon.",
+    "form": {
+      "name": "Full name",
+      "company": "Company (optional)",
+      "email": "Email",
+      "phone": "Phone (optional)",
+      "message": "Your message",
+      "consent": "I agree that my data is used to answer my request, in line with the <privacy>privacy policy</privacy>.",
+      "submit": "Send message",
+      "successTitle": "Message sent",
+      "successBody": "Thank you! We have received your message and will reply very soon.",
+      "rateLimited": "Too many messages sent. Try again in an hour or email us.",
+      "serverError": "Could not send right now. Please try again or email us."
+    },
+    "validation": {
+      "required": "This field is required.",
+      "email": "Invalid email address.",
+      "nameMin": "Enter your name.",
+      "tooLong": "Text is too long.",
+      "phone": "Invalid phone number.",
+      "messageMin": "Your message is too short (10 characters minimum).",
+      "consentRequired": "You must agree to send the message."
+    }
   }
 }

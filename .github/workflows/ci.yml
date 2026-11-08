@@ -64,6 +64,12 @@ jobs:
       - run: pnpm build
       - run: pnpm exec playwright install --with-deps chromium
       - run: pnpm e2e:auth
+      - name: "Lighthouse (mobile) on the home page"
+        run: |
+          pnpm exec next start -p 3100 &
+          npx --yes wait-on@8 http://localhost:3100/fr
+          npx --yes lighthouse@12.8.2 http://localhost:3100/fr --only-categories=performance --form-factor=mobile             --chrome-flags="--headless=new --no-sandbox" --output=json --output-path=lighthouse-home.json --quiet
+          node scripts/check-lighthouse.mjs lighthouse-home.json 0.85
       - uses: actions/upload-artifact@v4
         if: failure()
         with:

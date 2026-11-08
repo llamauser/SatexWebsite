@@ -23,12 +23,12 @@ describe("RLS safety net", () => {
     expect(rows).toEqual([]);
   });
 
-  it("anon has no write privilege on tables except contact_messages insert", async () => {
+  it("anon has no write privilege on any table (contact messages go through submit_contact_message)", async () => {
     const { rows } = await pool.query(
       `select table_name, privilege_type from information_schema.role_table_grants
         where grantee = 'anon' and table_schema = 'public' and privilege_type in ('INSERT','UPDATE','DELETE','TRUNCATE')`,
     );
-    expect(rows).toEqual([{ table_name: "contact_messages", privilege_type: "INSERT" }]);
+    expect(rows).toEqual([]);
   });
 });
 
@@ -162,12 +162,16 @@ describe("stock and customer data isolation", () => {
     });
   });
 
-  it("guests can post a contact message but cannot read any", async () => {
+  it("nobody can insert contact messages directly; staff can read and handle them", async () => {
     await txn(async (c) => {
-      await actAs(c, "guest");
-      const ins = await attempt(c, `insert into public.contact_messages (name, email, message) values ('A','a@b.c','hi')`);
-      expect(ins.ok).toBe(true);
-      expect((await c.query(`select 1 from public.contact_messages`)).rowCount).toBe(0);
+      await asSuper(c);
+      await c.query(`select public.submit_contact_message('Ana', null, 'ana@example.com', null, 'Hello, I need fabric samples please', 'fr', 'rls-test-ip')`);
+      for (const [role, user] of [["guest"], ["client", clientA]] as const) {
+        await actAs(c, role, user);
+        const ins = await attempt(c, `insert into public.contact_messages (name, email, message) values ('A','a@b.c','hi')`);
+        expect(ins.ok).toBe(false);
+        expect((await c.query(`select 1 from public.contact_messages`)).rowCount).toBe(0);
+      }
       await actAs(c, "sales", sales);
       expect((await c.query(`select 1 from public.contact_messages`)).rowCount).toBeGreaterThan(0);
     });
