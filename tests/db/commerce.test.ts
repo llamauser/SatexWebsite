@@ -56,7 +56,8 @@ describe("quotes", () => {
       const sneaky = await attempt(c, `update public.quotes set status = 'accepted' where id = $1`, [id]);
       expect(sneaky.ok).toBe(false); // WITH CHECK requires status = 'draft'
 
-      const sub = await c.query(`select status, submitted_at from public.quotes where id = (select (public.submit_quote($1)).id)`, [id]);
+      await c.query(`select public.submit_quote($1)`, [id]);
+      const sub = await c.query(`select status, submitted_at from public.quotes where id = $1`, [id]);
       expect(sub.rows[0].status).toBe("submitted");
       expect(sub.rows[0].submitted_at).not.toBeNull();
 
@@ -143,6 +144,7 @@ describe("order -> cutting -> stock", () => {
       expect((await c.query(`select status from public.orders where id = $1`, [order.id])).rows[0].status).toBe("ready");
 
       // lot reduced by what was actually cut, allocation released -> available = 60.5
+      await asSuper(c);
       expect(Number((await c.query(`select meters from public.stock_lots where id = $1`, [lot])).rows[0].meters)).toBe(60.5);
       expect(Number((await c.query(`select available_m from public.v_color_availability_all where color_id = $1`, [f.colorId])).rows[0].available_m)).toBe(60.5);
     });

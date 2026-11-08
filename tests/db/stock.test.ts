@@ -10,8 +10,11 @@ afterAll(async () => {
   await pool.end();
 });
 
-const available = async (c: import("pg").PoolClient, colorId: string) =>
-  Number((await c.query(`select available_m from public.v_color_availability_all where color_id = $1`, [colorId])).rows[0].available_m);
+// internal view: super-user context only (resets any role set by actAs; re-call actAs afterwards)
+const available = async (c: import("pg").PoolClient, colorId: string) => {
+  await asSuper(c);
+  return Number((await c.query(`select available_m from public.v_color_availability_all where color_id = $1`, [colorId])).rows[0].available_m);
+};
 
 describe("stock lots and movements", () => {
   it("meters change only through movements", async () => {
@@ -71,6 +74,7 @@ describe("reservations", () => {
       expect(hours).toBeGreaterThan(47.9);
       expect(hours).toBeLessThan(48.1);
       expect(await available(c, f.colorId)).toBe(70);
+      await actAs(c, "client", clientA);
       // the client also sees it
       expect((await c.query(`select 1 from public.stock_reservations`)).rowCount).toBe(1);
       await actAs(c, "client", clientB);
@@ -112,6 +116,7 @@ describe("reservations", () => {
       await actAs(c, "client", clientA);
       expect((await attempt(c, `select public.cancel_reservation($1)`, [id])).ok).toBe(true);
       expect(await available(c, f.colorId)).toBe(100);
+      await actAs(c, "client", clientA);
       // already cancelled
       expect((await attempt(c, `select public.cancel_reservation($1)`, [id])).error).toMatch(/not active/);
     });
