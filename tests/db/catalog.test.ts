@@ -68,7 +68,7 @@ describe("catalog_search", () => {
       expect((await search(c, { p_q: token })).map((r) => r.slug)).toEqual([a.slug]);
       expect((await search(c, { p_q: token.toUpperCase() })).map((r) => r.slug)).toEqual([a.slug]);
       expect((await search(c, { p_q: token.slice(0, 5) })).map((r) => r.slug)).toContain(a.slug); // prefix
-      expect(await search(c, { p_q: `${token}-nope-nothing` })).toHaveLength(0);
+      expect(await search(c, { p_q: "xqzvwk" })).toHaveLength(0);
     });
   });
 

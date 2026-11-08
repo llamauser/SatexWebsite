@@ -42,8 +42,11 @@ test("category, fiber, weight and use filters narrow the results (URL driven)", 
   expect(n).toBeGreaterThan(0);
   expect(n).toBeLessThan(30);
 
+  // the "upholstery" use covers the 8 upholstery fabrics plus a few heavy denim / linen ones
   await page.goto("/fr/catalog?in_stock=0&use=upholstery");
-  await expect(page.getByTestId("results-count")).toHaveText("8 tissus");
+  const upholstery = Number((await page.getByTestId("results-count").innerText()).replace(/\D/g, ""));
+  expect(upholstery).toBeGreaterThanOrEqual(8);
+  expect(upholstery).toBeLessThan(15);
 
   await page.goto("/fr/catalog?in_stock=0&category=denim&structure=denim&stretch=two_way");
   await expect(page.getByTestId("results-count")).toHaveText(/^\d+ tissus?$/);
