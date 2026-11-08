@@ -59,6 +59,7 @@ test("a client gets 'access denied' on /admin; sales staff get in", async ({ pag
   await expect(page.getByRole("heading", { level: 1, name: "Accès refusé" })).toBeVisible();
   await page.getByTestId("account-menu-button").click();
   await page.getByRole("menuitem", { name: "Se déconnecter" }).click();
+  await expect(page).toHaveURL(/\/fr$/); // wait for the sign-out navigation before signing in again
 
   await signInOk(page, "sales1@satex.test", seededPassword("sales1@satex.test"));
   await page.getByTestId("account-menu-button").click();
