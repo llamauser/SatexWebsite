@@ -8,8 +8,9 @@ language plpgsql immutable parallel safe as $$
 declare
   l double precision := p_lab[1];
   c double precision := sqrt(p_lab[2] ^ 2 + p_lab[3] ^ 2);
-  h double precision := mod(degrees(atan2(p_lab[3], p_lab[2])) + 360, 360);
+  h double precision := degrees(atan2(p_lab[3], p_lab[2]));
 begin
+  if h < 0 then h := h + 360; end if;
   if l > 90 and c < 8 then return 'white'; end if;
   if l < 20 and c < 10 then return 'black'; end if;
   if c < 8 then return 'grey'; end if;

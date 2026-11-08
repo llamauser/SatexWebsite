@@ -2,7 +2,7 @@
 
 import { SlidersHorizontal, X } from "lucide-react";
 import { useTranslations } from "next-intl";
-import { useEffect, useState, useTransition } from "react";
+import { useEffect, useOptimistic, useState, useTransition } from "react";
 import { Button } from "@/components/ui/Button";
 import { useRouter } from "@/i18n/navigation";
 import {
@@ -17,17 +17,22 @@ const FAMILY_HEX: Record<string, string> = {
   orange: "#E8812B", yellow: "#D4A017", green: "#1F7A4D", blue: "#2C5AA0", purple: "#6A3D9A", pink: "#E8B4B8",
 };
 
-/** Updates the URL (the single source of truth for the catalog); the server page re-renders with the new filters. */
-export function useCatalogNavigation(filters: Filters) {
+/**
+ * Updates the URL (the single source of truth for the catalog); the server page re-renders with the new filters.
+ * `filters` is optimistic: controls reflect a click immediately instead of waiting for the server round trip.
+ */
+export function useCatalogNavigation(serverFilters: Filters) {
   const router = useRouter();
   const [pending, startTransition] = useTransition();
+  const [filters, setOptimistic] = useOptimistic(serverFilters);
   const apply = (patch: Partial<Filters>) => {
     const next = { ...filters, page: 1, ...patch };
     startTransition(() => {
+      setOptimistic(next);
       router.replace({ pathname: "/catalog", query: Object.fromEntries(serializeCatalogParams(next)) }, { scroll: false });
     });
   };
-  return { apply, pending };
+  return { apply, pending, filters };
 }
 
 function toggle(list: string[], value: string): string[] {
@@ -73,9 +78,9 @@ function Checks({ options, selected, onToggle, name }: { options: { value: strin
   );
 }
 
-export function CatalogFilters({ filters, categories }: { filters: Filters; categories: { slug: string; label: string }[] }) {
+export function CatalogFilters({ filters: serverFilters, categories }: { filters: Filters; categories: { slug: string; label: string }[] }) {
   const t = useTranslations("catalog.filters");
-  const { apply, pending } = useCatalogNavigation(filters);
+  const { apply, pending, filters } = useCatalogNavigation(serverFilters);
   const [open, setOpen] = useState(false);
   const [q, setQ] = useState(filters.q);
   const [gsmMin, setGsmMin] = useState(filters.gsmMin?.toString() ?? "");

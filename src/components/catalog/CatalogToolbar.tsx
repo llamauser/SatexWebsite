@@ -12,9 +12,9 @@ const SORT_KEYS: Record<Sort, string> = {
   relevance: "relevance", newest: "newest", price_asc: "priceAsc", price_desc: "priceDesc", gsm_asc: "gsmAsc", gsm_desc: "gsmDesc",
 };
 
-export function SortSelect({ filters }: { filters: Filters }) {
+export function SortSelect({ filters: serverFilters }: { filters: Filters }) {
   const t = useTranslations("catalog.sort");
-  const { apply } = useCatalogNavigation(filters);
+  const { apply, filters } = useCatalogNavigation(serverFilters);
   return (
     <label className="flex items-center gap-2 text-sm">
       <span className="text-text-muted">{t("label")}</span>

@@ -10,19 +10,15 @@ import { buttonStyles } from "@/components/ui/Button";
 import { Card } from "@/components/ui/Field";
 import { Link } from "@/i18n/navigation";
 import { routing } from "@/i18n/routing";
-import { getAllFabricSlugs, getFabricDetail, getSimilarFabrics } from "@/lib/data/catalog";
+import { getFabricDetail, getSimilarFabrics } from "@/lib/data/catalog";
 import { formatMoney, localized } from "@/lib/data/format";
 import { getPublicSettings, storageUrl } from "@/lib/data/public";
 import { loose } from "@/lib/i18n-loose";
 
 type Props = { params: Promise<{ locale: string; slug: string }> };
 
-export const revalidate = 300;
-
-export async function generateStaticParams() {
-  const slugs = await getAllFabricSlugs();
-  return routing.locales.flatMap((locale) => slugs.map((slug) => ({ locale, slug })));
-}
+// Rendered on demand: the data queries are cached for 5 minutes (fetch cache), so repeat views stay cheap and a
+// missing slug is a clean 404. (Static generation + notFound() + next-intl is fragile; revisit with the P1-17 SEO work.)
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale, slug } = await params;
