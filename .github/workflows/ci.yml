@@ -28,6 +28,7 @@ jobs:
 
   database:
     runs-on: ubuntu-latest
+    timeout-minutes: 30
     steps:
       - uses: actions/checkout@v4
       - uses: pnpm/action-setup@v4
@@ -38,4 +39,8 @@ jobs:
       - run: pnpm install --frozen-lockfile
       - run: pnpm exec supabase start -x studio,imgproxy,vector,mailpit
       - run: pnpm exec supabase db reset
+      - name: Seed (run twice: the seed must be idempotent)
+        run: |
+          pnpm db:seed
+          pnpm db:seed
       - run: pnpm test:db
