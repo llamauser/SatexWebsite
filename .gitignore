@@ -1,0 +1,39 @@
+# dependencies / build
+node_modules/
+.next/
+out/
+dist/
+coverage/
+*.tsbuildinfo
+.vercel/
+.turbo/
+
+# secrets and local config
+.env
+.env.*
+!.env.example
+.seed-credentials.local.json
+*.pem
+
+# supabase local
+supabase/.branches/
+supabase/.temp/
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/*
+!.vscode/extensions.json
+
+# python worker
+__pycache__/
+.venv/
+*.pyc
+
+# Blender
+*.blend1
+*.blend@
+
+# reference media (large, not needed to build; notes are in video_audio_notes.md)
+*.mp4
