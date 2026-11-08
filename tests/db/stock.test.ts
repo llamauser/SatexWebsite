@@ -135,24 +135,35 @@ describe("reservations", () => {
     await txn(async (c) => {
       const f = await createFabric(c, { meters: 100 });
       await actAs(c, "client", clientA);
-      await c.query(`select public.reserve_stock($1, 10)`, [f.colorId]);
+      const resId = (await c.query(`select id from public.reserve_stock($1, 10)`, [f.colorId])).rows[0].id as string;
       await asSuper(c);
+      const state = async () =>
+        (await c.query(`select status, reminded_at from public.stock_reservations where id = $1`, [resId])).rows[0];
+      const queued = async (template: string) =>
+        (
+          await c.query(
+            `select count(*)::int as n from pgmq.q_q_email where message->>'template' = $1 and message->>'id' = $2`,
+            [template, resId],
+          )
+        ).rows[0].n;
 
-      // 43h later: inside the 6h window before expiry -> reminded once
+      // 43h later: inside the 6h window before expiry -> reminded once (other reservations in the DB may be reminded too)
       const t43 = new Date(Date.now() + 43 * 3_600_000).toISOString();
-      expect((await c.query(`select public.remind_reservations($1)`, [t43])).rows[0].remind_reservations).toBe(1);
-      expect((await c.query(`select public.remind_reservations($1)`, [t43])).rows[0].remind_reservations).toBe(0);
-      // not expired yet
-      expect((await c.query(`select public.expire_reservations($1)`, [t43])).rows[0].expire_reservations).toBe(0);
+      expect((await c.query(`select public.remind_reservations($1) as n`, [t43])).rows[0].n).toBeGreaterThanOrEqual(1);
+      expect((await state()).reminded_at).not.toBeNull();
+      expect(await queued("reservation_expiring")).toBe(1);
+      await c.query(`select public.remind_reservations($1)`, [t43]);
+      expect(await queued("reservation_expiring")).toBe(1); // never reminded twice
+      await c.query(`select public.expire_reservations($1)`, [t43]);
+      expect((await state()).status).toBe("active"); // not expired yet
       expect(await available(c, f.colorId)).toBe(90);
 
       // 49h later: expired, stock released
       const t49 = new Date(Date.now() + 49 * 3_600_000).toISOString();
-      expect((await c.query(`select public.expire_reservations($1)`, [t49])).rows[0].expire_reservations).toBe(1);
+      expect((await c.query(`select public.expire_reservations($1) as n`, [t49])).rows[0].n).toBeGreaterThanOrEqual(1);
+      expect((await state()).status).toBe("expired");
+      expect(await queued("reservation_expired")).toBe(1);
       expect(await available(c, f.colorId)).toBe(100);
-
-      const q = await c.query(`select message->>'template' as t from pgmq.q_q_email order by msg_id desc limit 2`);
-      expect(q.rows.map((r) => r.t).sort()).toEqual(["reservation_expired", "reservation_expiring"]);
     });
   });
 
