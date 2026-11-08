@@ -44,3 +44,30 @@ jobs:
           pnpm db:seed
           pnpm db:seed
       - run: pnpm test:db
+
+  auth-e2e:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm exec supabase start -x studio,imgproxy,vector
+      - name: "Export Supabase env for build and tests"
+        run: node scripts/supabase-env.mjs >> "$GITHUB_ENV"
+      - name: "Seed users and catalog (no images, no demo operations)"
+        run: pnpm db:seed --skip-images --skip-demo
+      - run: pnpm build
+      - run: pnpm exec playwright install --with-deps chromium
+      - run: pnpm e2e:auth
+      - uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: auth-e2e-report
+          path: |
+            playwright-report-auth
+            test-results

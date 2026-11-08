@@ -24,9 +24,12 @@
     "test:db": "vitest run --config vitest.db.config.mts",
     "db:seed": "tsx scripts/seed.ts",
     "db:seed:reference": "tsx scripts/seed.ts --reference-only",
-    "textures:preview": "tsx scripts/generate-textures.ts"
+    "textures:preview": "tsx scripts/generate-textures.ts",
+    "e2e:auth": "playwright test --config playwright.auth.config.ts",
+    "env:local": "node scripts/supabase-env.mjs > .env.local"
   },
   "dependencies": {
+    "@supabase/ssr": "^0.12.7",
     "@supabase/supabase-js": "^2.119.0",
     "class-variance-authority": "0.7.1",
     "clsx": "2.1.1",
@@ -35,7 +38,9 @@
     "next-intl": "4.14.9",
     "react": "19.3.1",
     "react-dom": "19.3.1",
-    "tailwind-merge": "3.7.0"
+    "server-only": "^0.0.1",
+    "tailwind-merge": "3.7.0",
+    "zod": "^4.6.7"
   },
   "devDependencies": {
     "@eslint/eslintrc": "3.3.7",

@@ -9,8 +9,16 @@
   },
   "languages": {
     "label": "Langue",
-    "names": { "fr": "Français", "en": "English", "ar": "العربية" },
-    "short": { "fr": "FR", "en": "EN", "ar": "عربي" }
+    "names": {
+      "fr": "Français",
+      "en": "English",
+      "ar": "العربية"
+    },
+    "short": {
+      "fr": "FR",
+      "en": "EN",
+      "ar": "عربي"
+    }
   },
   "home": {
     "hero": {
@@ -26,6 +34,158 @@
       "title": "Page introuvable",
       "body": "La page que vous cherchez n'existe pas ou a été déplacée.",
       "cta": "Retour à l'accueil"
+    },
+    "forbidden": {
+      "title": "Accès refusé",
+      "body": "Vous n'avez pas l'autorisation d'accéder à cette page.",
+      "cta": "Retour à l'accueil"
     }
+  },
+  "nav": {
+    "signIn": "Se connecter",
+    "createAccount": "Créer un compte",
+    "account": "Mon compte",
+    "profile": "Mon profil",
+    "admin": "Back-office",
+    "signOut": "Se déconnecter"
+  },
+  "auth": {
+    "signIn": {
+      "title": "Connexion",
+      "subtitle": "Accédez à votre espace client SATEX.",
+      "email": "E-mail",
+      "password": "Mot de passe",
+      "submit": "Se connecter",
+      "magicLink": "Recevoir un lien de connexion par e-mail",
+      "magicLinkSent": "Si un compte existe pour {email}, un lien de connexion vient d'être envoyé.",
+      "forgot": "Mot de passe oublié ?",
+      "noAccount": "Pas encore de compte ?",
+      "createAccount": "Créer un compte"
+    },
+    "signUp": {
+      "title": "Créer un compte",
+      "subtitle": "Demandez des devis, réservez du stock et suivez vos commandes.",
+      "fullName": "Nom complet",
+      "company": "Société",
+      "email": "E-mail professionnel",
+      "password": "Mot de passe",
+      "passwordHint": "Au moins {min} caractères.",
+      "phone": "Téléphone (facultatif)",
+      "language": "Langue préférée",
+      "terms": "J'accepte les <terms>conditions d'utilisation</terms> et la <privacy>politique de confidentialité</privacy>.",
+      "submit": "Créer mon compte",
+      "haveAccount": "Déjà un compte ?",
+      "signIn": "Se connecter",
+      "checkEmailTitle": "Vérifiez votre boîte mail",
+      "checkEmailBody": "Nous avons envoyé un lien de confirmation à {email}. Cliquez dessus pour activer votre compte."
+    },
+    "reset": {
+      "title": "Mot de passe oublié",
+      "subtitle": "Indiquez votre e-mail pour recevoir un lien de réinitialisation.",
+      "email": "E-mail",
+      "submit": "Envoyer le lien",
+      "sent": "Si un compte existe pour cette adresse, un lien de réinitialisation vient d'être envoyé.",
+      "newPassword": "Nouveau mot de passe",
+      "confirmPassword": "Confirmer le mot de passe",
+      "save": "Enregistrer le mot de passe",
+      "saved": "Mot de passe mis à jour. Vous pouvez maintenant vous connecter.",
+      "backToSignIn": "Retour à la connexion"
+    },
+    "callbackError": "Ce lien est invalide ou a expiré. Demandez-en un nouveau.",
+    "validation": {
+      "required": "Ce champ est obligatoire.",
+      "email": "Adresse e-mail invalide.",
+      "passwordMin": "Au moins {min} caractères.",
+      "passwordMatch": "Les mots de passe ne correspondent pas.",
+      "termsRequired": "Vous devez accepter les conditions.",
+      "nameMin": "Indiquez votre nom complet.",
+      "companyMin": "Indiquez le nom de votre société.",
+      "tooLong": "Texte trop long.",
+      "phone": "Numéro de téléphone invalide.",
+      "url": "Adresse web invalide (https://…)."
+    },
+    "errors": {
+      "invalidCredentials": "E-mail ou mot de passe incorrect.",
+      "emailNotConfirmed": "Confirmez d'abord votre e-mail grâce au lien reçu.",
+      "weakPassword": "Mot de passe trop faible.",
+      "samePassword": "Le nouveau mot de passe doit être différent de l'ancien.",
+      "rateLimit": "Trop de tentatives. Réessayez dans quelques minutes.",
+      "network": "Problème de connexion. Vérifiez votre réseau.",
+      "notConfigured": "Le service d'authentification n'est pas configuré.",
+      "generic": "Une erreur est survenue. Réessayez."
+    }
+  },
+  "account": {
+    "nav": {
+      "label": "Espace client",
+      "overview": "Vue d'ensemble",
+      "profile": "Profil"
+    },
+    "overview": {
+      "loading": "Chargement…",
+      "loadError": "Impossible de charger votre compte.",
+      "greeting": "Bonjour, {name}",
+      "deletionPending": "Votre demande de suppression de compte est en cours de traitement.",
+      "profileCard": {
+        "title": "Votre profil",
+        "body": "Coordonnées, société, adresses et sécurité.",
+        "cta": "Gérer mon profil"
+      }
+    }
+  },
+  "profile": {
+    "title": "Mon profil",
+    "loading": "Chargement…",
+    "loadError": "Impossible de charger votre profil.",
+    "save": "Enregistrer",
+    "saved": "Modifications enregistrées.",
+    "saveError": "Enregistrement impossible. Réessayez.",
+    "personal": {
+      "title": "Informations personnelles",
+      "fullName": "Nom complet",
+      "email": "E-mail",
+      "phone": "Téléphone",
+      "language": "Langue préférée"
+    },
+    "company": {
+      "title": "Société",
+      "name": "Nom de la société",
+      "taxId": "N° de TVA / identifiant fiscal",
+      "website": "Site web",
+      "country": "Pays"
+    },
+    "address": {
+      "billing": "Adresse de facturation",
+      "shipping": "Adresse de livraison",
+      "line1": "Adresse",
+      "line2": "Complément d'adresse",
+      "city": "Ville",
+      "postalCode": "Code postal",
+      "country": "Pays",
+      "save": "Enregistrer l'adresse",
+      "saved": "Adresse enregistrée.",
+      "saveError": "Enregistrement impossible. Réessayez."
+    },
+    "password": {
+      "title": "Changer le mot de passe",
+      "new": "Nouveau mot de passe",
+      "confirm": "Confirmer",
+      "submit": "Mettre à jour",
+      "changed": "Mot de passe mis à jour."
+    },
+    "deletion": {
+      "title": "Supprimer mon compte",
+      "body": "Nous anonymiserons votre profil sous 30 jours. Les commandes et devis sont conservés pour la comptabilité.",
+      "request": "Demander la suppression",
+      "confirmBody": "Confirmez-vous la demande de suppression de votre compte ?",
+      "confirm": "Oui, supprimer mon compte",
+      "back": "Retour",
+      "requested": "Demande de suppression enregistrée. Notre équipe la traitera sous 30 jours.",
+      "cancel": "Annuler la demande"
+    }
+  },
+  "admin": {
+    "title": "Back-office",
+    "placeholder": "Le tableau de bord et les outils de gestion arrivent bientôt."
   }
 }
