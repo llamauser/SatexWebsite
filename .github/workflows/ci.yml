@@ -22,6 +22,8 @@ jobs:
       - run: pnpm i18n:check
       - run: pnpm test
       - run: pnpm build
+      - name: "Refresh package lists (the runner image can ship stale ones)"
+        run: sudo apt-get update
       - run: pnpm exec playwright install --with-deps chromium
       - run: pnpm e2e
       - run: pnpm audit --prod --audit-level=high
@@ -62,6 +64,8 @@ jobs:
       - name: "Seed users and catalog (no images, no demo operations)"
         run: pnpm db:seed --skip-images --skip-demo
       - run: pnpm build
+      - name: "Refresh package lists (the runner image can ship stale ones)"
+        run: sudo apt-get update
       - run: pnpm exec playwright install --with-deps chromium
       - run: pnpm e2e:auth
       - name: "Lighthouse (mobile) on the home page"
