@@ -1,11 +1,12 @@
 import { Mail, MapPin, MessageCircle, Phone } from "lucide-react";
 import type { Metadata } from "next";
-import { hasLocale } from "next-intl";
+import { hasLocale, NextIntlClientProvider } from "next-intl";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
 import { ContactForm } from "@/components/contact/ContactForm";
 import { BlobBackground } from "@/components/layout/BlobBackground";
 import { Card } from "@/components/ui/Field";
+import { clientMessages } from "@/i18n/client-messages";
 import { routing } from "@/i18n/routing";
 import { digitsOnly } from "@/lib/data/format";
 import { getPublicSettings } from "@/lib/data/public";
@@ -34,7 +35,9 @@ export default async function ContactPage({ params }: Props) {
       </header>
       <div className="mt-10 grid gap-8 lg:grid-cols-[1fr_360px]">
         <Card>
-          <ContactForm />
+          <NextIntlClientProvider messages={await clientMessages("contact")}>
+            <ContactForm />
+          </NextIntlClientProvider>
         </Card>
         <aside aria-label={t("detailsTitle")} className="space-y-4">
           <Card className="p-6 sm:p-6">

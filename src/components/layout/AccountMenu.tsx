@@ -5,7 +5,7 @@ import { useEffect, useRef, useState } from "react";
 import { buttonStyles } from "@/components/ui/Button";
 import { Link } from "@/i18n/navigation";
 import { decodeJwtPayload, isStaff } from "@/lib/auth/guard";
-import { getBrowserSupabase } from "@/lib/db/browser";
+import { hasAuthCookie, loadBrowserSupabase } from "@/lib/db/browser-lazy";
 
 interface SessionUser {
   email: string;
@@ -22,11 +22,13 @@ export function AccountMenu() {
   const box = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const supabase = getBrowserSupabase();
-    if (!supabase) {
+    // Guests (no auth cookie) never load the Supabase client: the page stays light.
+    if (!hasAuthCookie()) {
       setUser(null);
       return;
     }
+    let cancelled = false;
+    let unsubscribe: (() => void) | undefined;
     const toUser = (session: { access_token: string; user: { email?: string; user_metadata?: Record<string, unknown> } } | null) =>
       session
         ? {
@@ -35,9 +37,18 @@ export function AccountMenu() {
             role: String(decodeJwtPayload(session.access_token)?.user_role ?? "client"),
           }
         : null;
-    void supabase.auth.getSession().then(({ data }) => setUser(toUser(data.session)));
-    const { data } = supabase.auth.onAuthStateChange((_event, session) => setUser(toUser(session)));
-    return () => data.subscription.unsubscribe();
+    void loadBrowserSupabase().then(async (supabase) => {
+      if (cancelled) return;
+      if (!supabase) return setUser(null);
+      const { data } = await supabase.auth.getSession();
+      if (!cancelled) setUser(toUser(data.session));
+      const sub = supabase.auth.onAuthStateChange((_event, session) => setUser(toUser(session)));
+      unsubscribe = () => sub.data.subscription.unsubscribe();
+    });
+    return () => {
+      cancelled = true;
+      unsubscribe?.();
+    };
   }, []);
 
   useEffect(() => {
@@ -53,7 +64,7 @@ export function AccountMenu() {
   }, [open]);
 
   async function signOut() {
-    await getBrowserSupabase()?.auth.signOut();
+    await (await loadBrowserSupabase())?.auth.signOut();
     window.location.assign(`/${locale}`);
   }
 

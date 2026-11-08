@@ -1,12 +1,19 @@
-import { expect, test } from "@playwright/test";
+import { expect, test, type Page } from "@playwright/test";
 
 test.use({ locale: "fr-FR" });
 
+/** On phones the language switcher lives inside the hamburger menu. */
+async function switchLanguage(page: Page, isMobile: boolean, name: string) {
+  if (isMobile) await page.getByTestId("mobile-nav-toggle").click();
+  await page.getByRole("button", { name, exact: true }).click();
+}
+
 test("switching to Arabic flips to RTL, uses the Arabic font, and is remembered", async ({
   page,
+  isMobile,
 }, testInfo) => {
   await page.goto("/fr");
-  await page.getByRole("button", { name: "عربي" }).click();
+  await switchLanguage(page, isMobile, "عربي");
   await expect(page).toHaveURL(/\/ar$/);
 
   const html = page.locator("html");
@@ -27,11 +34,11 @@ test("switching to Arabic flips to RTL, uses the Arabic font, and is remembered"
   await expect(page).toHaveURL(/\/ar$/);
 });
 
-test("switcher keeps the path and the query string", async ({ page }) => {
+test("switcher keeps the path and the query string", async ({ page, isMobile }) => {
   await page.goto("/fr/does-not-exist?foo=1&bar=2");
   await expect(page.getByRole("heading", { level: 1, name: "Page introuvable" })).toBeVisible();
 
-  await page.getByRole("button", { name: "EN" }).click();
+  await switchLanguage(page, isMobile, "EN");
   await expect(page).toHaveURL(/\/en\/does-not-exist\?foo=1&bar=2$/);
   await expect(page.getByRole("heading", { level: 1, name: "Page not found" })).toBeVisible();
 });

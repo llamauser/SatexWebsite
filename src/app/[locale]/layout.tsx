@@ -5,6 +5,7 @@ import { IBM_Plex_Sans_Arabic, Inter, Poppins } from "next/font/google";
 import { notFound } from "next/navigation";
 import { Footer } from "@/components/layout/Footer";
 import { Header } from "@/components/layout/Header";
+import { clientMessages } from "@/i18n/client-messages";
 import { localeDirection, routing } from "@/i18n/routing";
 import "../globals.css";
 
@@ -54,7 +55,7 @@ export default async function LocaleLayout({ children, params }: Props) {
   return (
     <html lang={locale} dir={localeDirection(locale)} className={fontClasses}>
       <body>
-        <NextIntlClientProvider>
+        <NextIntlClientProvider messages={await clientMessages()}>
           <SkipLink />
           <Header />
           <div id="main-content">{children}</div>
