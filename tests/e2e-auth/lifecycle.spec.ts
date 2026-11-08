@@ -1,5 +1,5 @@
 import { expect, test } from "@playwright/test";
-import { signIn, uniqueEmail, waitForAuthLink, withDb } from "./helpers";
+import { signIn, signInOk, uniqueEmail, waitForAuthLink, withDb } from "./helpers";
 
 test.use({ locale: "fr-FR" });
 test.describe.configure({ mode: "serial" });
@@ -39,8 +39,7 @@ test("sign up requires email confirmation, then lands in the account", async ({ 
 });
 
 test("the profile and addresses can be edited and are saved", async ({ page }) => {
-  await signIn(page, email, password);
-  await expect(page).toHaveURL(/\/fr\/account$/);
+  await signInOk(page, email, password);
   await page.goto("/fr/account/profile");
 
   await page.getByLabel("Site web").fill("https://lifecycle.example.com");
@@ -67,7 +66,7 @@ test("the profile and addresses can be edited and are saved", async ({ page }) =
 });
 
 test("the profile page only ever shows the signed-in user's own data", async ({ page }) => {
-  await signIn(page, email, password);
+  await signInOk(page, email, password);
   await page.goto("/fr/account/profile");
   await expect(page.getByLabel("E-mail", { exact: true })).toHaveValue(email);
   await expect(page.getByLabel("Nom de la société")).toHaveValue("Lifecycle SARL");
@@ -76,7 +75,7 @@ test("the profile page only ever shows the signed-in user's own data", async ({ 
 test("password reset by email, then sign in with the new password", async ({ page }) => {
   since = Date.now() - 2000;
   await page.goto("/fr/auth/reset");
-  await page.getByLabel("E-mail", { exact: true }).fill(email);
+  await page.locator('input[name="email"]').fill(email);
   await page.getByRole("button", { name: "Envoyer le lien" }).click();
   await expect(page.getByText("Si un compte existe pour cette adresse")).toBeVisible();
 
@@ -94,16 +93,15 @@ test("password reset by email, then sign in with the new password", async ({ pag
 
   await page.context().clearCookies();
   await signIn(page, email, password);
-  await expect(page.getByRole("alert")).toContainText("incorrect"); // old password no longer works
-  await signIn(page, email, newPassword);
-  await expect(page).toHaveURL(/\/fr\/account$/);
+  await expect(page.getByText("E-mail ou mot de passe incorrect.")).toBeVisible(); // old password no longer works
+  await signInOk(page, email, newPassword);
 });
 
 test("magic link sign-in", async ({ page }) => {
   since = Date.now() - 2000;
   await page.context().clearCookies();
   await page.goto("/fr/auth/sign-in");
-  await page.getByLabel("E-mail", { exact: true }).fill(email);
+  await page.locator('input[name="email"]').fill(email);
   await page.getByRole("button", { name: "Recevoir un lien de connexion par e-mail" }).click();
   await expect(page.getByText(`un lien de connexion vient d'être envoyé`)).toBeVisible();
   await page.goto(await waitForAuthLink(email, since));
@@ -112,7 +110,7 @@ test("magic link sign-in", async ({ page }) => {
 });
 
 test("change password from the profile page", async ({ page }) => {
-  await signIn(page, email, newPassword);
+  await signInOk(page, email, newPassword);
   await page.goto("/fr/account/profile");
   const form = page.getByTestId("password-form");
   await form.locator('input[name="password"]').fill("third-password-789");
@@ -122,7 +120,7 @@ test("change password from the profile page", async ({ page }) => {
 });
 
 test("account deletion can be requested and cancelled", async ({ page }) => {
-  await signIn(page, email, "third-password-789");
+  await signInOk(page, email, "third-password-789");
   await page.goto("/fr/account/profile");
   await page.getByTestId("deletion-request").click();
   await page.getByTestId("deletion-confirm").click();

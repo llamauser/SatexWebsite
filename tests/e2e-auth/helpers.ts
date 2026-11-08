@@ -38,9 +38,15 @@ export async function waitForAuthLink(to: string, since = 0): Promise<string> {
 
 export async function signIn(page: Page, email: string, password: string, locale = "fr") {
   await page.goto(`/${locale}/auth/sign-in`);
-  await page.getByLabel(locale === "fr" ? "E-mail" : "Email", { exact: true }).fill(email);
+  await page.locator('input[name="email"]').fill(email);
   await page.locator('input[name="password"]').fill(password);
   await page.locator('form button[type="submit"]').click();
+}
+
+/** Sign in and wait until the account area has loaded (so a following navigation cannot abort the sign-in). */
+export async function signInOk(page: Page, email: string, password: string, locale = "fr") {
+  await signIn(page, email, password, locale);
+  await expect(page).toHaveURL(new RegExp(`/${locale}/account`));
 }
 
 export async function withDb<T>(fn: (c: Client) => Promise<T>): Promise<T> {
