@@ -6,6 +6,7 @@
  *  - same placeholder names ({name}, <tag>) as French
  * Run: pnpm i18n:check
  */
+import { parse, TYPE, type MessageFormatElement } from "@formatjs/icu-messageformat-parser";
 import { IntlMessageFormat } from "intl-messageformat";
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
@@ -26,11 +27,37 @@ export function flatten(obj: Messages, prefix = ""): Record<string, string> {
   return out;
 }
 
-/** Placeholder names: {name} arguments and <tag> rich-text tags. */
+/** Placeholder names found by the real ICU parser: {name} arguments (incl. plural/select) and <tag> rich-text tags. */
 export function placeholders(message: string): string[] {
   const names = new Set<string>();
-  for (const m of message.matchAll(/\{\s*([A-Za-z_]\w*)/g)) names.add(`{${m[1]}}`);
-  for (const m of message.matchAll(/<\/?([A-Za-z]\w*)\s*>/g)) names.add(`<${m[1]}>`);
+  const walk = (elements: MessageFormatElement[]) => {
+    for (const el of elements) {
+      switch (el.type) {
+        case TYPE.argument:
+        case TYPE.number:
+        case TYPE.date:
+        case TYPE.time:
+          names.add(`{${el.value}}`);
+          break;
+        case TYPE.select:
+        case TYPE.plural:
+          names.add(`{${el.value}}`);
+          for (const option of Object.values(el.options)) walk(option.value);
+          break;
+        case TYPE.tag:
+          names.add(`<${el.value}>`);
+          walk(el.children);
+          break;
+        default:
+          break;
+      }
+    }
+  };
+  try {
+    walk(parse(message));
+  } catch {
+    /* invalid ICU is reported separately by the syntax check */
+  }
   return [...names].sort();
 }
 

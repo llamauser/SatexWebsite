@@ -103,7 +103,8 @@
     "match": "AI Match",
     "showroom": "Showroom",
     "about": "About",
-    "contact": "Contact"
+    "contact": "Contact",
+    "home": "Home"
   },
   "auth": {
     "signIn": {
@@ -336,7 +337,8 @@
       "successTitle": "Message sent",
       "successBody": "Thank you! We have received your message and will reply very soon.",
       "rateLimited": "Too many messages sent. Try again in an hour or email us.",
-      "serverError": "Could not send right now. Please try again or email us."
+      "serverError": "Could not send right now. Please try again or email us.",
+      "prefill": "Hello, I would like information (sample / quote) about fabric {ref}."
     },
     "validation": {
       "required": "This field is required.",
@@ -347,5 +349,181 @@
       "messageMin": "Your message is too short (10 characters minimum).",
       "consentRequired": "You must agree to send the message."
     }
+  },
+  "catalog": {
+    "title": "Fabric catalog",
+    "lead": "Filter by composition, weight, use or color. The stock shown is available for sale.",
+    "results": "Results",
+    "count": "{count, plural, =0 {No fabrics} one {{count} fabric} other {{count} fabrics}}",
+    "unavailable": "The catalog is temporarily unavailable. Please try again in a moment.",
+    "empty": {
+      "title": "No fabric matches",
+      "body": "Try removing a filter or widening your search.",
+      "page": "This page does not exist for these filters.",
+      "reset": "Reset filters"
+    },
+    "filters": {
+      "title": "Filters",
+      "search": "Search fabrics",
+      "searchPlaceholder": "Search (jersey, linen, SAT-KN…)",
+      "reset": "Clear all",
+      "inStock": "In stock only",
+      "category": "Category",
+      "construction": "Construction",
+      "structure": "Structure",
+      "fiber": "Fiber",
+      "gsm": "Weight (GSM)",
+      "gsmMin": "Minimum weight",
+      "gsmMax": "Maximum weight",
+      "stretch": "Stretch",
+      "use": "Use",
+      "season": "Season",
+      "clearSeason": "All seasons",
+      "color": "Color",
+      "active": "Active filters",
+      "remove": "Remove filter {name}",
+      "gsmChip": "{min}–{max} GSM",
+      "showAll": "Whole catalog (including out of stock)"
+    },
+    "sort": {
+      "label": "Sort by",
+      "relevance": "Relevance",
+      "newest": "Newest",
+      "priceAsc": "Price: low to high",
+      "priceDesc": "Price: high to low",
+      "gsmAsc": "Weight: light to heavy",
+      "gsmDesc": "Weight: heavy to light"
+    },
+    "pagination": {
+      "label": "Pagination",
+      "prev": "Previous page",
+      "next": "Next page",
+      "page": "Page {page}"
+    },
+    "card": {
+      "from": "From {price} / m",
+      "colors": "{count} colors",
+      "stock": {
+        "in": "In stock",
+        "low": "Low stock",
+        "out": "Out of stock"
+      }
+    }
+  },
+  "fabric": {
+    "breadcrumb": "Breadcrumb",
+    "back": "Back to the catalog",
+    "ask": "Request a sample or a quote",
+    "tags": "Keywords",
+    "similar": "Similar fabrics",
+    "specs": {
+      "composition": "Composition",
+      "weight": "Weight",
+      "width": "Width",
+      "construction": "Construction",
+      "structure": "Structure",
+      "stretch": "Stretch",
+      "finish": "Finishes",
+      "uses": "Best for",
+      "seasons": "Seasons",
+      "moq": "Minimum order"
+    },
+    "stock": {
+      "title": "Colors and stock",
+      "live": "Real-time stock",
+      "static": "Stock as of page load",
+      "meters": "{m} m available",
+      "in": "In stock",
+      "low": "Low stock",
+      "out": "Out of stock"
+    },
+    "prices": {
+      "title": "Volume pricing",
+      "from": "From {m} m",
+      "perMeter": "{price} / m",
+      "hidden": "Prices are visible after you sign in.",
+      "note": "Minimum order: {m} m. Prices exclude tax."
+    },
+    "eco": {
+      "organic": "Organic cotton",
+      "recycled": "{pct}% recycled"
+    }
+  },
+  "fibers": {
+    "cotton": "Cotton",
+    "polyester": "Polyester",
+    "viscose": "Viscose",
+    "linen": "Linen",
+    "wool": "Wool",
+    "silk": "Silk",
+    "elastane": "Elastane",
+    "nylon": "Nylon",
+    "modal": "Modal",
+    "acrylic": "Acrylic"
+  },
+  "constructions": {
+    "knit": "Knit",
+    "woven": "Woven",
+    "nonwoven": "Non-woven"
+  },
+  "stretches": {
+    "none": "No stretch",
+    "mechanical": "Mechanical stretch",
+    "two_way": "Two-way stretch",
+    "four_way": "Four-way stretch"
+  },
+  "seasons": {
+    "spring_summer": "Spring-summer",
+    "autumn_winter": "Autumn-winter",
+    "all_season": "All seasons"
+  },
+  "uses": {
+    "activewear": "Activewear",
+    "sportswear": "Sportswear",
+    "t_shirts": "T-shirts",
+    "polos": "Polo shirts",
+    "shirts": "Shirts",
+    "dresses": "Dresses",
+    "skirts": "Skirts",
+    "trousers": "Trousers",
+    "jeans": "Jeans",
+    "jackets": "Jackets",
+    "coats": "Coats",
+    "suits": "Suits",
+    "eveningwear": "Eveningwear",
+    "lingerie": "Lingerie",
+    "swimwear": "Swimwear",
+    "kidswear": "Kidswear",
+    "workwear": "Workwear",
+    "uniforms": "Uniforms",
+    "upholstery": "Upholstery",
+    "curtains": "Curtains",
+    "bedding": "Bedding",
+    "accessories": "Accessories",
+    "linings": "Linings"
+  },
+  "finishes": {
+    "brushed": "Brushed",
+    "mercerized": "Mercerized",
+    "anti_pilling": "Anti-pilling",
+    "quick_dry": "Quick-dry",
+    "easy_care": "Easy care",
+    "washed": "Washed",
+    "water_repellent": "Water-repellent",
+    "anti_static": "Anti-static"
+  },
+  "families": {
+    "white": "White",
+    "black": "Black",
+    "grey": "Grey",
+    "beige": "Beige",
+    "brown": "Brown",
+    "red": "Red",
+    "orange": "Orange",
+    "yellow": "Yellow",
+    "green": "Green",
+    "blue": "Blue",
+    "purple": "Purple",
+    "pink": "Pink"
   }
 }

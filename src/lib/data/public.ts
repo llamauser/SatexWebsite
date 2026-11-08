@@ -35,6 +35,7 @@ export interface PublicSettings {
   foundedYear: number;
   currency: string;
   showPricesPublic: boolean;
+  lowStockThresholdM: number;
 }
 
 export const DEFAULT_SETTINGS: PublicSettings = {
@@ -46,6 +47,7 @@ export const DEFAULT_SETTINGS: PublicSettings = {
   foundedYear: 1995,
   currency: "EUR",
   showPricesPublic: true,
+  lowStockThresholdM: 50,
 };
 
 export async function getPublicSettings(): Promise<PublicSettings> {
@@ -67,6 +69,7 @@ export async function getPublicSettings(): Promise<PublicSettings> {
       foundedYear: num("founded_year", DEFAULT_SETTINGS.foundedYear),
       currency: str("currency", DEFAULT_SETTINGS.currency),
       showPricesPublic: bool("show_prices_public", true),
+      lowStockThresholdM: num("low_stock_threshold_m", DEFAULT_SETTINGS.lowStockThresholdM),
     };
   } catch {
     return DEFAULT_SETTINGS;

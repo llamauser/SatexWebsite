@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { hasLocale, NextIntlClientProvider } from "next-intl";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
+import { Suspense } from "react";
 import { ContactForm } from "@/components/contact/ContactForm";
 import { BlobBackground } from "@/components/layout/BlobBackground";
 import { Card } from "@/components/ui/Field";
@@ -36,7 +37,9 @@ export default async function ContactPage({ params }: Props) {
       <div className="mt-10 grid gap-8 lg:grid-cols-[1fr_360px]">
         <Card>
           <NextIntlClientProvider messages={await clientMessages("contact")}>
-            <ContactForm />
+            <Suspense fallback={null}>
+              <ContactForm />
+            </Suspense>
           </NextIntlClientProvider>
         </Card>
         <aside aria-label={t("detailsTitle")} className="space-y-4">

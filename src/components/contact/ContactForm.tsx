@@ -1,6 +1,7 @@
 "use client";
 
 import { useLocale, useTranslations } from "next-intl";
+import { useSearchParams } from "next/navigation";
 import { useActionState } from "react";
 import { submitContact, type ContactState } from "@/app/[locale]/contact/actions";
 import { Button } from "@/components/ui/Button";
@@ -15,6 +16,8 @@ export function ContactForm() {
   const tv = useTranslations("contact.validation");
   const locale = useLocale();
   const [state, action, pending] = useActionState(submitContact, initial);
+  const ref = useSearchParams().get("ref");
+  const prefill = ref && /^[A-Z0-9-]{3,30}$/.test(ref) ? t("prefill", { ref }) : "";
 
   if (state.status === "success") {
     return (
@@ -53,6 +56,7 @@ export function ContactForm() {
           id="contact-message"
           name="message"
           rows={6}
+          defaultValue={prefill}
           className="w-full rounded-sm border border-border bg-surface px-3 py-2 text-base text-text focus:border-primary aria-[invalid=true]:border-danger"
           aria-invalid={err("message") ? true : undefined}
         />

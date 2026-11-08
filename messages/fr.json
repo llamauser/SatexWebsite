@@ -103,7 +103,8 @@
     "match": "Recherche IA",
     "showroom": "Showroom",
     "about": "À propos",
-    "contact": "Contact"
+    "contact": "Contact",
+    "home": "Accueil"
   },
   "auth": {
     "signIn": {
@@ -336,7 +337,8 @@
       "successTitle": "Message envoyé",
       "successBody": "Merci ! Nous avons bien reçu votre message et nous vous répondrons très vite.",
       "rateLimited": "Trop de messages envoyés. Réessayez dans une heure ou écrivez-nous par e-mail.",
-      "serverError": "Envoi impossible pour le moment. Réessayez ou écrivez-nous par e-mail."
+      "serverError": "Envoi impossible pour le moment. Réessayez ou écrivez-nous par e-mail.",
+      "prefill": "Bonjour, je souhaite des informations (échantillon / devis) sur le tissu {ref}."
     },
     "validation": {
       "required": "Ce champ est obligatoire.",
@@ -347,5 +349,181 @@
       "messageMin": "Votre message est trop court (10 caractères minimum).",
       "consentRequired": "Vous devez accepter pour envoyer le message."
     }
+  },
+  "catalog": {
+    "title": "Catalogue de tissus",
+    "lead": "Filtrez par composition, poids, usage ou couleur. Le stock affiché est disponible à la vente.",
+    "results": "Résultats",
+    "count": "{count, plural, =0 {Aucun tissu} one {{count} tissu} other {{count} tissus}}",
+    "unavailable": "Le catalogue est momentanément indisponible. Réessayez dans un instant.",
+    "empty": {
+      "title": "Aucun tissu ne correspond",
+      "body": "Essayez de retirer un filtre ou d'élargir votre recherche.",
+      "page": "Cette page n'existe pas pour ces filtres.",
+      "reset": "Réinitialiser les filtres"
+    },
+    "filters": {
+      "title": "Filtres",
+      "search": "Rechercher un tissu",
+      "searchPlaceholder": "Rechercher (jersey, lin, SAT-KN…)",
+      "reset": "Tout effacer",
+      "inStock": "En stock uniquement",
+      "category": "Univers",
+      "construction": "Construction",
+      "structure": "Structure",
+      "fiber": "Fibre",
+      "gsm": "Poids (g/m²)",
+      "gsmMin": "Poids minimum",
+      "gsmMax": "Poids maximum",
+      "stretch": "Extensibilité",
+      "use": "Usage",
+      "season": "Saison",
+      "clearSeason": "Toutes les saisons",
+      "color": "Couleur",
+      "active": "Filtres actifs",
+      "remove": "Retirer le filtre {name}",
+      "gsmChip": "{min}–{max} g/m²",
+      "showAll": "Tout le catalogue (même hors stock)"
+    },
+    "sort": {
+      "label": "Trier par",
+      "relevance": "Pertinence",
+      "newest": "Nouveautés",
+      "priceAsc": "Prix croissant",
+      "priceDesc": "Prix décroissant",
+      "gsmAsc": "Poids croissant",
+      "gsmDesc": "Poids décroissant"
+    },
+    "pagination": {
+      "label": "Pagination",
+      "prev": "Page précédente",
+      "next": "Page suivante",
+      "page": "Page {page}"
+    },
+    "card": {
+      "from": "À partir de {price} / m",
+      "colors": "{count} couleurs",
+      "stock": {
+        "in": "En stock",
+        "low": "Stock limité",
+        "out": "Épuisé"
+      }
+    }
+  },
+  "fabric": {
+    "breadcrumb": "Fil d'Ariane",
+    "back": "Retour au catalogue",
+    "ask": "Demander un échantillon ou un devis",
+    "tags": "Mots-clés",
+    "similar": "Tissus similaires",
+    "specs": {
+      "composition": "Composition",
+      "weight": "Poids",
+      "width": "Largeur",
+      "construction": "Construction",
+      "structure": "Structure",
+      "stretch": "Extensibilité",
+      "finish": "Finitions",
+      "uses": "Usages",
+      "seasons": "Saisons",
+      "moq": "Quantité minimum"
+    },
+    "stock": {
+      "title": "Couleurs et stock",
+      "live": "Stock en temps réel",
+      "static": "Stock au chargement de la page",
+      "meters": "{m} m disponibles",
+      "in": "En stock",
+      "low": "Stock limité",
+      "out": "Épuisé"
+    },
+    "prices": {
+      "title": "Tarifs dégressifs",
+      "from": "À partir de {m} m",
+      "perMeter": "{price} / m",
+      "hidden": "Les prix sont visibles après connexion.",
+      "note": "Quantité minimum : {m} m. Prix hors taxes."
+    },
+    "eco": {
+      "organic": "Coton biologique",
+      "recycled": "{pct} % recyclé"
+    }
+  },
+  "fibers": {
+    "cotton": "Coton",
+    "polyester": "Polyester",
+    "viscose": "Viscose",
+    "linen": "Lin",
+    "wool": "Laine",
+    "silk": "Soie",
+    "elastane": "Élasthanne",
+    "nylon": "Nylon",
+    "modal": "Modal",
+    "acrylic": "Acrylique"
+  },
+  "constructions": {
+    "knit": "Maille (tricot)",
+    "woven": "Tissé",
+    "nonwoven": "Non tissé"
+  },
+  "stretches": {
+    "none": "Non extensible",
+    "mechanical": "Stretch mécanique",
+    "two_way": "Stretch bi-élastique",
+    "four_way": "Stretch 4 sens"
+  },
+  "seasons": {
+    "spring_summer": "Printemps-été",
+    "autumn_winter": "Automne-hiver",
+    "all_season": "Toutes saisons"
+  },
+  "uses": {
+    "activewear": "Vêtements de sport",
+    "sportswear": "Sportswear",
+    "t_shirts": "T-shirts",
+    "polos": "Polos",
+    "shirts": "Chemises",
+    "dresses": "Robes",
+    "skirts": "Jupes",
+    "trousers": "Pantalons",
+    "jeans": "Jeans",
+    "jackets": "Vestes",
+    "coats": "Manteaux",
+    "suits": "Costumes",
+    "eveningwear": "Tenues de soirée",
+    "lingerie": "Lingerie",
+    "swimwear": "Maillots de bain",
+    "kidswear": "Vêtements enfant",
+    "workwear": "Vêtements de travail",
+    "uniforms": "Uniformes",
+    "upholstery": "Ameublement",
+    "curtains": "Rideaux",
+    "bedding": "Linge de lit",
+    "accessories": "Accessoires",
+    "linings": "Doublures"
+  },
+  "finishes": {
+    "brushed": "Gratté",
+    "mercerized": "Mercerisé",
+    "anti_pilling": "Anti-bouloches",
+    "quick_dry": "Séchage rapide",
+    "easy_care": "Entretien facile",
+    "washed": "Délavé",
+    "water_repellent": "Déperlant",
+    "anti_static": "Antistatique"
+  },
+  "families": {
+    "white": "Blanc",
+    "black": "Noir",
+    "grey": "Gris",
+    "beige": "Beige",
+    "brown": "Marron",
+    "red": "Rouge",
+    "orange": "Orange",
+    "yellow": "Jaune",
+    "green": "Vert",
+    "blue": "Bleu",
+    "purple": "Violet",
+    "pink": "Rose"
   }
 }
