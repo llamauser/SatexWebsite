@@ -37,3 +37,7 @@ __pycache__/
 
 # reference media (large, not needed to build; notes are in video_audio_notes.md)
 *.mp4
+
+# test output
+playwright-report/
+test-results/
