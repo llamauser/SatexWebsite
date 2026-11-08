@@ -1,0 +1,1273 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`email templates > account_welcome renders in ar 1`] = `
+{
+  "subject": "مرحبًا بك في SATEX Commerce",
+  "text": "مرحبًا بك في SATEX Commerce
+
+SATEX COMMERCE
+
+مرحبًا Nour Haddad،
+
+
+حسابك جاهز
+
+يمكنك الآن البحث عن الأقمشة وطلب عروض الأسعار وحجز المخزون.
+
+الذهاب إلى حسابي https://satex.example/ar/account
+
+هل لديك سؤال؟ ردّ على هذا البريد أو راسلنا على contact@satex.example.
+
+SATEX Commerce · خبير النسيج منذ 1995 · contact@satex.example",
+}
+`;
+
+exports[`email templates > account_welcome renders in en 1`] = `
+{
+  "subject": "Welcome to SATEX Commerce",
+  "text": "Welcome to SATEX Commerce
+
+SATEX COMMERCE
+
+Hello Nour Haddad,
+
+
+YOUR ACCOUNT IS READY
+
+You can now search fabrics, request quotes and reserve stock.
+
+Go to my account https://satex.example/en/account
+
+Questions? Reply to this email or write to us at contact@satex.example.
+
+SATEX Commerce · Textile expert since 1995 · contact@satex.example",
+}
+`;
+
+exports[`email templates > account_welcome renders in fr 1`] = `
+{
+  "subject": "Bienvenue chez SATEX Commerce",
+  "text": "Bienvenue chez SATEX Commerce
+
+SATEX COMMERCE
+
+Bonjour Nour Haddad,
+
+
+VOTRE COMPTE EST PRÊT
+
+Vous pouvez dès maintenant rechercher des tissus, demander des devis et réserver du stock.
+
+Accéder à mon compte https://satex.example/fr/account
+
+Une question ? Répondez à cet e-mail ou écrivez-nous à contact@satex.example.
+
+SATEX Commerce · Expert textile depuis 1995 · contact@satex.example",
+}
+`;
+
+exports[`email templates > contact_message_staff renders in ar 1`] = `
+{
+  "subject": "رسالة اتصال جديدة — Camille",
+  "text": "رسالة اتصال جديدة — Camille
+
+SATEX COMMERCE
+
+
+رسالة اتصال جديدة
+
+كتب Camille عبر نموذج الموقع.
+
+الاسم: Camille
+الشركة: Atelier E2E
+البريد الإلكتروني: camille@example.com
+الهاتف: +33 1 23 45 67 89
+الرسالة: Bonjour, je cherche un jersey. Merci.
+
+فتح صندوق الرسائل https://satex.example/ar/admin/messages
+
+هل لديك سؤال؟ ردّ على هذا البريد أو راسلنا على contact@satex.example.
+
+SATEX Commerce · خبير النسيج منذ 1995 · contact@satex.example",
+}
+`;
+
+exports[`email templates > contact_message_staff renders in en 1`] = `
+{
+  "subject": "New contact message — Camille",
+  "text": "New contact message — Camille
+
+SATEX COMMERCE
+
+
+NEW CONTACT MESSAGE
+
+Camille wrote through the website form.
+
+Name: Camille
+Company: Atelier E2E
+Email: camille@example.com
+Phone: +33 1 23 45 67 89
+Message: Bonjour, je cherche un jersey. Merci.
+
+Open the inbox https://satex.example/en/admin/messages
+
+Questions? Reply to this email or write to us at contact@satex.example.
+
+SATEX Commerce · Textile expert since 1995 · contact@satex.example",
+}
+`;
+
+exports[`email templates > contact_message_staff renders in fr 1`] = `
+{
+  "subject": "Nouveau message de contact — Camille",
+  "text": "Nouveau message de contact — Camille
+
+SATEX COMMERCE
+
+
+NOUVEAU MESSAGE DE CONTACT
+
+Camille a écrit via le formulaire du site.
+
+Nom: Camille
+Société: Atelier E2E
+E-mail: camille@example.com
+Téléphone: +33 1 23 45 67 89
+Message: Bonjour, je cherche un jersey. Merci.
+
+Ouvrir la messagerie https://satex.example/fr/admin/messages
+
+Une question ? Répondez à cet e-mail ou écrivez-nous à contact@satex.example.
+
+SATEX Commerce · Expert textile depuis 1995 · contact@satex.example",
+}
+`;
+
+exports[`email templates > delivery_delivered renders in ar 1`] = `
+{
+  "subject": "تم تسليم الطلب O-2026-000045",
+  "text": "تم تسليم الطلب O-2026-000045
+
+SATEX COMMERCE
+
+مرحبًا Nour Haddad،
+
+
+تم تسليم طلبك
+
+شكرًا لثقتك. لا تتردد في التواصل معنا لأي سؤال.
+
+المرجع: O-2026-000045
+
+عرض طلبي https://satex.example/ar/account/orders/o1
+
+هل لديك سؤال؟ ردّ على هذا البريد أو راسلنا على contact@satex.example.
+
+SATEX Commerce · خبير النسيج منذ 1995 · contact@satex.example",
+}
+`;
+
+exports[`email templates > delivery_delivered renders in en 1`] = `
+{
+  "subject": "Order O-2026-000045 delivered",
+  "text": "Order O-2026-000045 delivered
+
+SATEX COMMERCE
+
+Hello Nour Haddad,
+
+
+YOUR ORDER HAS BEEN DELIVERED
+
+Thank you for your trust. Do not hesitate to contact us with any question.
+
+Reference: O-2026-000045
+
+View my order https://satex.example/en/account/orders/o1
+
+Questions? Reply to this email or write to us at contact@satex.example.
+
+SATEX Commerce · Textile expert since 1995 · contact@satex.example",
+}
+`;
+
+exports[`email templates > delivery_delivered renders in fr 1`] = `
+{
+  "subject": "Commande O-2026-000045 livrée",
+  "text": "Commande O-2026-000045 livrée
+
+SATEX COMMERCE
+
+Bonjour Nour Haddad,
+
+
+VOTRE COMMANDE A ÉTÉ LIVRÉE
+
+Merci pour votre confiance. N'hésitez pas à nous contacter pour toute question.
+
+Référence: O-2026-000045
+
+Voir ma commande https://satex.example/fr/account/orders/o1
+
+Une question ? Répondez à cet e-mail ou écrivez-nous à contact@satex.example.
+
+SATEX Commerce · Expert textile depuis 1995 · contact@satex.example",
+}
+`;
+
+exports[`email templates > delivery_in_transit renders in ar 1`] = `
+{
+  "subject": "تم شحن الطلب O-2026-000045",
+  "text": "تم شحن الطلب O-2026-000045
+
+SATEX COMMERCE
+
+مرحبًا Nour Haddad،
+
+
+طلبك في الطريق
+
+استلمت شركة الشحن طردك.
+
+المرجع: O-2026-000045
+شركة الشحن: DHL
+رقم التتبع: JD0146001
+
+تتبع طلبي https://satex.example/ar/account/orders/o1
+
+هل لديك سؤال؟ ردّ على هذا البريد أو راسلنا على contact@satex.example.
+
+SATEX Commerce · خبير النسيج منذ 1995 · contact@satex.example",
+}
+`;
+
+exports[`email templates > delivery_in_transit renders in en 1`] = `
+{
+  "subject": "Order O-2026-000045 has shipped",
+  "text": "Order O-2026-000045 has shipped
+
+SATEX COMMERCE
+
+Hello Nour Haddad,
+
+
+YOUR ORDER IS ON ITS WAY
+
+The carrier has picked up your parcel.
+
+Reference: O-2026-000045
+Carrier: DHL
+Tracking no.: JD0146001
+
+Track my order https://satex.example/en/account/orders/o1
+
+Questions? Reply to this email or write to us at contact@satex.example.
+
+SATEX Commerce · Textile expert since 1995 · contact@satex.example",
+}
+`;
+
+exports[`email templates > delivery_in_transit renders in fr 1`] = `
+{
+  "subject": "Commande O-2026-000045 expédiée",
+  "text": "Commande O-2026-000045 expédiée
+
+SATEX COMMERCE
+
+Bonjour Nour Haddad,
+
+
+VOTRE COMMANDE EST EN ROUTE
+
+Le transporteur a pris en charge votre colis.
+
+Référence: O-2026-000045
+Transporteur: DHL
+N° de suivi: JD0146001
+
+Suivre ma commande https://satex.example/fr/account/orders/o1
+
+Une question ? Répondez à cet e-mail ou écrivez-nous à contact@satex.example.
+
+SATEX Commerce · Expert textile depuis 1995 · contact@satex.example",
+}
+`;
+
+exports[`email templates > order_confirmed renders in ar 1`] = `
+{
+  "subject": "تم تأكيد الطلب O-2026-000045",
+  "text": "تم تأكيد الطلب O-2026-000045
+
+SATEX COMMERCE
+
+مرحبًا Nour Haddad،
+
+
+تم تأكيد طلبك
+
+نحضّر أقمشتك. سنخبرك فور جاهزية الطلب.
+
+المرجع: O-2026-000045
+الإجمالي شاملًا الضريبة: 1 234,50 €
+
+تتبع طلبي https://satex.example/ar/account/orders/o1
+
+هل لديك سؤال؟ ردّ على هذا البريد أو راسلنا على contact@satex.example.
+
+SATEX Commerce · خبير النسيج منذ 1995 · contact@satex.example",
+}
+`;
+
+exports[`email templates > order_confirmed renders in en 1`] = `
+{
+  "subject": "Order O-2026-000045 confirmed",
+  "text": "Order O-2026-000045 confirmed
+
+SATEX COMMERCE
+
+Hello Nour Haddad,
+
+
+YOUR ORDER IS CONFIRMED
+
+We are preparing your fabrics. We will let you know as soon as the order is ready.
+
+Reference: O-2026-000045
+Total incl. VAT: 1 234,50 €
+
+Track my order https://satex.example/en/account/orders/o1
+
+Questions? Reply to this email or write to us at contact@satex.example.
+
+SATEX Commerce · Textile expert since 1995 · contact@satex.example",
+}
+`;
+
+exports[`email templates > order_confirmed renders in fr 1`] = `
+{
+  "subject": "Commande O-2026-000045 confirmée",
+  "text": "Commande O-2026-000045 confirmée
+
+SATEX COMMERCE
+
+Bonjour Nour Haddad,
+
+
+VOTRE COMMANDE EST CONFIRMÉE
+
+Nous préparons vos tissus. Vous serez prévenu dès que la commande est prête.
+
+Référence: O-2026-000045
+Total TTC: 1 234,50 €
+
+Suivre ma commande https://satex.example/fr/account/orders/o1
+
+Une question ? Répondez à cet e-mail ou écrivez-nous à contact@satex.example.
+
+SATEX Commerce · Expert textile depuis 1995 · contact@satex.example",
+}
+`;
+
+exports[`email templates > order_ready renders in ar 1`] = `
+{
+  "subject": "الطلب O-2026-000045 جاهز",
+  "text": "الطلب O-2026-000045 جاهز
+
+SATEX COMMERCE
+
+مرحبًا Nour Haddad،
+
+
+طلبك جاهز
+
+تم قص أقمشتك وهي جاهزة للشحن.
+
+المرجع: O-2026-000045
+
+عرض طلبي https://satex.example/ar/account/orders/o1
+
+هل لديك سؤال؟ ردّ على هذا البريد أو راسلنا على contact@satex.example.
+
+SATEX Commerce · خبير النسيج منذ 1995 · contact@satex.example",
+}
+`;
+
+exports[`email templates > order_ready renders in en 1`] = `
+{
+  "subject": "Order O-2026-000045 is ready",
+  "text": "Order O-2026-000045 is ready
+
+SATEX COMMERCE
+
+Hello Nour Haddad,
+
+
+YOUR ORDER IS READY
+
+Your fabrics are cut and ready to ship.
+
+Reference: O-2026-000045
+
+View my order https://satex.example/en/account/orders/o1
+
+Questions? Reply to this email or write to us at contact@satex.example.
+
+SATEX Commerce · Textile expert since 1995 · contact@satex.example",
+}
+`;
+
+exports[`email templates > order_ready renders in fr 1`] = `
+{
+  "subject": "Commande O-2026-000045 prête",
+  "text": "Commande O-2026-000045 prête
+
+SATEX COMMERCE
+
+Bonjour Nour Haddad,
+
+
+VOTRE COMMANDE EST PRÊTE
+
+Vos tissus sont coupés et prêts à être expédiés.
+
+Référence: O-2026-000045
+
+Voir ma commande https://satex.example/fr/account/orders/o1
+
+Une question ? Répondez à cet e-mail ou écrivez-nous à contact@satex.example.
+
+SATEX Commerce · Expert textile depuis 1995 · contact@satex.example",
+}
+`;
+
+exports[`email templates > quote_accepted_staff renders in ar 1`] = `
+{
+  "subject": "تم قبول عرض السعر Q-2026-000123 — Atelier Nour",
+  "text": "تم قبول عرض السعر Q-2026-000123 — Atelier Nour
+
+SATEX COMMERCE
+
+
+تم قبول عرض سعر
+
+قبلت Atelier Nour عرض السعر. يمكنك تحويله إلى طلب.
+
+المرجع: Q-2026-000123
+الشركة: Atelier Nour
+الإجمالي شاملًا الضريبة: 1 234,50 €
+
+فتح عرض السعر https://satex.example/ar/admin/quotes/q1
+
+هل لديك سؤال؟ ردّ على هذا البريد أو راسلنا على contact@satex.example.
+
+SATEX Commerce · خبير النسيج منذ 1995 · contact@satex.example",
+}
+`;
+
+exports[`email templates > quote_accepted_staff renders in en 1`] = `
+{
+  "subject": "Quote Q-2026-000123 accepted — Atelier Nour",
+  "text": "Quote Q-2026-000123 accepted — Atelier Nour
+
+SATEX COMMERCE
+
+
+A QUOTE WAS ACCEPTED
+
+Atelier Nour accepted the quote. You can convert it into an order.
+
+Reference: Q-2026-000123
+Company: Atelier Nour
+Total incl. VAT: 1 234,50 €
+
+Open the quote https://satex.example/en/admin/quotes/q1
+
+Questions? Reply to this email or write to us at contact@satex.example.
+
+SATEX Commerce · Textile expert since 1995 · contact@satex.example",
+}
+`;
+
+exports[`email templates > quote_accepted_staff renders in fr 1`] = `
+{
+  "subject": "Devis Q-2026-000123 accepté — Atelier Nour",
+  "text": "Devis Q-2026-000123 accepté — Atelier Nour
+
+SATEX COMMERCE
+
+
+UN DEVIS A ÉTÉ ACCEPTÉ
+
+Atelier Nour a accepté le devis. Vous pouvez le convertir en commande.
+
+Référence: Q-2026-000123
+Société: Atelier Nour
+Total TTC: 1 234,50 €
+
+Ouvrir le devis https://satex.example/fr/admin/quotes/q1
+
+Une question ? Répondez à cet e-mail ou écrivez-nous à contact@satex.example.
+
+SATEX Commerce · Expert textile depuis 1995 · contact@satex.example",
+}
+`;
+
+exports[`email templates > quote_expired renders in ar 1`] = `
+{
+  "subject": "انتهت صلاحية عرض السعر Q-2026-000123",
+  "text": "انتهت صلاحية عرض السعر Q-2026-000123
+
+SATEX COMMERCE
+
+مرحبًا Nour Haddad،
+
+
+انتهت صلاحية عرض السعر
+
+تجاوز عرض السعر هذا تاريخ صلاحيته. تواصل معنا للحصول على عرض جديد.
+
+المرجع: Q-2026-000123
+
+عرض عرض السعر https://satex.example/ar/account/quotes/q1
+
+هل لديك سؤال؟ ردّ على هذا البريد أو راسلنا على contact@satex.example.
+
+SATEX Commerce · خبير النسيج منذ 1995 · contact@satex.example",
+}
+`;
+
+exports[`email templates > quote_expired renders in en 1`] = `
+{
+  "subject": "Your quote Q-2026-000123 has expired",
+  "text": "Your quote Q-2026-000123 has expired
+
+SATEX COMMERCE
+
+Hello Nour Haddad,
+
+
+QUOTE EXPIRED
+
+This quote is past its validity date. Contact us to get a new one.
+
+Reference: Q-2026-000123
+
+View the quote https://satex.example/en/account/quotes/q1
+
+Questions? Reply to this email or write to us at contact@satex.example.
+
+SATEX Commerce · Textile expert since 1995 · contact@satex.example",
+}
+`;
+
+exports[`email templates > quote_expired renders in fr 1`] = `
+{
+  "subject": "Votre devis Q-2026-000123 a expiré",
+  "text": "Votre devis Q-2026-000123 a expiré
+
+SATEX COMMERCE
+
+Bonjour Nour Haddad,
+
+
+DEVIS EXPIRÉ
+
+La date de validité de ce devis est dépassée. Contactez-nous pour en obtenir un nouveau.
+
+Référence: Q-2026-000123
+
+Voir le devis https://satex.example/fr/account/quotes/q1
+
+Une question ? Répondez à cet e-mail ou écrivez-nous à contact@satex.example.
+
+SATEX Commerce · Expert textile depuis 1995 · contact@satex.example",
+}
+`;
+
+exports[`email templates > quote_rejected_staff renders in ar 1`] = `
+{
+  "subject": "تم رفض عرض السعر Q-2026-000123 — Atelier Nour",
+  "text": "تم رفض عرض السعر Q-2026-000123 — Atelier Nour
+
+SATEX COMMERCE
+
+
+تم رفض عرض سعر
+
+رفضت Atelier Nour عرض السعر.
+
+المرجع: Q-2026-000123
+الشركة: Atelier Nour
+السبب: Prix trop élevé
+
+فتح عرض السعر https://satex.example/ar/admin/quotes/q1
+
+هل لديك سؤال؟ ردّ على هذا البريد أو راسلنا على contact@satex.example.
+
+SATEX Commerce · خبير النسيج منذ 1995 · contact@satex.example",
+}
+`;
+
+exports[`email templates > quote_rejected_staff renders in en 1`] = `
+{
+  "subject": "Quote Q-2026-000123 declined — Atelier Nour",
+  "text": "Quote Q-2026-000123 declined — Atelier Nour
+
+SATEX COMMERCE
+
+
+A QUOTE WAS DECLINED
+
+Atelier Nour declined the quote.
+
+Reference: Q-2026-000123
+Company: Atelier Nour
+Reason: Prix trop élevé
+
+Open the quote https://satex.example/en/admin/quotes/q1
+
+Questions? Reply to this email or write to us at contact@satex.example.
+
+SATEX Commerce · Textile expert since 1995 · contact@satex.example",
+}
+`;
+
+exports[`email templates > quote_rejected_staff renders in fr 1`] = `
+{
+  "subject": "Devis Q-2026-000123 refusé — Atelier Nour",
+  "text": "Devis Q-2026-000123 refusé — Atelier Nour
+
+SATEX COMMERCE
+
+
+UN DEVIS A ÉTÉ REFUSÉ
+
+Atelier Nour a refusé le devis.
+
+Référence: Q-2026-000123
+Société: Atelier Nour
+Motif: Prix trop élevé
+
+Ouvrir le devis https://satex.example/fr/admin/quotes/q1
+
+Une question ? Répondez à cet e-mail ou écrivez-nous à contact@satex.example.
+
+SATEX Commerce · Expert textile depuis 1995 · contact@satex.example",
+}
+`;
+
+exports[`email templates > quote_sent renders in ar 1`] = `
+{
+  "subject": "عرض السعر Q-2026-000123 جاهز",
+  "text": "عرض السعر Q-2026-000123 جاهز
+
+SATEX COMMERCE
+
+مرحبًا Nour Haddad،
+
+
+عرض السعر جاهز
+
+تجد التفاصيل وملف PDF في فضاء العملاء، ثم اقبل العرض أو ارفضه قبل انتهاء صلاحيته.
+
+المرجع: Q-2026-000123
+الإجمالي شاملًا الضريبة: 1 234,50 €
+صالح حتى: 15 nov. 2026
+
+عرض عرض السعر https://satex.example/ar/account/quotes/q1
+
+هل لديك سؤال؟ ردّ على هذا البريد أو راسلنا على contact@satex.example.
+
+SATEX Commerce · خبير النسيج منذ 1995 · contact@satex.example",
+}
+`;
+
+exports[`email templates > quote_sent renders in en 1`] = `
+{
+  "subject": "Your quote Q-2026-000123 is ready",
+  "text": "Your quote Q-2026-000123 is ready
+
+SATEX COMMERCE
+
+Hello Nour Haddad,
+
+
+YOUR QUOTE IS READY
+
+Find the details and the PDF in your customer area, then accept or decline the quote before it expires.
+
+Reference: Q-2026-000123
+Total incl. VAT: 1 234,50 €
+Valid until: 15 nov. 2026
+
+View the quote https://satex.example/en/account/quotes/q1
+
+Questions? Reply to this email or write to us at contact@satex.example.
+
+SATEX Commerce · Textile expert since 1995 · contact@satex.example",
+}
+`;
+
+exports[`email templates > quote_sent renders in fr 1`] = `
+{
+  "subject": "Votre devis Q-2026-000123 est disponible",
+  "text": "Votre devis Q-2026-000123 est disponible
+
+SATEX COMMERCE
+
+Bonjour Nour Haddad,
+
+
+VOTRE DEVIS EST PRÊT
+
+Retrouvez le détail et le PDF dans votre espace client, puis acceptez ou refusez le devis avant sa date de validité.
+
+Référence: Q-2026-000123
+Total TTC: 1 234,50 €
+Valable jusqu'au: 15 nov. 2026
+
+Consulter le devis https://satex.example/fr/account/quotes/q1
+
+Une question ? Répondez à cet e-mail ou écrivez-nous à contact@satex.example.
+
+SATEX Commerce · Expert textile depuis 1995 · contact@satex.example",
+}
+`;
+
+exports[`email templates > quote_submitted_client renders in ar 1`] = `
+{
+  "subject": "استلمنا طلب عرض السعر Q-2026-000123",
+  "text": "استلمنا طلب عرض السعر Q-2026-000123
+
+SATEX COMMERCE
+
+مرحبًا Nour Haddad،
+
+
+تم استلام طلب عرض السعر
+
+يدرس فريق المبيعات طلبك وسيرد عليك قريبًا.
+
+المرجع: Q-2026-000123
+الإجمالي شاملًا الضريبة: 1 234,50 €
+
+عرض طلبي https://satex.example/ar/account/quotes/q1
+
+هل لديك سؤال؟ ردّ على هذا البريد أو راسلنا على contact@satex.example.
+
+SATEX Commerce · خبير النسيج منذ 1995 · contact@satex.example",
+}
+`;
+
+exports[`email templates > quote_submitted_client renders in en 1`] = `
+{
+  "subject": "We received your quote request Q-2026-000123",
+  "text": "We received your quote request Q-2026-000123
+
+SATEX COMMERCE
+
+Hello Nour Haddad,
+
+
+QUOTE REQUEST RECEIVED
+
+Our sales team is reviewing your request and will reply shortly.
+
+Reference: Q-2026-000123
+Total incl. VAT: 1 234,50 €
+
+View my request https://satex.example/en/account/quotes/q1
+
+Questions? Reply to this email or write to us at contact@satex.example.
+
+SATEX Commerce · Textile expert since 1995 · contact@satex.example",
+}
+`;
+
+exports[`email templates > quote_submitted_client renders in fr 1`] = `
+{
+  "subject": "Votre demande de devis Q-2026-000123 est bien reçue",
+  "text": "Votre demande de devis Q-2026-000123 est bien reçue
+
+SATEX COMMERCE
+
+Bonjour Nour Haddad,
+
+
+DEMANDE DE DEVIS REÇUE
+
+Notre équipe commerciale étudie votre demande et vous répond rapidement.
+
+Référence: Q-2026-000123
+Total TTC: 1 234,50 €
+
+Voir ma demande https://satex.example/fr/account/quotes/q1
+
+Une question ? Répondez à cet e-mail ou écrivez-nous à contact@satex.example.
+
+SATEX Commerce · Expert textile depuis 1995 · contact@satex.example",
+}
+`;
+
+exports[`email templates > quote_submitted_staff renders in ar 1`] = `
+{
+  "subject": "طلب عرض سعر جديد Q-2026-000123 — Atelier Nour",
+  "text": "طلب عرض سعر جديد Q-2026-000123 — Atelier Nour
+
+SATEX COMMERCE
+
+
+طلب عرض سعر جديد
+
+قدّمت Atelier Nour للتو طلب عرض سعر يحتاج إلى مراجعة.
+
+المرجع: Q-2026-000123
+الشركة: Atelier Nour
+الإجمالي شاملًا الضريبة: 1 234,50 €
+
+فتح عرض السعر https://satex.example/ar/admin/quotes/q1
+
+هل لديك سؤال؟ ردّ على هذا البريد أو راسلنا على contact@satex.example.
+
+SATEX Commerce · خبير النسيج منذ 1995 · contact@satex.example",
+}
+`;
+
+exports[`email templates > quote_submitted_staff renders in en 1`] = `
+{
+  "subject": "New quote request Q-2026-000123 — Atelier Nour",
+  "text": "New quote request Q-2026-000123 — Atelier Nour
+
+SATEX COMMERCE
+
+
+NEW QUOTE REQUEST
+
+Atelier Nour has just submitted a quote request to review.
+
+Reference: Q-2026-000123
+Company: Atelier Nour
+Total incl. VAT: 1 234,50 €
+
+Open the quote https://satex.example/en/admin/quotes/q1
+
+Questions? Reply to this email or write to us at contact@satex.example.
+
+SATEX Commerce · Textile expert since 1995 · contact@satex.example",
+}
+`;
+
+exports[`email templates > quote_submitted_staff renders in fr 1`] = `
+{
+  "subject": "Nouvelle demande de devis Q-2026-000123 — Atelier Nour",
+  "text": "Nouvelle demande de devis Q-2026-000123 — Atelier Nour
+
+SATEX COMMERCE
+
+
+NOUVELLE DEMANDE DE DEVIS
+
+Atelier Nour vient de soumettre une demande de devis à examiner.
+
+Référence: Q-2026-000123
+Société: Atelier Nour
+Total TTC: 1 234,50 €
+
+Ouvrir le devis https://satex.example/fr/admin/quotes/q1
+
+Une question ? Répondez à cet e-mail ou écrivez-nous à contact@satex.example.
+
+SATEX Commerce · Expert textile depuis 1995 · contact@satex.example",
+}
+`;
+
+exports[`email templates > reservation_created renders in ar 1`] = `
+{
+  "subject": "تم تأكيد الحجز: Piqué coton / élasthanne",
+  "text": "تم تأكيد الحجز: Piqué coton / élasthanne
+
+SATEX COMMERCE
+
+مرحبًا Nour Haddad،
+
+
+تم حجز مخزونك
+
+نحتفظ لك بـ 25 m من Piqué coton / élasthanne (Bleu marine) حتى انتهاء مدة الحجز.
+
+القماش: Piqué coton / élasthanne
+اللون: Bleu marine
+الكمية: 25 m
+ينتهي في: 10 nov. 2026, 14:30
+
+عرض حجوزاتي https://satex.example/ar/account/reservations
+
+هل لديك سؤال؟ ردّ على هذا البريد أو راسلنا على contact@satex.example.
+
+SATEX Commerce · خبير النسيج منذ 1995 · contact@satex.example",
+}
+`;
+
+exports[`email templates > reservation_created renders in en 1`] = `
+{
+  "subject": "Reservation confirmed: Piqué coton / élasthanne",
+  "text": "Reservation confirmed: Piqué coton / élasthanne
+
+SATEX COMMERCE
+
+Hello Nour Haddad,
+
+
+YOUR STOCK IS RESERVED
+
+We are holding 25 m of Piqué coton / élasthanne (Bleu marine) for you until the reservation expires.
+
+Fabric: Piqué coton / élasthanne
+Color: Bleu marine
+Quantity: 25 m
+Expires on: 10 nov. 2026, 14:30
+
+View my reservations https://satex.example/en/account/reservations
+
+Questions? Reply to this email or write to us at contact@satex.example.
+
+SATEX Commerce · Textile expert since 1995 · contact@satex.example",
+}
+`;
+
+exports[`email templates > reservation_created renders in fr 1`] = `
+{
+  "subject": "Réservation confirmée : Piqué coton / élasthanne",
+  "text": "Réservation confirmée : Piqué coton / élasthanne
+
+SATEX COMMERCE
+
+Bonjour Nour Haddad,
+
+
+VOTRE STOCK EST RÉSERVÉ
+
+Nous gardons 25 m de Piqué coton / élasthanne (Bleu marine) pour vous jusqu'à l'expiration de la réservation.
+
+Tissu: Piqué coton / élasthanne
+Couleur: Bleu marine
+Quantité: 25 m
+Expire le: 10 nov. 2026, 14:30
+
+Voir mes réservations https://satex.example/fr/account/reservations
+
+Une question ? Répondez à cet e-mail ou écrivez-nous à contact@satex.example.
+
+SATEX Commerce · Expert textile depuis 1995 · contact@satex.example",
+}
+`;
+
+exports[`email templates > reservation_expired renders in ar 1`] = `
+{
+  "subject": "انتهى الحجز: Piqué coton / élasthanne",
+  "text": "انتهى الحجز: Piqué coton / élasthanne
+
+SATEX COMMERCE
+
+مرحبًا Nour Haddad،
+
+
+انتهى حجزك
+
+عاد المخزون المحجوز (25 m من Piqué coton / élasthanne، Bleu marine) متاحًا للبيع.
+
+القماش: Piqué coton / élasthanne
+اللون: Bleu marine
+الكمية: 25 m
+
+عرض حجوزاتي https://satex.example/ar/account/reservations
+
+هل لديك سؤال؟ ردّ على هذا البريد أو راسلنا على contact@satex.example.
+
+SATEX Commerce · خبير النسيج منذ 1995 · contact@satex.example",
+}
+`;
+
+exports[`email templates > reservation_expired renders in en 1`] = `
+{
+  "subject": "Reservation expired: Piqué coton / élasthanne",
+  "text": "Reservation expired: Piqué coton / élasthanne
+
+SATEX COMMERCE
+
+Hello Nour Haddad,
+
+
+YOUR RESERVATION HAS EXPIRED
+
+The reserved stock (25 m of Piqué coton / élasthanne, Bleu marine) is available for sale again.
+
+Fabric: Piqué coton / élasthanne
+Color: Bleu marine
+Quantity: 25 m
+
+View my reservations https://satex.example/en/account/reservations
+
+Questions? Reply to this email or write to us at contact@satex.example.
+
+SATEX Commerce · Textile expert since 1995 · contact@satex.example",
+}
+`;
+
+exports[`email templates > reservation_expired renders in fr 1`] = `
+{
+  "subject": "Réservation expirée : Piqué coton / élasthanne",
+  "text": "Réservation expirée : Piqué coton / élasthanne
+
+SATEX COMMERCE
+
+Bonjour Nour Haddad,
+
+
+VOTRE RÉSERVATION A EXPIRÉ
+
+Le stock réservé (25 m de Piqué coton / élasthanne, Bleu marine) a été remis en vente.
+
+Tissu: Piqué coton / élasthanne
+Couleur: Bleu marine
+Quantité: 25 m
+
+Voir mes réservations https://satex.example/fr/account/reservations
+
+Une question ? Répondez à cet e-mail ou écrivez-nous à contact@satex.example.
+
+SATEX Commerce · Expert textile depuis 1995 · contact@satex.example",
+}
+`;
+
+exports[`email templates > reservation_expiring renders in ar 1`] = `
+{
+  "subject": "حجزك على وشك الانتهاء: Piqué coton / élasthanne",
+  "text": "حجزك على وشك الانتهاء: Piqué coton / élasthanne
+
+SATEX COMMERCE
+
+مرحبًا Nour Haddad،
+
+
+حجزك على وشك الانتهاء
+
+سينتهي حجزك لـ 25 m من Piqué coton / élasthanne (Bleu marine). اطلب عرض سعر للاحتفاظ به.
+
+القماش: Piqué coton / élasthanne
+اللون: Bleu marine
+الكمية: 25 m
+ينتهي في: 10 nov. 2026, 14:30
+
+عرض حجوزاتي https://satex.example/ar/account/reservations
+
+هل لديك سؤال؟ ردّ على هذا البريد أو راسلنا على contact@satex.example.
+
+SATEX Commerce · خبير النسيج منذ 1995 · contact@satex.example",
+}
+`;
+
+exports[`email templates > reservation_expiring renders in en 1`] = `
+{
+  "subject": "Your reservation expires soon: Piqué coton / élasthanne",
+  "text": "Your reservation expires soon: Piqué coton / élasthanne
+
+SATEX COMMERCE
+
+Hello Nour Haddad,
+
+
+YOUR RESERVATION EXPIRES SOON
+
+Your reservation of 25 m of Piqué coton / élasthanne (Bleu marine) is about to expire. Request a quote to keep it.
+
+Fabric: Piqué coton / élasthanne
+Color: Bleu marine
+Quantity: 25 m
+Expires on: 10 nov. 2026, 14:30
+
+View my reservations https://satex.example/en/account/reservations
+
+Questions? Reply to this email or write to us at contact@satex.example.
+
+SATEX Commerce · Textile expert since 1995 · contact@satex.example",
+}
+`;
+
+exports[`email templates > reservation_expiring renders in fr 1`] = `
+{
+  "subject": "Votre réservation expire bientôt : Piqué coton / élasthanne",
+  "text": "Votre réservation expire bientôt : Piqué coton / élasthanne
+
+SATEX COMMERCE
+
+Bonjour Nour Haddad,
+
+
+VOTRE RÉSERVATION EXPIRE BIENTÔT
+
+Votre réservation de 25 m de Piqué coton / élasthanne (Bleu marine) va expirer. Demandez un devis pour la conserver.
+
+Tissu: Piqué coton / élasthanne
+Couleur: Bleu marine
+Quantité: 25 m
+Expire le: 10 nov. 2026, 14:30
+
+Voir mes réservations https://satex.example/fr/account/reservations
+
+Une question ? Répondez à cet e-mail ou écrivez-nous à contact@satex.example.
+
+SATEX Commerce · Expert textile depuis 1995 · contact@satex.example",
+}
+`;
+
+exports[`email templates > sample_requested_staff renders in ar 1`] = `
+{
+  "subject": "طلب عينات جديد S-2026-000007 — Maison Lina",
+  "text": "طلب عينات جديد S-2026-000007 — Maison Lina
+
+SATEX COMMERCE
+
+
+طلب عينات جديد
+
+تطلب Maison Lina عينات لتحضيرها.
+
+المرجع: S-2026-000007
+الشركة: Maison Lina
+
+عرض العينات https://satex.example/ar/admin/samples
+
+هل لديك سؤال؟ ردّ على هذا البريد أو راسلنا على contact@satex.example.
+
+SATEX Commerce · خبير النسيج منذ 1995 · contact@satex.example",
+}
+`;
+
+exports[`email templates > sample_requested_staff renders in en 1`] = `
+{
+  "subject": "New sample request S-2026-000007 — Maison Lina",
+  "text": "New sample request S-2026-000007 — Maison Lina
+
+SATEX COMMERCE
+
+
+NEW SAMPLE REQUEST
+
+Maison Lina is requesting samples to prepare.
+
+Reference: S-2026-000007
+Company: Maison Lina
+
+View samples https://satex.example/en/admin/samples
+
+Questions? Reply to this email or write to us at contact@satex.example.
+
+SATEX Commerce · Textile expert since 1995 · contact@satex.example",
+}
+`;
+
+exports[`email templates > sample_requested_staff renders in fr 1`] = `
+{
+  "subject": "Nouvelle demande d'échantillons S-2026-000007 — Maison Lina",
+  "text": "Nouvelle demande d'échantillons S-2026-000007 — Maison Lina
+
+SATEX COMMERCE
+
+
+NOUVELLE DEMANDE D'ÉCHANTILLONS
+
+Maison Lina demande des échantillons à préparer.
+
+Référence: S-2026-000007
+Société: Maison Lina
+
+Voir les échantillons https://satex.example/fr/admin/samples
+
+Une question ? Répondez à cet e-mail ou écrivez-nous à contact@satex.example.
+
+SATEX Commerce · Expert textile depuis 1995 · contact@satex.example",
+}
+`;
+
+exports[`email templates > sample_status_changed renders in ar 1`] = `
+{
+  "subject": "العينات S-2026-000007: تم الشحن",
+  "text": "العينات S-2026-000007: تم الشحن
+
+SATEX COMMERCE
+
+مرحبًا Nour Haddad،
+
+
+تحديث بشأن طلب العينات
+
+أصبحت حالة طلبك الآن: تم الشحن.
+
+المرجع: S-2026-000007
+الحالة: تم الشحن
+شركة الشحن: Colissimo
+رقم التتبع: 6A02001
+
+عرض عيناتي https://satex.example/ar/account/samples
+
+هل لديك سؤال؟ ردّ على هذا البريد أو راسلنا على contact@satex.example.
+
+SATEX Commerce · خبير النسيج منذ 1995 · contact@satex.example",
+}
+`;
+
+exports[`email templates > sample_status_changed renders in en 1`] = `
+{
+  "subject": "Samples S-2026-000007: Shipped",
+  "text": "Samples S-2026-000007: Shipped
+
+SATEX COMMERCE
+
+Hello Nour Haddad,
+
+
+UPDATE ON YOUR SAMPLE REQUEST
+
+The status of your request is now: Shipped.
+
+Reference: S-2026-000007
+Status: Shipped
+Carrier: Colissimo
+Tracking no.: 6A02001
+
+View my samples https://satex.example/en/account/samples
+
+Questions? Reply to this email or write to us at contact@satex.example.
+
+SATEX Commerce · Textile expert since 1995 · contact@satex.example",
+}
+`;
+
+exports[`email templates > sample_status_changed renders in fr 1`] = `
+{
+  "subject": "Échantillons S-2026-000007 : Expédié",
+  "text": "Échantillons S-2026-000007 : Expédié
+
+SATEX COMMERCE
+
+Bonjour Nour Haddad,
+
+
+MISE À JOUR DE VOTRE DEMANDE D'ÉCHANTILLONS
+
+Le statut de votre demande est maintenant : Expédié.
+
+Référence: S-2026-000007
+Statut: Expédié
+Transporteur: Colissimo
+N° de suivi: 6A02001
+
+Voir mes échantillons https://satex.example/fr/account/samples
+
+Une question ? Répondez à cet e-mail ou écrivez-nous à contact@satex.example.
+
+SATEX Commerce · Expert textile depuis 1995 · contact@satex.example",
+}
+`;

@@ -55,7 +55,7 @@ fabrics (
   eco jsonb default '{}',               -- {"recycled_pct":0,"organic":false,"certifications":["OEKO-TEX"]} (P2+ display)
   is_active boolean default false,
   is_featured boolean default false,
-  machine_translated jsonb default '{}',  -- {"en":true,"ar":true} for fields auto-translated
+  machine_translated jsonb default '{}',  -- field -> locales machine translated and not yet reviewed, e.g. {"name":["ar"],"description":["en","ar"]}
   search_text tsvector generated always as (...) stored,   -- from name fr/en + tags + structure
   created_at, updated_at
 )

@@ -525,5 +525,162 @@
     "blue": "Blue",
     "purple": "Purple",
     "pink": "Pink"
+  },
+  "emails": {
+    "common": {
+      "greeting": "Hello {name},",
+      "since": "Textile expert since {year}",
+      "help": "Questions? Reply to this email or write to us at {email}."
+    },
+    "labels": {
+      "ref": "Reference",
+      "total": "Total incl. VAT",
+      "company": "Company",
+      "validUntil": "Valid until",
+      "reason": "Reason",
+      "carrier": "Carrier",
+      "tracking": "Tracking no.",
+      "status": "Status",
+      "fabric": "Fabric",
+      "color": "Color",
+      "meters": "Quantity",
+      "expires": "Expires on",
+      "name": "Name",
+      "email": "Email",
+      "phone": "Phone",
+      "message": "Message"
+    },
+    "sampleStatus": {
+      "requested": "Requested",
+      "approved": "Approved",
+      "rejected": "Declined",
+      "preparing": "Being prepared",
+      "shipped": "Shipped",
+      "delivered": "Delivered"
+    },
+    "account_welcome": {
+      "subject": "Welcome to {company}",
+      "title": "Your account is ready",
+      "intro": "You can now search fabrics, request quotes and reserve stock.",
+      "cta": "Go to my account"
+    },
+    "quote_submitted_client": {
+      "subject": "We received your quote request {ref}",
+      "title": "Quote request received",
+      "intro": "Our sales team is reviewing your request and will reply shortly.",
+      "cta": "View my request"
+    },
+    "quote_submitted_staff": {
+      "subject": "New quote request {ref} — {company}",
+      "title": "New quote request",
+      "intro": "{company} has just submitted a quote request to review.",
+      "cta": "Open the quote"
+    },
+    "quote_sent": {
+      "subject": "Your quote {ref} is ready",
+      "title": "Your quote is ready",
+      "intro": "Find the details and the PDF in your customer area, then accept or decline the quote before it expires.",
+      "cta": "View the quote"
+    },
+    "quote_accepted_staff": {
+      "subject": "Quote {ref} accepted — {company}",
+      "title": "A quote was accepted",
+      "intro": "{company} accepted the quote. You can convert it into an order.",
+      "cta": "Open the quote"
+    },
+    "quote_rejected_staff": {
+      "subject": "Quote {ref} declined — {company}",
+      "title": "A quote was declined",
+      "intro": "{company} declined the quote.",
+      "cta": "Open the quote"
+    },
+    "quote_expired": {
+      "subject": "Your quote {ref} has expired",
+      "title": "Quote expired",
+      "intro": "This quote is past its validity date. Contact us to get a new one.",
+      "cta": "View the quote"
+    },
+    "order_confirmed": {
+      "subject": "Order {ref} confirmed",
+      "title": "Your order is confirmed",
+      "intro": "We are preparing your fabrics. We will let you know as soon as the order is ready.",
+      "cta": "Track my order"
+    },
+    "order_ready": {
+      "subject": "Order {ref} is ready",
+      "title": "Your order is ready",
+      "intro": "Your fabrics are cut and ready to ship.",
+      "cta": "View my order"
+    },
+    "delivery_in_transit": {
+      "subject": "Order {ref} has shipped",
+      "title": "Your order is on its way",
+      "intro": "The carrier has picked up your parcel.",
+      "cta": "Track my order"
+    },
+    "delivery_delivered": {
+      "subject": "Order {ref} delivered",
+      "title": "Your order has been delivered",
+      "intro": "Thank you for your trust. Do not hesitate to contact us with any question.",
+      "cta": "View my order"
+    },
+    "sample_status_changed": {
+      "subject": "Samples {ref}: {status}",
+      "title": "Update on your sample request",
+      "intro": "The status of your request is now: {status}.",
+      "cta": "View my samples"
+    },
+    "sample_requested_staff": {
+      "subject": "New sample request {ref} — {company}",
+      "title": "New sample request",
+      "intro": "{company} is requesting samples to prepare.",
+      "cta": "View samples"
+    },
+    "reservation_created": {
+      "subject": "Reservation confirmed: {fabric}",
+      "title": "Your stock is reserved",
+      "intro": "We are holding {meters} of {fabric} ({color}) for you until the reservation expires.",
+      "cta": "View my reservations"
+    },
+    "reservation_expiring": {
+      "subject": "Your reservation expires soon: {fabric}",
+      "title": "Your reservation expires soon",
+      "intro": "Your reservation of {meters} of {fabric} ({color}) is about to expire. Request a quote to keep it.",
+      "cta": "View my reservations"
+    },
+    "reservation_expired": {
+      "subject": "Reservation expired: {fabric}",
+      "title": "Your reservation has expired",
+      "intro": "The reserved stock ({meters} of {fabric}, {color}) is available for sale again.",
+      "cta": "View my reservations"
+    },
+    "contact_message_staff": {
+      "subject": "New contact message — {name}",
+      "title": "New contact message",
+      "intro": "{name} wrote through the website form.",
+      "cta": "Open the inbox"
+    }
+  },
+  "notifications": {
+    "title": "Notifications",
+    "open": "Open notifications",
+    "empty": "No notifications yet.",
+    "markAll": "Mark all as read",
+    "unread": "{count} unread",
+    "items": {
+      "generic": "New notification",
+      "account_welcome": "Welcome! Your account is ready.",
+      "quote_submitted_client": "Quote request {ref} received",
+      "quote_sent": "Your quote {ref} is ready",
+      "quote_expired": "Quote {ref} has expired",
+      "order_confirmed": "Order {ref} confirmed",
+      "order_ready": "Order {ref} is ready",
+      "delivery_in_transit": "Order {ref} has shipped",
+      "delivery_delivered": "Order {ref} delivered",
+      "sample_status_changed": "Samples {ref} updated",
+      "reservation_created": "Reservation created: {fabric}",
+      "reservation_expiring": "Reservation expires soon: {fabric}",
+      "reservation_expired": "Reservation expired: {fabric}"
+    }
   }
 }

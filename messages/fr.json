@@ -525,5 +525,162 @@
     "blue": "Bleu",
     "purple": "Violet",
     "pink": "Rose"
+  },
+  "emails": {
+    "common": {
+      "greeting": "Bonjour {name},",
+      "since": "Expert textile depuis {year}",
+      "help": "Une question ? Répondez à cet e-mail ou écrivez-nous à {email}."
+    },
+    "labels": {
+      "ref": "Référence",
+      "total": "Total TTC",
+      "company": "Société",
+      "validUntil": "Valable jusqu'au",
+      "reason": "Motif",
+      "carrier": "Transporteur",
+      "tracking": "N° de suivi",
+      "status": "Statut",
+      "fabric": "Tissu",
+      "color": "Couleur",
+      "meters": "Quantité",
+      "expires": "Expire le",
+      "name": "Nom",
+      "email": "E-mail",
+      "phone": "Téléphone",
+      "message": "Message"
+    },
+    "sampleStatus": {
+      "requested": "Demandé",
+      "approved": "Approuvé",
+      "rejected": "Refusé",
+      "preparing": "En préparation",
+      "shipped": "Expédié",
+      "delivered": "Livré"
+    },
+    "account_welcome": {
+      "subject": "Bienvenue chez {company}",
+      "title": "Votre compte est prêt",
+      "intro": "Vous pouvez dès maintenant rechercher des tissus, demander des devis et réserver du stock.",
+      "cta": "Accéder à mon compte"
+    },
+    "quote_submitted_client": {
+      "subject": "Votre demande de devis {ref} est bien reçue",
+      "title": "Demande de devis reçue",
+      "intro": "Notre équipe commerciale étudie votre demande et vous répond rapidement.",
+      "cta": "Voir ma demande"
+    },
+    "quote_submitted_staff": {
+      "subject": "Nouvelle demande de devis {ref} — {company}",
+      "title": "Nouvelle demande de devis",
+      "intro": "{company} vient de soumettre une demande de devis à examiner.",
+      "cta": "Ouvrir le devis"
+    },
+    "quote_sent": {
+      "subject": "Votre devis {ref} est disponible",
+      "title": "Votre devis est prêt",
+      "intro": "Retrouvez le détail et le PDF dans votre espace client, puis acceptez ou refusez le devis avant sa date de validité.",
+      "cta": "Consulter le devis"
+    },
+    "quote_accepted_staff": {
+      "subject": "Devis {ref} accepté — {company}",
+      "title": "Un devis a été accepté",
+      "intro": "{company} a accepté le devis. Vous pouvez le convertir en commande.",
+      "cta": "Ouvrir le devis"
+    },
+    "quote_rejected_staff": {
+      "subject": "Devis {ref} refusé — {company}",
+      "title": "Un devis a été refusé",
+      "intro": "{company} a refusé le devis.",
+      "cta": "Ouvrir le devis"
+    },
+    "quote_expired": {
+      "subject": "Votre devis {ref} a expiré",
+      "title": "Devis expiré",
+      "intro": "La date de validité de ce devis est dépassée. Contactez-nous pour en obtenir un nouveau.",
+      "cta": "Voir le devis"
+    },
+    "order_confirmed": {
+      "subject": "Commande {ref} confirmée",
+      "title": "Votre commande est confirmée",
+      "intro": "Nous préparons vos tissus. Vous serez prévenu dès que la commande est prête.",
+      "cta": "Suivre ma commande"
+    },
+    "order_ready": {
+      "subject": "Commande {ref} prête",
+      "title": "Votre commande est prête",
+      "intro": "Vos tissus sont coupés et prêts à être expédiés.",
+      "cta": "Voir ma commande"
+    },
+    "delivery_in_transit": {
+      "subject": "Commande {ref} expédiée",
+      "title": "Votre commande est en route",
+      "intro": "Le transporteur a pris en charge votre colis.",
+      "cta": "Suivre ma commande"
+    },
+    "delivery_delivered": {
+      "subject": "Commande {ref} livrée",
+      "title": "Votre commande a été livrée",
+      "intro": "Merci pour votre confiance. N'hésitez pas à nous contacter pour toute question.",
+      "cta": "Voir ma commande"
+    },
+    "sample_status_changed": {
+      "subject": "Échantillons {ref} : {status}",
+      "title": "Mise à jour de votre demande d'échantillons",
+      "intro": "Le statut de votre demande est maintenant : {status}.",
+      "cta": "Voir mes échantillons"
+    },
+    "sample_requested_staff": {
+      "subject": "Nouvelle demande d'échantillons {ref} — {company}",
+      "title": "Nouvelle demande d'échantillons",
+      "intro": "{company} demande des échantillons à préparer.",
+      "cta": "Voir les échantillons"
+    },
+    "reservation_created": {
+      "subject": "Réservation confirmée : {fabric}",
+      "title": "Votre stock est réservé",
+      "intro": "Nous gardons {meters} de {fabric} ({color}) pour vous jusqu'à l'expiration de la réservation.",
+      "cta": "Voir mes réservations"
+    },
+    "reservation_expiring": {
+      "subject": "Votre réservation expire bientôt : {fabric}",
+      "title": "Votre réservation expire bientôt",
+      "intro": "Votre réservation de {meters} de {fabric} ({color}) va expirer. Demandez un devis pour la conserver.",
+      "cta": "Voir mes réservations"
+    },
+    "reservation_expired": {
+      "subject": "Réservation expirée : {fabric}",
+      "title": "Votre réservation a expiré",
+      "intro": "Le stock réservé ({meters} de {fabric}, {color}) a été remis en vente.",
+      "cta": "Voir mes réservations"
+    },
+    "contact_message_staff": {
+      "subject": "Nouveau message de contact — {name}",
+      "title": "Nouveau message de contact",
+      "intro": "{name} a écrit via le formulaire du site.",
+      "cta": "Ouvrir la messagerie"
+    }
+  },
+  "notifications": {
+    "title": "Notifications",
+    "open": "Ouvrir les notifications",
+    "empty": "Aucune notification pour le moment.",
+    "markAll": "Tout marquer comme lu",
+    "unread": "{count} non lues",
+    "items": {
+      "generic": "Nouvelle notification",
+      "account_welcome": "Bienvenue ! Votre compte est prêt.",
+      "quote_submitted_client": "Demande de devis {ref} reçue",
+      "quote_sent": "Votre devis {ref} est disponible",
+      "quote_expired": "Le devis {ref} a expiré",
+      "order_confirmed": "Commande {ref} confirmée",
+      "order_ready": "Commande {ref} prête",
+      "delivery_in_transit": "Commande {ref} expédiée",
+      "delivery_delivered": "Commande {ref} livrée",
+      "sample_status_changed": "Échantillons {ref} mis à jour",
+      "reservation_created": "Réservation créée : {fabric}",
+      "reservation_expiring": "Réservation bientôt expirée : {fabric}",
+      "reservation_expired": "Réservation expirée : {fabric}"
+    }
   }
 }

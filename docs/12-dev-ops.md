@@ -44,7 +44,10 @@ Node 22 LTS, **pnpm 9**, TypeScript strict, Next.js 15 (App Router, React 19), T
 | `VOYAGE_API_KEY`, `EMBEDDING_MODEL` (=`voyage-multimodal-3`), `EMBEDDING_DIM` (=1024) | Vercel | embeddings |
 | `AI_PRICE_INPUT_PER_MTOK`, `AI_PRICE_OUTPUT_PER_MTOK`, `EMBED_PRICE_PER_MTOK` | Vercel | cost logging |
 | `RESEND_API_KEY`, `EMAIL_FROM` | Vercel | email |
-| `CRON_SECRET` | Vercel | protects `/api/jobs/run` |
+| `CRON_SECRET` | Vercel | protects `/api/jobs/run` (no secret configured = the endpoint refuses everything) |
+| `EMAIL_PROVIDER` | Vercel | `resend` (real delivery, needs `RESEND_API_KEY`) or `log` (kept in `email_log`, dev/tests). Default: resend if a key exists, else log |
+| `AI_PROVIDER`, `EMBED_PROVIDER` | Vercel | `anthropic`/`ollama`/`fake` and `voyage`/`ollama`/`fake`. Without keys the AI jobs are skipped, not failed |
+| `JOB_RETRY_DELAYS_S` | Vercel | optional, seconds before retry 2 and 3 (default `30,300,1800`) |
 | `SENTRY_DSN`, `NEXT_PUBLIC_SENTRY_DSN` | Vercel, worker | errors |
 | `LIVEKIT_URL`, `LIVEKIT_API_KEY`, `LIVEKIT_API_SECRET` | Vercel (P4) | live tour |
 | `IP_HASH_SALT` | Vercel | anonymous rate-limit keys |
@@ -61,7 +64,9 @@ Node 22 LTS, **pnpm 9**, TypeScript strict, Next.js 15 (App Router, React 19), T
 - Message shape: `{ "type": "<queue>", "id": "<uuid of the target row>", "attempt": 1, "payload": {...} }`.
 - Producers: DB triggers (fabric/color changes → embed/translate) and server actions (emails) call `pgmq.send`.
 - Consumer: **Vercel Cron** `* * * * *` → `GET /api/jobs/run` with `Authorization: Bearer ${CRON_SECRET}` → reads up to 20 messages per queue (`pgmq.read`, visibility 120 s), runs handlers (time budget 50 s), `pgmq.delete` on success; on error increments attempt and re-sends with delay (30 s, 5 min, 30 min); after 3 failures → `pgmq.archive` + Sentry event.
-- Per-minute cron requires Vercel Pro (already planned).
+- Per-minute cron requires Vercel Pro (already planned). The schedule is in `vercel.json`.
+- Implemented in `src/lib/jobs/` (runner, queue wrappers `job_read/job_send/job_delete/job_archive`, handlers `embed`, `translate`, `email`). Jobs that need an AI provider that is not configured are **skipped** (removed, logged), and can be replayed by re-saving the fabric.
+- Emails: `src/emails/` (registry of the 17 templates, renderer, context loaders, sender). One `email_log` row per (template, entity, recipient) with a unique `dedupe_key`, so a retry never sends twice. Client emails also create a bell notification, once.
 
 ## 6. Testing
 | Level | Tool | Scope |

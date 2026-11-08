@@ -3,6 +3,7 @@ import { Link } from "@/i18n/navigation";
 import { AccountMenu } from "./AccountMenu";
 import { LanguageSwitcher } from "./LanguageSwitcher";
 import { DesktopNav, MobileNav } from "./MainNav";
+import { NotificationsBell } from "./NotificationsBell";
 
 /** The quote cart icon arrives with P1-10. */
 export function Header() {
@@ -20,6 +21,7 @@ export function Header() {
           <div className="hidden md:block">
             <LanguageSwitcher />
           </div>
+          <NotificationsBell />
           <AccountMenu />
           <MobileNav />
         </div>

@@ -525,5 +525,162 @@
     "blue": "أزرق",
     "purple": "بنفسجي",
     "pink": "وردي"
+  },
+  "emails": {
+    "common": {
+      "greeting": "مرحبًا {name}،",
+      "since": "خبير النسيج منذ {year}",
+      "help": "هل لديك سؤال؟ ردّ على هذا البريد أو راسلنا على {email}."
+    },
+    "labels": {
+      "ref": "المرجع",
+      "total": "الإجمالي شاملًا الضريبة",
+      "company": "الشركة",
+      "validUntil": "صالح حتى",
+      "reason": "السبب",
+      "carrier": "شركة الشحن",
+      "tracking": "رقم التتبع",
+      "status": "الحالة",
+      "fabric": "القماش",
+      "color": "اللون",
+      "meters": "الكمية",
+      "expires": "ينتهي في",
+      "name": "الاسم",
+      "email": "البريد الإلكتروني",
+      "phone": "الهاتف",
+      "message": "الرسالة"
+    },
+    "sampleStatus": {
+      "requested": "تم الطلب",
+      "approved": "تمت الموافقة",
+      "rejected": "مرفوض",
+      "preparing": "قيد التحضير",
+      "shipped": "تم الشحن",
+      "delivered": "تم التسليم"
+    },
+    "account_welcome": {
+      "subject": "مرحبًا بك في {company}",
+      "title": "حسابك جاهز",
+      "intro": "يمكنك الآن البحث عن الأقمشة وطلب عروض الأسعار وحجز المخزون.",
+      "cta": "الذهاب إلى حسابي"
+    },
+    "quote_submitted_client": {
+      "subject": "استلمنا طلب عرض السعر {ref}",
+      "title": "تم استلام طلب عرض السعر",
+      "intro": "يدرس فريق المبيعات طلبك وسيرد عليك قريبًا.",
+      "cta": "عرض طلبي"
+    },
+    "quote_submitted_staff": {
+      "subject": "طلب عرض سعر جديد {ref} — {company}",
+      "title": "طلب عرض سعر جديد",
+      "intro": "قدّمت {company} للتو طلب عرض سعر يحتاج إلى مراجعة.",
+      "cta": "فتح عرض السعر"
+    },
+    "quote_sent": {
+      "subject": "عرض السعر {ref} جاهز",
+      "title": "عرض السعر جاهز",
+      "intro": "تجد التفاصيل وملف PDF في فضاء العملاء، ثم اقبل العرض أو ارفضه قبل انتهاء صلاحيته.",
+      "cta": "عرض عرض السعر"
+    },
+    "quote_accepted_staff": {
+      "subject": "تم قبول عرض السعر {ref} — {company}",
+      "title": "تم قبول عرض سعر",
+      "intro": "قبلت {company} عرض السعر. يمكنك تحويله إلى طلب.",
+      "cta": "فتح عرض السعر"
+    },
+    "quote_rejected_staff": {
+      "subject": "تم رفض عرض السعر {ref} — {company}",
+      "title": "تم رفض عرض سعر",
+      "intro": "رفضت {company} عرض السعر.",
+      "cta": "فتح عرض السعر"
+    },
+    "quote_expired": {
+      "subject": "انتهت صلاحية عرض السعر {ref}",
+      "title": "انتهت صلاحية عرض السعر",
+      "intro": "تجاوز عرض السعر هذا تاريخ صلاحيته. تواصل معنا للحصول على عرض جديد.",
+      "cta": "عرض عرض السعر"
+    },
+    "order_confirmed": {
+      "subject": "تم تأكيد الطلب {ref}",
+      "title": "تم تأكيد طلبك",
+      "intro": "نحضّر أقمشتك. سنخبرك فور جاهزية الطلب.",
+      "cta": "تتبع طلبي"
+    },
+    "order_ready": {
+      "subject": "الطلب {ref} جاهز",
+      "title": "طلبك جاهز",
+      "intro": "تم قص أقمشتك وهي جاهزة للشحن.",
+      "cta": "عرض طلبي"
+    },
+    "delivery_in_transit": {
+      "subject": "تم شحن الطلب {ref}",
+      "title": "طلبك في الطريق",
+      "intro": "استلمت شركة الشحن طردك.",
+      "cta": "تتبع طلبي"
+    },
+    "delivery_delivered": {
+      "subject": "تم تسليم الطلب {ref}",
+      "title": "تم تسليم طلبك",
+      "intro": "شكرًا لثقتك. لا تتردد في التواصل معنا لأي سؤال.",
+      "cta": "عرض طلبي"
+    },
+    "sample_status_changed": {
+      "subject": "العينات {ref}: {status}",
+      "title": "تحديث بشأن طلب العينات",
+      "intro": "أصبحت حالة طلبك الآن: {status}.",
+      "cta": "عرض عيناتي"
+    },
+    "sample_requested_staff": {
+      "subject": "طلب عينات جديد {ref} — {company}",
+      "title": "طلب عينات جديد",
+      "intro": "تطلب {company} عينات لتحضيرها.",
+      "cta": "عرض العينات"
+    },
+    "reservation_created": {
+      "subject": "تم تأكيد الحجز: {fabric}",
+      "title": "تم حجز مخزونك",
+      "intro": "نحتفظ لك بـ {meters} من {fabric} ({color}) حتى انتهاء مدة الحجز.",
+      "cta": "عرض حجوزاتي"
+    },
+    "reservation_expiring": {
+      "subject": "حجزك على وشك الانتهاء: {fabric}",
+      "title": "حجزك على وشك الانتهاء",
+      "intro": "سينتهي حجزك لـ {meters} من {fabric} ({color}). اطلب عرض سعر للاحتفاظ به.",
+      "cta": "عرض حجوزاتي"
+    },
+    "reservation_expired": {
+      "subject": "انتهى الحجز: {fabric}",
+      "title": "انتهى حجزك",
+      "intro": "عاد المخزون المحجوز ({meters} من {fabric}، {color}) متاحًا للبيع.",
+      "cta": "عرض حجوزاتي"
+    },
+    "contact_message_staff": {
+      "subject": "رسالة اتصال جديدة — {name}",
+      "title": "رسالة اتصال جديدة",
+      "intro": "كتب {name} عبر نموذج الموقع.",
+      "cta": "فتح صندوق الرسائل"
+    }
+  },
+  "notifications": {
+    "title": "الإشعارات",
+    "open": "فتح الإشعارات",
+    "empty": "لا توجد إشعارات بعد.",
+    "markAll": "تعليم الكل كمقروء",
+    "unread": "{count} غير مقروء",
+    "items": {
+      "generic": "إشعار جديد",
+      "account_welcome": "مرحبًا بك! حسابك جاهز.",
+      "quote_submitted_client": "تم استلام طلب عرض السعر {ref}",
+      "quote_sent": "عرض السعر {ref} جاهز",
+      "quote_expired": "انتهت صلاحية عرض السعر {ref}",
+      "order_confirmed": "تم تأكيد الطلب {ref}",
+      "order_ready": "الطلب {ref} جاهز",
+      "delivery_in_transit": "تم شحن الطلب {ref}",
+      "delivery_delivered": "تم تسليم الطلب {ref}",
+      "sample_status_changed": "تم تحديث العينات {ref}",
+      "reservation_created": "تم إنشاء الحجز: {fabric}",
+      "reservation_expiring": "الحجز على وشك الانتهاء: {fabric}",
+      "reservation_expired": "انتهى الحجز: {fabric}"
+    }
   }
 }
