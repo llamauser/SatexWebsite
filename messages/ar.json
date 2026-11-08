@@ -1,0 +1,31 @@
+{
+  "metadata": {
+    "title": "SATEX Commerce",
+    "description": "بيع الأقمشة بالجملة. دع الذكاء الاصطناعي يجد قماشك في ثوانٍ."
+  },
+  "common": {
+    "skipToContent": "انتقل إلى المحتوى",
+    "brandTagline": "بيع الأقمشة بالجملة"
+  },
+  "languages": {
+    "label": "اللغة",
+    "names": { "fr": "Français", "en": "English", "ar": "العربية" },
+    "short": { "fr": "FR", "en": "EN", "ar": "عربي" }
+  },
+  "home": {
+    "hero": {
+      "title": "توقّف عن التخمين.",
+      "subtitle": "دع الذكاء الاصطناعي يجد <highlight>قماشك</highlight> في ثوانٍ."
+    }
+  },
+  "footer": {
+    "since": "خبير النسيج منذ 1995"
+  },
+  "errors": {
+    "notFound": {
+      "title": "الصفحة غير موجودة",
+      "body": "الصفحة التي تبحث عنها غير موجودة أو تم نقلها.",
+      "cta": "العودة إلى الرئيسية"
+    }
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "metadata": {
+    "title": "SATEX Commerce",
+    "description": "Vente de tissus en gros. Laissez l'IA trouver votre tissu en quelques secondes."
+  },
+  "common": {
+    "skipToContent": "Aller au contenu",
+    "brandTagline": "Vente des tissus en gros"
+  },
+  "languages": {
+    "label": "Langue",
+    "names": { "fr": "Français", "en": "English", "ar": "العربية" },
+    "short": { "fr": "FR", "en": "EN", "ar": "عربي" }
+  },
+  "home": {
+    "hero": {
+      "title": "Arrêtez de deviner.",
+      "subtitle": "Laissez l'IA trouver votre <highlight>tissu</highlight> en quelques secondes."
+    }
+  },
+  "footer": {
+    "since": "Expert textile depuis 1995"
+  },
+  "errors": {
+    "notFound": {
+      "title": "Page introuvable",
+      "body": "La page que vous cherchez n'existe pas ou a été déplacée.",
+      "cta": "Retour à l'accueil"
+    }
+  }
+}

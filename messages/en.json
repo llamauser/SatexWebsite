@@ -1,0 +1,31 @@
+{
+  "metadata": {
+    "title": "SATEX Commerce",
+    "description": "Wholesale fabrics. Let AI find your fabric in seconds."
+  },
+  "common": {
+    "skipToContent": "Skip to content",
+    "brandTagline": "Wholesale fabrics"
+  },
+  "languages": {
+    "label": "Language",
+    "names": { "fr": "Français", "en": "English", "ar": "العربية" },
+    "short": { "fr": "FR", "en": "EN", "ar": "عربي" }
+  },
+  "home": {
+    "hero": {
+      "title": "Stop guessing.",
+      "subtitle": "Let AI find your <highlight>fabric</highlight> in seconds."
+    }
+  },
+  "footer": {
+    "since": "Textile expert since 1995"
+  },
+  "errors": {
+    "notFound": {
+      "title": "Page not found",
+      "body": "The page you are looking for does not exist or has been moved.",
+      "cta": "Back to home"
+    }
+  }
+}

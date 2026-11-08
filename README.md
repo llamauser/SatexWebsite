@@ -10,7 +10,7 @@ Website for **SATEX Commerce** (wholesale fabrics): AI fabric matching, live sto
 3. [`docs/13-phase1-backlog.md`](docs/13-phase1-backlog.md): ordered tasks for Phase 1.
 4. [`PLAN.md`](PLAN.md): one-page overview. [`video_audio_notes.md`](video_audio_notes.md): notes from the original promo video.
 
-Status: specification complete; Phase 1 task P1-01 (scaffold) done.
+Status: specification complete; Phase 1 tasks P1-01 (scaffold) and P1-02 (i18n + RTL) done.
 
 ## Develop
 ```bash

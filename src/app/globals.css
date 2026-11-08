@@ -42,6 +42,14 @@ h3 {
   font-family: var(--font-display);
 }
 
+/* Arabic uses IBM Plex Sans Arabic for body and headings (docs/09-i18n.md §2). */
+:lang(ar) body,
+:lang(ar) h1,
+:lang(ar) h2,
+:lang(ar) h3 {
+  font-family: var(--font-plex-arabic), system-ui, sans-serif;
+}
+
 :focus-visible {
   outline: 2px solid var(--primary);
   outline-offset: 2px;
