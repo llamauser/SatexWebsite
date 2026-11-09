@@ -11,6 +11,8 @@ Needs Docker Desktop, Ollama with its models, and an Internet connection the fir
 
 It starts the database, prepares the settings, fills the demo data, starts the website and the background jobs, and opens http://localhost:3000. The first start takes several minutes (downloads, build, embedding of the fabrics). `STOP-SATEX.bat` stops everything.
 
+**Showing it to someone:** follow [`docs/demo-guide.md`](docs/demo-guide.md) (full route, test photos for Snap & Match in `demo/snap-test-images/`, what to say, what to avoid).
+
 Demo accounts (passwords in `.seed-credentials.local.json`, created by the first start): admin `admin@satex.test`, sales `sales1@satex.test`, clients `client1@satex.test` to `client5@satex.test`.
 
 ## Run it by hand or on another system
