@@ -75,9 +75,9 @@ def build_rack():
 # ---------------------------------------------------------------- a roll of fabric (tinted per instance by the site)
 def build_roll():
     e = new_prop("fabric_roll")
-    cyl("fabric", (0, ROLL["radius"], 0), ROLL["radius"], ROLL["length"], "x", fabric, e, seg=28)
-    cyl("core", (0, ROLL["radius"], 0), 0.045, ROLL["length"] + 0.1, "x", core_mat, e, seg=14)
-    cyl("tag", (0.1, ROLL["radius"], 0), ROLL["radius"] + 0.004, 0.09, "x", tag, e, seg=28)
+    cyl("fabric", (0, ROLL["radius"], 0), ROLL["radius"], ROLL["length"], "x", fabric, e, seg=20)
+    cyl("core", (0, ROLL["radius"], 0), 0.045, ROLL["length"] + 0.1, "x", core_mat, e, seg=10)
+    cyl("tag", (0.1, ROLL["radius"], 0), ROLL["radius"] + 0.004, 0.09, "x", tag, e, seg=20)
 
 
 # ---------------------------------------------------------------- cutting table with fabric spread on it and a roll on a stand

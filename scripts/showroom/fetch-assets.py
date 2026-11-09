@@ -22,7 +22,7 @@ TEXTURES = [
     "hangar_concrete_floor", "concrete_floor_worn_001", "painted_plaster_wall", "plastered_wall_04", "herringbone_parquet", "terrazzo_tiles",
     "laminate_floor_02", "fabric_pattern_05", "denim_fabric", "metal_plate",
 ]
-HDRIS = ["empty_warehouse_01"]
+HDRIS = []  # none: the site generates its lighting environment
 
 
 def api(path: str):

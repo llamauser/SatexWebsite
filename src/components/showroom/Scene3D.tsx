@@ -1,9 +1,10 @@
 ﻿"use client";
 
-import { Environment, MapControls, useGLTF } from "@react-three/drei";
+import { MapControls, useGLTF, useProgress } from "@react-three/drei";
 import { Canvas, useFrame, useThree, type ThreeEvent } from "@react-three/fiber";
 import { Suspense, useEffect, useLayoutEffect, useMemo, useRef, type ComponentRef } from "react";
 import * as THREE from "three";
+import { RoomEnvironment } from "three/addons/environments/RoomEnvironment.js";
 import {
   CAMERA, FLOOR_D, FLOOR_W, baseZoom, centerOf, clampTarget, departmentStock, floorY, isVisibleFloor,
   type FloorMode, type ShowroomData, type ShowroomDepartment,
@@ -15,10 +16,42 @@ type V3 = [number, number, number];
 // Modelled in Blender (scripts/showroom): the building, and a library of objects the departments are furnished with.
 const SHELL_URL = "/showroom/shell.glb";
 const PROPS_URL = "/showroom/props.glb";
-const ENV_URL = "/showroom/env.hdr";
 // no draco / meshopt decoders: the files do not use them, and WebAssembly is not allowed by the Content-Security-Policy
 useGLTF.preload(SHELL_URL, false, false);
 useGLTF.preload(PROPS_URL, false, false);
+
+/** Soft indoor lighting for the PBR materials, generated in the browser (an HDR file would be one more download, 1.6 MB, that everything waits for). */
+function IndoorLight({ intensity }: { intensity: number }) {
+  const gl = useThree((s) => s.gl);
+  const scene = useThree((s) => s.scene);
+  const invalidate = useThree((s) => s.invalidate);
+  useLayoutEffect(() => {
+    const pmrem = new THREE.PMREMGenerator(gl);
+    const room = new RoomEnvironment();
+    const target = pmrem.fromScene(room, 0.04);
+    scene.environment = target.texture;
+    scene.environmentIntensity = intensity;
+    invalidate();
+    return () => {
+      scene.environment = null;
+      target.dispose();
+      pmrem.dispose();
+      room.dispose();
+    };
+  }, [gl, scene, intensity, invalidate]);
+  return null;
+}
+
+/** The models are a few MB: say how far along they are (language-neutral on purpose). */
+function LoadingProgress() {
+  const { active, progress } = useProgress();
+  if (!active) return null;
+  return (
+    <div className="pointer-events-none absolute inset-0 flex items-center justify-center" role="status" aria-live="polite" data-testid="scene-loading">
+      <span className="rounded-full bg-white/90 px-4 py-2 text-sm font-semibold text-slate-700 shadow">{Math.round(progress)} %</span>
+    </div>
+  );
+}
 
 // ------------------------------------------------------------------ the prop library
 interface Part { geometry: THREE.BufferGeometry; material: THREE.Material; rel: THREE.Matrix4; tint: boolean }
@@ -202,10 +235,10 @@ function Scene({ data, selected, hovered, floor, onSelect, onHover }: Props) {
   return (
     <>
       <hemisphereLight args={["#FFFFFF", "#C7CFD8", 0.5]} />
-      <directionalLight ref={light} position={[CAMERA.target[0] + 18, 44, CAMERA.target[2] - 20]} intensity={2.4} castShadow shadow-mapSize={[2048, 2048]} shadow-bias={-0.0004} shadow-normalBias={0.03}
+      <directionalLight ref={light} position={[CAMERA.target[0] + 18, 44, CAMERA.target[2] - 20]} intensity={2.4} castShadow shadow-mapSize={size.width < 700 ? [1024, 1024] : [2048, 2048]} shadow-bias={-0.0004} shadow-normalBias={0.03}
         shadow-camera-left={-34} shadow-camera-right={34} shadow-camera-top={34} shadow-camera-bottom={-34} shadow-camera-near={1} shadow-camera-far={120} />
       <Suspense fallback={null}>
-        <Environment files={ENV_URL} environmentIntensity={0.55} />
+        <IndoorLight intensity={0.6} />
         <Shell mode={floor} />
         {data.departments.filter((d) => d.floor === 0 || isVisibleFloor(floor, 1)).map((d) => (
           <Zone key={d.id} dep={d} selected={selected === d.slug} hovered={hovered === d.slug}
@@ -233,10 +266,13 @@ interface Props {
 /** The 3D showroom: an isometric, two-floor building modelled in Blender and furnished from the departments' layouts and the live stock. Loaded on demand only. */
 export default function Scene3D(props: Props) {
   return (
-    <Canvas orthographic shadows dpr={[1, 1.5]} frameloop="demand" camera={{ position: [...CAMERA.position], zoom: 14, near: -200, far: 400 }}
-      gl={{ antialias: true, powerPreference: "high-performance", toneMapping: THREE.NeutralToneMapping, toneMappingExposure: 1.0 }}
-      onCreated={({ gl }) => gl.setClearColor("#E9EEF3")} aria-label={props.ariaLabel} role="img">
-      <Scene {...props} />
-    </Canvas>
+    <div className="relative h-full w-full">
+      <Canvas orthographic shadows dpr={[1, 1.5]} frameloop="demand" camera={{ position: [...CAMERA.position], zoom: 14, near: -200, far: 400 }}
+        gl={{ antialias: true, powerPreference: "high-performance", toneMapping: THREE.NeutralToneMapping, toneMappingExposure: 1.0 }}
+        onCreated={({ gl }) => gl.setClearColor("#E9EEF3")} aria-label={props.ariaLabel} role="img">
+        <Scene {...props} />
+      </Canvas>
+      <LoadingProgress />
+    </div>
   );
 }

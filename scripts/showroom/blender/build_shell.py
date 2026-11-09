@@ -50,12 +50,12 @@ def add(o, bake=True):
 
 
 # ---------------------------------------------------------------- ground slab with a visible edge (a plinth, like a model)
-add(grid("floor", -0.5, W + 0.5, -0.5, D + 0.5, 0.0, concrete, ground, step=0.25, tile=5.0))
-add(box("plinth", (W / 2, -0.27, D / 2), (W + 1.0, 0.5, D + 1.0), concrete_edge, ground, step=0.5, tile=3.0))
+add(grid("floor", -0.5, W + 0.5, -0.5, D + 0.5, 0.0, concrete, ground, step=0.5, tile=5.0))
+add(box("plinth", (W / 2, -0.27, D / 2), (W + 1.0, 0.5, D + 1.0), concrete_edge, ground, tile=3.0), bake=False)
 
 # ---------------------------------------------------------------- the two far walls (the near sides are open: a cut-away)
-add(wall("wall_left", -0.4, 0.0, 0.0, WALL_H, -0.5, D + 0.4, plaster, ground, step=0.25))
-add(wall("wall_back", -0.4, W + 0.5, 0.0, WALL_H, D, D + 0.4, plaster2, ground, step=0.25))
+add(wall("wall_left", -0.4, 0.0, 0.0, WALL_H, -0.5, D + 0.4, plaster, ground, step=0.5))
+add(wall("wall_back", -0.4, W + 0.5, 0.0, WALL_H, D, D + 0.4, plaster2, ground, step=0.5))
 # dado band and skirting
 add(box("dado_left", (0.02, 0.55, D / 2 - 0.05), (0.06, 1.1, D - 0.1), steel_dark, ground, step=0.5, tile=2.0))
 add(box("dado_back", (W / 2, 0.55, D - 0.03), (W - 0.1, 1.1, 0.06), steel_dark, ground, step=0.5, tile=2.0))
@@ -114,8 +114,8 @@ for nm, c, s, m in [
 
 # ---------------------------------------------------------------- mezzanine (first floor over the back of the building)
 mz_len = D - MZ0
-add(grid("mezz_floor", 0.0, W, MZ0, D, MZTOP, parquet, mezz, step=0.25, tile=3.0), bake=True)
-add(box("mezz_slab", (W / 2, MZTOP - MZT / 2 - 0.05, (MZ0 + D) / 2), (W, MZT - 0.1, mz_len), concrete_edge, mezz, step=0.5, tile=3.0))
+add(grid("mezz_floor", 0.0, W, MZ0, D, MZTOP, parquet, mezz, step=0.5, tile=3.0), bake=True)
+add(box("mezz_slab", (W / 2, MZTOP - MZT / 2 - 0.05, (MZ0 + D) / 2), (W, MZT - 0.1, mz_len), concrete_edge, mezz, step=1.0, tile=3.0))
 # beams under the slab and columns
 for i, z in enumerate([MZ0 + 0.5, (MZ0 + D) / 2, D - 0.6]):
     add(box(f"mezz_beam_{i}", (W / 2, MZTOP - MZT - 0.2, z), (W, 0.4, 0.22), steel, mezz, step=0.5, tile=0))
