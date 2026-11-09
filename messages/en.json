@@ -179,7 +179,8 @@
       "profile": "Profile",
       "quotes": "Quotes",
       "reservations": "Reservations",
-      "samples": "Samples"
+      "samples": "Samples",
+      "orders": "Orders"
     },
     "overview": {
       "loading": "Loading…",
@@ -270,7 +271,14 @@
       "users": "Users",
       "settings": "Settings",
       "matchLogs": "AI log",
-      "quotes": "Quotes"
+      "quotes": "Quotes",
+      "orders": "Orders",
+      "cutting": "Cutting",
+      "deliveries": "Deliveries",
+      "samples": "Samples",
+      "clients": "Clients",
+      "messages": "Messages",
+      "reservations": "Reservations"
     },
     "home": {
       "fabrics": "Create and edit fabrics, colors and photos; import a CSV file.",
@@ -727,6 +735,249 @@
       "cancelled": "Quote cancelled.",
       "reasonRequired": "Give a reason.",
       "actionError": "Not possible in the quote's current status."
+    },
+    "dashboard": {
+      "error": "Could not load the dashboard.",
+      "loading": "Loading…",
+      "cards": {
+        "quotes_to_review": "Quotes to review",
+        "quotes_to_convert": "Accepted quotes to convert",
+        "orders_open": "Open orders",
+        "cutting_queue": "Cuts to do",
+        "deliveries_today": "Deliveries today",
+        "samples_to_prepare": "Samples to prepare",
+        "low_stock_colors": "Low-stock colors",
+        "reservations_expiring": "Reservations expiring (6 h)",
+        "messages_unhandled": "Messages to handle"
+      },
+      "hints": {
+        "quotes_to_review": "Requests received, waiting for a price",
+        "quotes_to_convert": "The client accepted: create the order",
+        "orders_open": "Confirmed, in preparation, ready or shipped",
+        "cutting_queue": "Cutting jobs waiting or in progress",
+        "deliveries_today": "Scheduled for today",
+        "samples_to_prepare": "Requested, approved or in preparation",
+        "low_stock_colors": "Below the low-stock threshold",
+        "reservations_expiring": "To follow up or release",
+        "messages_unhandled": "Contact form"
+      },
+      "openValue": "Value of sent quotes waiting for an answer: {amount}"
+    },
+    "orders": {
+      "title": "Orders",
+      "search": "Search (reference, company)",
+      "filter": "Status",
+      "filterOpen": "Open",
+      "filterAll": "All",
+      "error": "Could not load the orders.",
+      "loading": "Loading…",
+      "empty": "No order.",
+      "cols": {
+        "ref": "Reference",
+        "client": "Company",
+        "status": "Status",
+        "payment": "Payment",
+        "lines": "Lines",
+        "date": "Date",
+        "total": "Total incl. VAT"
+      }
+    },
+    "order": {
+      "notFound": "Order not found.",
+      "loading": "Loading…",
+      "back": "← All orders",
+      "statusDone": "Status: {status}.",
+      "reasonRequired": "Give a reason.",
+      "actionError": "Not possible in the order's current status.",
+      "paymentDone": "Payment updated.",
+      "saveError": "Could not save.",
+      "notesSaved": "Notes saved.",
+      "summary": "Summary",
+      "client": "Client",
+      "quote": "Quote",
+      "total": "Total incl. VAT",
+      "progress": "Cuts done",
+      "jobsDone": "{done} of {total}",
+      "shipTo": "Deliver to",
+      "payment": "Payment",
+      "start": "Start preparing",
+      "markReady": "Mark as ready",
+      "cancel": "Cancel the order",
+      "cancelReason": "Reason (required)",
+      "cancelHint": "Reserved stock is released and unfinished cuts are cancelled.",
+      "cancelConfirm": "Confirm cancellation",
+      "keep": "Keep the order",
+      "cancelledReason": "Order cancelled: {reason}",
+      "lines": "Lines and cuts",
+      "cols": {
+        "fabric": "Fabric",
+        "meters": "Meters",
+        "unitPrice": "Price / m",
+        "lineTotal": "Total excl. VAT",
+        "cutting": "Cutting"
+      },
+      "toBoard": "Open the cutting board",
+      "deliveries": "Deliveries",
+      "deliveryHint": "The order is ready: schedule the delivery.",
+      "carrier": "Carrier",
+      "tracking": "Tracking number",
+      "date": "Planned date",
+      "createDelivery": "Schedule the delivery",
+      "noDelivery": "No delivery yet.",
+      "notes": "Notes",
+      "internalNotes": "Internal notes (never shown to the client)",
+      "saveNotes": "Save the notes"
+    },
+    "delivery": {
+      "needTracking": "Enter the carrier and the tracking number to ship.",
+      "needReason": "Give a reason.",
+      "error": "Not possible in the delivery's current status.",
+      "failure": "Failed: {reason}",
+      "carrier": "Carrier",
+      "tracking": "Tracking number",
+      "date": "Planned date",
+      "save": "Save",
+      "ship": "Ship",
+      "delivered": "Mark as delivered",
+      "fail": "Report a failure",
+      "failReason": "Reason for the failure",
+      "failConfirm": "Confirm the failure",
+      "keep": "Cancel"
+    },
+    "cutting": {
+      "title": "Cutting board",
+      "lead": "Drag a card from column to column, or use the buttons.",
+      "loading": "Loading…",
+      "columns": {
+        "queued": "Waiting",
+        "cutting": "Cutting",
+        "ready": "Cut"
+      },
+      "age": "{days} d",
+      "start": "Start cutting",
+      "finish": "Finish cutting",
+      "emptyColumn": "No card.",
+      "startTitle": "Start cutting — {ref}",
+      "finishTitle": "Finish cutting — {ref}",
+      "chooseLot": "Choose the lot to cut from",
+      "noLot": "No lot of this color has enough meters ({m} m). Receive stock or adjust a lot.",
+      "actualMeters": "Meters actually cut",
+      "actualHint": "Planned: {m} m. The difference is recorded.",
+      "cancel": "Cancel",
+      "confirmStart": "Start",
+      "confirmFinish": "Finish",
+      "lotTooSmall": "This lot does not have enough meters.",
+      "cutInvalid": "Enter a positive number of meters.",
+      "cutTooMuch": "The lot does not hold that many meters.",
+      "error": "Could not do that. Please try again.",
+      "started": "Cutting started for {ref}.",
+      "finished": "Cutting finished for {ref}.",
+      "badMove": "That move is not possible: a card goes forward one column at a time."
+    },
+    "deliveries": {
+      "title": "Deliveries",
+      "filter": "Filter",
+      "filterOpen": "To deliver",
+      "filterToday": "Today",
+      "filterAll": "All",
+      "error": "Could not load the deliveries.",
+      "loading": "Loading…",
+      "empty": "No delivery."
+    },
+    "samples": {
+      "title": "Sample requests",
+      "filter": "Status",
+      "filterTodo": "To handle",
+      "filterAll": "All",
+      "needReason": "Give the reason for the refusal.",
+      "needTracking": "Enter the tracking number to ship.",
+      "error": "Could not do that. Please try again.",
+      "moved": "{ref}: {status}.",
+      "loading": "Loading…",
+      "loadError": "Could not load the requests.",
+      "empty": "No request.",
+      "reason": "Reason for declining: {reason}",
+      "tracking": "Carrier: {carrier} · Tracking: {number}",
+      "rejectReason": "Reason for refusal (if refusing)",
+      "carrier": "Carrier",
+      "trackingNumber": "Tracking number",
+      "actions": {
+        "requested": "Put back to waiting",
+        "approved": "Approve",
+        "rejected": "Decline",
+        "preparing": "Start preparing",
+        "shipped": "Ship",
+        "delivered": "Mark as delivered"
+      }
+    },
+    "reservations": {
+      "title": "Reservations",
+      "lead": "Meters held for clients. Releasing a reservation puts the stock back on sale.",
+      "error": "Could not load the reservations.",
+      "loading": "Loading…",
+      "cols": {
+        "client": "Client",
+        "fabric": "Fabric and color",
+        "meters": "Meters",
+        "left": "Time left"
+      },
+      "release": "Release",
+      "expired": "expired",
+      "empty": "No active reservation."
+    },
+    "clients": {
+      "title": "Clients",
+      "search": "Search (company, contact)",
+      "error": "Could not load the clients.",
+      "loading": "Loading…",
+      "demo": "demo",
+      "empty": "No client.",
+      "cols": {
+        "company": "Company",
+        "contact": "Contact",
+        "country": "Country",
+        "quotes": "Quotes",
+        "orders": "Orders",
+        "samples": "Samples",
+        "since": "Since"
+      }
+    },
+    "client": {
+      "notFound": "Client not found.",
+      "loading": "Loading…",
+      "back": "← All clients",
+      "company": "Company and contacts",
+      "fields": {
+        "taxId": "Tax ID",
+        "website": "Website",
+        "country": "Country",
+        "since": "Client since"
+      },
+      "address": {
+        "billing": "Billing",
+        "shipping": "Delivery"
+      },
+      "quotes": "Quotes",
+      "orders": "Orders",
+      "samples": "Samples",
+      "none": "Nothing yet.",
+      "notes": "Internal notes",
+      "notesHint": "Visible to the team only.",
+      "notesLabel": "Notes about this client",
+      "saveNotes": "Save the notes",
+      "notesSaved": "Notes saved.",
+      "notesError": "Could not save."
+    },
+    "messages": {
+      "title": "Contact form messages",
+      "filter": "Show",
+      "open": "To handle",
+      "handled": "Handled",
+      "all": "All",
+      "error": "Could not load the messages.",
+      "loading": "Loading…",
+      "empty": "No message.",
+      "markHandled": "Handled"
     }
   },
   "structures": {
@@ -1555,5 +1806,58 @@
     "message": "Your message",
     "terms": "Terms",
     "footer": "Textile expert since {year}"
+  },
+  "orders": {
+    "status": {
+      "confirmed": "Confirmed",
+      "in_preparation": "In preparation",
+      "ready": "Ready",
+      "shipped": "Shipped",
+      "delivered": "Delivered",
+      "cancelled": "Cancelled"
+    },
+    "payment": {
+      "unpaid": "Unpaid",
+      "partial": "Partly paid",
+      "paid": "Paid"
+    },
+    "delivery": {
+      "scheduled": "Scheduled",
+      "in_transit": "In transit",
+      "delivered": "Delivered",
+      "failed": "Failed"
+    },
+    "cutting": {
+      "queued": "Waiting",
+      "cutting": "Cutting",
+      "ready": "Cut",
+      "cancelled": "Cancelled"
+    },
+    "list": {
+      "title": "My orders",
+      "loading": "Loading…",
+      "error": "Could not load your orders.",
+      "none": "You have no order yet. Our team creates an order when you accept a quote.",
+      "toQuotes": "See my quotes",
+      "lines": "{count, plural, one {# line} other {# lines}}"
+    },
+    "detail": {
+      "back": "← All my orders",
+      "loading": "Loading…",
+      "missing": "This order could not be found.",
+      "placed": "Placed on {date}",
+      "progress": "Progress",
+      "cancelled": "This order was cancelled. Reason: {reason}",
+      "fabric": "Fabric",
+      "meters": "Quantity",
+      "unit": "Price / m",
+      "lineTotal": "Total excl. VAT",
+      "subtotal": "Subtotal excl. VAT",
+      "discount": "Discount ({pct}%)",
+      "total": "Total incl. VAT ({vat}%)",
+      "delivery": "Delivery",
+      "noDelivery": "Delivery will be scheduled when your order is ready.",
+      "carrier": "Carrier: {carrier}"
+    }
   }
 }

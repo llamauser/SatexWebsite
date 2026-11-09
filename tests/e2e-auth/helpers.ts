@@ -65,3 +65,22 @@ export async function expectSignedOut(page: Page) {
   await page.goto("/fr/account");
   await expect(page).toHaveURL(/\/fr\/auth\/sign-in\?next=/);
 }
+
+/**
+ * Deletes test fabrics (and their colors, lots and the stock movements of those lots). Stock movements are append-only in the
+ * database, so the guard is lifted for this cleanup only. `where` is a condition on the alias `f` (fabrics).
+ */
+export async function purgeFabrics(where: string, params: unknown[] = []) {
+  await withDb(async (c) => {
+    await c.query("alter table public.stock_movements disable trigger stock_movements_no_update");
+    try {
+      await c.query(
+        `delete from public.stock_movements where lot_id in (select l.id from public.stock_lots l join public.fabric_colors fc on fc.id = l.color_id join public.fabrics f on f.id = fc.fabric_id where ${where})`,
+        params,
+      );
+      await c.query(`delete from public.fabrics f where ${where}`, params);
+    } finally {
+      await c.query("alter table public.stock_movements enable trigger stock_movements_no_update");
+    }
+  });
+}

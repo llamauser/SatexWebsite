@@ -179,7 +179,8 @@
       "profile": "الملف الشخصي",
       "quotes": "عروض الأسعار",
       "reservations": "الحجوزات",
-      "samples": "العينات"
+      "samples": "العينات",
+      "orders": "الطلبات"
     },
     "overview": {
       "loading": "جارٍ التحميل…",
@@ -270,7 +271,14 @@
       "users": "المستخدمون",
       "settings": "الإعدادات",
       "matchLogs": "سجل الذكاء الاصطناعي",
-      "quotes": "عروض الأسعار"
+      "quotes": "عروض الأسعار",
+      "orders": "الطلبات",
+      "cutting": "القص",
+      "deliveries": "التوصيل",
+      "samples": "العينات",
+      "clients": "العملاء",
+      "messages": "الرسائل",
+      "reservations": "الحجوزات"
     },
     "home": {
       "fabrics": "إنشاء الأقمشة وتعديلها مع ألوانها وصورها، واستيراد ملف CSV.",
@@ -727,6 +735,249 @@
       "cancelled": "تم إلغاء عرض السعر.",
       "reasonRequired": "اذكر السبب.",
       "actionError": "غير ممكن في الحالة الحالية لعرض السعر."
+    },
+    "dashboard": {
+      "error": "تعذّر تحميل لوحة المتابعة.",
+      "loading": "جارٍ التحميل…",
+      "cards": {
+        "quotes_to_review": "عروض أسعار للدراسة",
+        "quotes_to_convert": "عروض مقبولة للتحويل",
+        "orders_open": "طلبات جارية",
+        "cutting_queue": "عمليات قص منتظرة",
+        "deliveries_today": "توصيلات اليوم",
+        "samples_to_prepare": "عينات للتحضير",
+        "low_stock_colors": "ألوان بمخزون منخفض",
+        "reservations_expiring": "حجوزات تنتهي (6 ساعات)",
+        "messages_unhandled": "رسائل للمعالجة"
+      },
+      "hints": {
+        "quotes_to_review": "طلبات مستلمة بانتظار سعر",
+        "quotes_to_convert": "قبِل العميل: أنشئ الطلب",
+        "orders_open": "مؤكدة أو قيد التحضير أو جاهزة أو مشحونة",
+        "cutting_queue": "مهام قص منتظرة أو جارية",
+        "deliveries_today": "مجدولة لهذا اليوم",
+        "samples_to_prepare": "مطلوبة أو مقبولة أو قيد التحضير",
+        "low_stock_colors": "تحت حد المخزون المنخفض",
+        "reservations_expiring": "للمتابعة أو التحرير",
+        "messages_unhandled": "نموذج التواصل"
+      },
+      "openValue": "قيمة عروض الأسعار المرسلة بانتظار الرد: {amount}"
+    },
+    "orders": {
+      "title": "الطلبات",
+      "search": "بحث (المرجع، الشركة)",
+      "filter": "الحالة",
+      "filterOpen": "جارية",
+      "filterAll": "الكل",
+      "error": "تعذّر تحميل الطلبات.",
+      "loading": "جارٍ التحميل…",
+      "empty": "لا توجد طلبات.",
+      "cols": {
+        "ref": "المرجع",
+        "client": "الشركة",
+        "status": "الحالة",
+        "payment": "الدفع",
+        "lines": "الأسطر",
+        "date": "التاريخ",
+        "total": "الإجمالي شاملًا الضريبة"
+      }
+    },
+    "order": {
+      "notFound": "الطلب غير موجود.",
+      "loading": "جارٍ التحميل…",
+      "back": "← كل الطلبات",
+      "statusDone": "الحالة: {status}.",
+      "reasonRequired": "اذكر السبب.",
+      "actionError": "غير ممكن في الحالة الحالية للطلب.",
+      "paymentDone": "تم تحديث الدفع.",
+      "saveError": "تعذّر الحفظ.",
+      "notesSaved": "تم حفظ الملاحظات.",
+      "summary": "ملخص",
+      "client": "العميل",
+      "quote": "عرض السعر",
+      "total": "الإجمالي شاملًا الضريبة",
+      "progress": "عمليات القص المنتهية",
+      "jobsDone": "{done} من {total}",
+      "shipTo": "التوصيل إلى",
+      "payment": "الدفع",
+      "start": "بدء التحضير",
+      "markReady": "تحديده كجاهز",
+      "cancel": "إلغاء الطلب",
+      "cancelReason": "السبب (إلزامي)",
+      "cancelHint": "يُحرَّر المخزون المحجوز وتُلغى عمليات القص غير المنتهية.",
+      "cancelConfirm": "تأكيد الإلغاء",
+      "keep": "الإبقاء على الطلب",
+      "cancelledReason": "تم إلغاء الطلب: {reason}",
+      "lines": "الأسطر وعمليات القص",
+      "cols": {
+        "fabric": "القماش",
+        "meters": "الأمتار",
+        "unitPrice": "السعر / م",
+        "lineTotal": "الإجمالي دون ضريبة",
+        "cutting": "القص"
+      },
+      "toBoard": "فتح لوحة القص",
+      "deliveries": "التوصيل",
+      "deliveryHint": "الطلب جاهز: جدول التوصيل.",
+      "carrier": "شركة الشحن",
+      "tracking": "رقم التتبع",
+      "date": "التاريخ المخطط",
+      "createDelivery": "جدولة التوصيل",
+      "noDelivery": "لا يوجد توصيل بعد.",
+      "notes": "ملاحظات",
+      "internalNotes": "ملاحظات داخلية (لا تظهر للعميل أبدًا)",
+      "saveNotes": "حفظ الملاحظات"
+    },
+    "delivery": {
+      "needTracking": "أدخل شركة الشحن ورقم التتبع للشحن.",
+      "needReason": "اذكر السبب.",
+      "error": "غير ممكن في الحالة الحالية للتوصيل.",
+      "failure": "فشل: {reason}",
+      "carrier": "شركة الشحن",
+      "tracking": "رقم التتبع",
+      "date": "التاريخ المخطط",
+      "save": "حفظ",
+      "ship": "شحن",
+      "delivered": "تحديده كمسلَّم",
+      "fail": "الإبلاغ عن فشل",
+      "failReason": "سبب الفشل",
+      "failConfirm": "تأكيد الفشل",
+      "keep": "إلغاء"
+    },
+    "cutting": {
+      "title": "لوحة القص",
+      "lead": "اسحب البطاقة من عمود إلى آخر، أو استعمل الأزرار.",
+      "loading": "جارٍ التحميل…",
+      "columns": {
+        "queued": "في الانتظار",
+        "cutting": "قيد القص",
+        "ready": "تم القص"
+      },
+      "age": "{days} ي",
+      "start": "بدء القص",
+      "finish": "إنهاء القص",
+      "emptyColumn": "لا توجد بطاقات.",
+      "startTitle": "بدء القص — {ref}",
+      "finishTitle": "إنهاء القص — {ref}",
+      "chooseLot": "اختر الدفعة المراد القص منها",
+      "noLot": "لا توجد دفعة من هذا اللون تكفي ({m} م). استلم مخزونًا أو عدّل دفعة.",
+      "actualMeters": "الأمتار المقصوصة فعليًا",
+      "actualHint": "المخطط: {m} م. يُسجَّل الفرق.",
+      "cancel": "إلغاء",
+      "confirmStart": "بدء",
+      "confirmFinish": "إنهاء",
+      "lotTooSmall": "هذه الدفعة لا تكفي.",
+      "cutInvalid": "أدخل عددًا موجبًا من الأمتار.",
+      "cutTooMuch": "الدفعة لا تحتوي هذا العدد من الأمتار.",
+      "error": "تعذّر تنفيذ ذلك. أعد المحاولة.",
+      "started": "بدأ القص للطلب {ref}.",
+      "finished": "انتهى القص للطلب {ref}.",
+      "badMove": "هذا النقل غير ممكن: تتقدم البطاقة عمودًا واحدًا في كل مرة."
+    },
+    "deliveries": {
+      "title": "التوصيل",
+      "filter": "تصفية",
+      "filterOpen": "للتوصيل",
+      "filterToday": "اليوم",
+      "filterAll": "الكل",
+      "error": "تعذّر تحميل التوصيلات.",
+      "loading": "جارٍ التحميل…",
+      "empty": "لا توجد توصيلات."
+    },
+    "samples": {
+      "title": "طلبات العينات",
+      "filter": "الحالة",
+      "filterTodo": "للمعالجة",
+      "filterAll": "الكل",
+      "needReason": "اذكر سبب الرفض.",
+      "needTracking": "أدخل رقم التتبع للشحن.",
+      "error": "تعذّر تنفيذ ذلك. أعد المحاولة.",
+      "moved": "{ref}: {status}.",
+      "loading": "جارٍ التحميل…",
+      "loadError": "تعذّر تحميل الطلبات.",
+      "empty": "لا توجد طلبات.",
+      "reason": "سبب الرفض: {reason}",
+      "tracking": "شركة الشحن: {carrier} · التتبع: {number}",
+      "rejectReason": "سبب الرفض (عند الرفض)",
+      "carrier": "شركة الشحن",
+      "trackingNumber": "رقم التتبع",
+      "actions": {
+        "requested": "إعادة إلى الانتظار",
+        "approved": "قبول",
+        "rejected": "رفض",
+        "preparing": "بدء التحضير",
+        "shipped": "شحن",
+        "delivered": "تحديده كمسلَّم"
+      }
+    },
+    "reservations": {
+      "title": "الحجوزات",
+      "lead": "أمتار محجوزة للعملاء. تحرير الحجز يعيد المخزون للبيع.",
+      "error": "تعذّر تحميل الحجوزات.",
+      "loading": "جارٍ التحميل…",
+      "cols": {
+        "client": "العميل",
+        "fabric": "القماش واللون",
+        "meters": "الأمتار",
+        "left": "الوقت المتبقي"
+      },
+      "release": "تحرير",
+      "expired": "منتهٍ",
+      "empty": "لا توجد حجوزات نشطة."
+    },
+    "clients": {
+      "title": "العملاء",
+      "search": "بحث (الشركة، جهة الاتصال)",
+      "error": "تعذّر تحميل العملاء.",
+      "loading": "جارٍ التحميل…",
+      "demo": "تجريبي",
+      "empty": "لا يوجد عملاء.",
+      "cols": {
+        "company": "الشركة",
+        "contact": "جهة الاتصال",
+        "country": "البلد",
+        "quotes": "عروض الأسعار",
+        "orders": "الطلبات",
+        "samples": "العينات",
+        "since": "منذ"
+      }
+    },
+    "client": {
+      "notFound": "العميل غير موجود.",
+      "loading": "جارٍ التحميل…",
+      "back": "← كل العملاء",
+      "company": "الشركة وجهات الاتصال",
+      "fields": {
+        "taxId": "الرقم الجبائي",
+        "website": "الموقع",
+        "country": "البلد",
+        "since": "عميل منذ"
+      },
+      "address": {
+        "billing": "الفوترة",
+        "shipping": "التوصيل"
+      },
+      "quotes": "عروض الأسعار",
+      "orders": "الطلبات",
+      "samples": "العينات",
+      "none": "لا شيء حتى الآن.",
+      "notes": "ملاحظات داخلية",
+      "notesHint": "ظاهرة للفريق فقط.",
+      "notesLabel": "ملاحظات عن هذا العميل",
+      "saveNotes": "حفظ الملاحظات",
+      "notesSaved": "تم حفظ الملاحظات.",
+      "notesError": "تعذّر الحفظ."
+    },
+    "messages": {
+      "title": "رسائل نموذج التواصل",
+      "filter": "العرض",
+      "open": "للمعالجة",
+      "handled": "تمت معالجتها",
+      "all": "الكل",
+      "error": "تعذّر تحميل الرسائل.",
+      "loading": "جارٍ التحميل…",
+      "empty": "لا توجد رسائل.",
+      "markHandled": "تمت المعالجة"
     }
   },
   "structures": {
@@ -1555,5 +1806,58 @@
     "message": "رسالتك",
     "terms": "الشروط",
     "footer": "خبراء الأقمشة منذ {year}"
+  },
+  "orders": {
+    "status": {
+      "confirmed": "مؤكد",
+      "in_preparation": "قيد التحضير",
+      "ready": "جاهز",
+      "shipped": "تم الشحن",
+      "delivered": "تم التسليم",
+      "cancelled": "ملغى"
+    },
+    "payment": {
+      "unpaid": "غير مدفوع",
+      "partial": "مدفوع جزئيًا",
+      "paid": "مدفوع"
+    },
+    "delivery": {
+      "scheduled": "مجدولة",
+      "in_transit": "في الطريق",
+      "delivered": "تم التسليم",
+      "failed": "فشلت"
+    },
+    "cutting": {
+      "queued": "في الانتظار",
+      "cutting": "قيد القص",
+      "ready": "تم القص",
+      "cancelled": "ملغى"
+    },
+    "list": {
+      "title": "طلباتي",
+      "loading": "جارٍ التحميل…",
+      "error": "تعذّر تحميل طلباتك.",
+      "none": "ليس لديك طلبات بعد. ينشئ فريقنا الطلب عندما تقبل عرض سعر.",
+      "toQuotes": "عرض عروض أسعاري",
+      "lines": "{count, plural, =0 {لا أسطر} one {سطر واحد} two {سطران} few {{count} أسطر} many {{count} سطرًا} other {{count} سطر}}"
+    },
+    "detail": {
+      "back": "← كل طلباتي",
+      "loading": "جارٍ التحميل…",
+      "missing": "تعذّر العثور على هذا الطلب.",
+      "placed": "تاريخ الطلب {date}",
+      "progress": "التقدم",
+      "cancelled": "تم إلغاء هذا الطلب. السبب: {reason}",
+      "fabric": "القماش",
+      "meters": "الكمية",
+      "unit": "السعر / م",
+      "lineTotal": "الإجمالي دون ضريبة",
+      "subtotal": "المجموع دون ضريبة",
+      "discount": "خصم ({pct}٪)",
+      "total": "الإجمالي شاملًا الضريبة ({vat}٪)",
+      "delivery": "التوصيل",
+      "noDelivery": "سيُجدول التوصيل عندما يصبح طلبك جاهزًا.",
+      "carrier": "شركة الشحن: {carrier}"
+    }
   }
 }
