@@ -1,0 +1,40 @@
+{
+  "floorW": 40,
+  "floorD": 24,
+  "wallHeight": 8,
+  "mezzanine": {
+    "z0": 14.8,
+    "slabTop": 4.15,
+    "thickness": 0.3
+  },
+  "stairs": {
+    "x0": 0.3,
+    "x1": 1.9,
+    "zBottom": 8.0,
+    "zTop": 14.8
+  },
+  "rack": {
+    "bayW": 2.4,
+    "bayD": 1.0,
+    "height": 3.0,
+    "levels": [
+      0.15,
+      0.95,
+      1.75,
+      2.55
+    ],
+    "beamH": 0.12,
+    "roll": {
+      "length": 1.1,
+      "radius": 0.17,
+      "xs": [
+        -0.58,
+        0.58
+      ],
+      "zs": [
+        -0.23,
+        0.23
+      ]
+    }
+  }
+}

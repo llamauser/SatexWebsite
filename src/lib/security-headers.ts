@@ -28,7 +28,8 @@ export function buildCsp({ supabaseUrl, dev = false }: CspOptions = {}): string 
     "style-src 'self' 'unsafe-inline'",
     `img-src ${list("'self'", "data:", "blob:", supabase, "https://*.supabase.co")}`,
     "font-src 'self' data:",
-    `connect-src ${list("'self'", supabase, supabaseWs, "https://*.supabase.co", "wss://*.supabase.co", "https://*.ingest.sentry.io", "https://*.ingest.de.sentry.io", "https://*.ingest.us.sentry.io", "https://vitals.vercel-insights.com", dev && "ws://localhost:*")}`,
+    // blob: lets the 3D showroom read the textures inside its .glb files (three.js fetches the blob URLs it makes)
+    `connect-src ${list("'self'", "blob:", supabase, supabaseWs, "https://*.supabase.co", "wss://*.supabase.co", "https://*.ingest.sentry.io", "https://*.ingest.de.sentry.io", "https://*.ingest.us.sentry.io", "https://vitals.vercel-insights.com", dev && "ws://localhost:*")}`,
     "media-src 'self' blob:",
     "worker-src 'self' blob:",
     "manifest-src 'self'",

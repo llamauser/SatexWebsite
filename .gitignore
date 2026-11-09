@@ -44,3 +44,10 @@ test-results/
 
 # local scratch
 .tmp/
+
+# raw third-party assets for the 3D showroom (fetched by scripts/showroom/fetch-assets.py)
+assets/showroom-src/
+
+# local MCP server configs (paths on one machine)
+.mcp.json
+*.mcpb

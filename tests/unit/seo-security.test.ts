@@ -73,6 +73,7 @@ describe("Content-Security-Policy", () => {
   });
   it("allows Supabase (data, images, realtime) and the monitoring and analytics services", () => {
     expect(prod).toMatch(/connect-src [^;]*https:\/\/abc\.supabase\.co/);
+    expect(prod).toMatch(/connect-src [^;]*blob:/); // the 3D showroom reads the textures of its .glb files through blob URLs
     expect(prod).toMatch(/connect-src [^;]*wss:\/\/abc\.supabase\.co|connect-src [^;]*wss:\/\/\*\.supabase\.co/);
     expect(prod).toMatch(/img-src [^;]*https:\/\/abc\.supabase\.co/);
     expect(prod).toContain("https://*.ingest.sentry.io");
