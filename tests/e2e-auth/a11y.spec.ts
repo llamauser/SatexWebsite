@@ -15,6 +15,7 @@ const PUBLIC = ["", "/catalog", "/catalog/linen-plain-160", "/match", "/snap", "
 
 for (const locale of ["fr", "en", "ar"] as const) {
   test(`public pages have no serious accessibility problem (${locale})`, async ({ page }) => {
+    test.setTimeout(150_000); // eleven pages per language: 35-40 s on a CI runner, which is too close to the 60 s default
     for (const path of PUBLIC) {
       await page.goto(`/${locale}${path}`);
       await page.waitForLoadState("networkidle");

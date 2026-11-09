@@ -92,6 +92,7 @@ test("security headers are sent on pages and on the API", async ({ request }) =>
 });
 
 test("no page breaks its own Content-Security-Policy (public, signed-in and admin pages, 2D and 3D)", async ({ page }) => {
+  test.setTimeout(240_000); // eighteen pages, one of them the 3D showroom: about 45 s here, over a minute on a CI runner
   const violations: string[] = [];
   await page.addInitScript(() => {
     (window as unknown as { __csp: string[] }).__csp = [];
