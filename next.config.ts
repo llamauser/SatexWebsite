@@ -26,6 +26,9 @@ const nextConfig: NextConfig = {
   reactStrictMode: true,
   poweredByHeader: false,
   images: { remotePatterns: supabaseImagePattern(), formats: ["image/avif", "image/webp"] },
+  // The quote PDF is rendered on the server with react-pdf, which reads the font files at run time: make sure they ship with the route.
+  serverExternalPackages: ["@react-pdf/renderer"],
+  outputFileTracingIncludes: { "/api/admin/quotes/[id]/send": ["./assets/fonts/**/*"] },
 };
 
 export default withNextIntl(nextConfig);

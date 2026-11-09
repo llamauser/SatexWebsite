@@ -269,7 +269,8 @@
       "departments": "Départements",
       "users": "Utilisateurs",
       "settings": "Réglages",
-      "matchLogs": "Journal IA"
+      "matchLogs": "Journal IA",
+      "quotes": "Devis"
     },
     "home": {
       "fabrics": "Créer et modifier les tissus, les coloris, les photos, importer un fichier CSV.",
@@ -277,7 +278,8 @@
       "departments": "Les départements du showroom et leur plan.",
       "users": "Comptes du personnel et rôles.",
       "settings": "Société, TVA, durées, limites, notifications.",
-      "matchLogs": "Ce que les visiteurs ont demandé à la recherche IA."
+      "matchLogs": "Ce que les visiteurs ont demandé à la recherche IA.",
+      "quotes": "Étudier les demandes de devis, ajuster les prix, envoyer le PDF, créer la commande."
     },
     "fabrics": {
       "title": "Tissus",
@@ -642,6 +644,89 @@
       "roleOf": "Rôle de {email}",
       "loading": "Chargement…",
       "empty": "Aucun utilisateur."
+    },
+    "quotes": {
+      "title": "Devis",
+      "todo": "{n} demande(s) à traiter",
+      "search": "Rechercher (référence, société)",
+      "filter": "Statut",
+      "filterTodo": "À traiter",
+      "filterAll": "Tous",
+      "error": "Impossible de charger les devis.",
+      "loading": "Chargement…",
+      "empty": "Aucun devis.",
+      "cols": {
+        "ref": "Référence",
+        "client": "Société",
+        "status": "Statut",
+        "lines": "Lignes",
+        "submitted": "Reçu le",
+        "total": "Total TTC"
+      }
+    },
+    "quote": {
+      "loading": "Chargement…",
+      "notFound": "Devis introuvable.",
+      "back": "← Tous les devis",
+      "revision": "révision {n}",
+      "client": "Client",
+      "clientMessage": "Message du client",
+      "reason": "Motif : {reason}",
+      "dates": {
+        "created": "Créé",
+        "submitted": "Reçu",
+        "sentAt": "Envoyé",
+        "decided": "Décision"
+      },
+      "lines": "Lignes du devis",
+      "cols": {
+        "fabric": "Tissu",
+        "meters": "Mètres",
+        "unitPrice": "Prix / m (HT)",
+        "lineTotal": "Total HT"
+      },
+      "remove": "Retirer la ligne",
+      "overridden": "prix modifié",
+      "noLines": "Aucune ligne.",
+      "addColor": "Ajouter un coloris",
+      "choose": "Choisir…",
+      "addLine": "Ajouter la ligne",
+      "addInvalid": "Choisissez un coloris et une quantité positive.",
+      "addDuplicate": "Ce coloris est déjà dans le devis.",
+      "conditions": "Conditions",
+      "discount": "Remise (%)",
+      "discountInvalid": "La remise doit être comprise entre 0 et 100 %.",
+      "validUntil": "Valable jusqu'au",
+      "validHint": "Par défaut : {days} jours après l'envoi.",
+      "internalNotes": "Notes internes (jamais visibles par le client)",
+      "subtotal": "Sous-total HT",
+      "discountAmount": "Remise",
+      "vat": "TVA ({pct} %)",
+      "total": "Total TTC",
+      "save": "Enregistrer",
+      "saved": "Modifications enregistrées.",
+      "saveError": "Enregistrement impossible. Réessayez.",
+      "linesInvalid": "Chaque ligne doit avoir des mètres positifs et un prix. Le devis doit avoir au moins une ligne.",
+      "send": "Envoyer au client (PDF)",
+      "sent": "Devis envoyé au client avec son PDF.",
+      "sendPast": "La date de validité est dépassée.",
+      "sendError": "Envoi impossible. Vérifiez le devis et réessayez.",
+      "reopen": "Rouvrir pour modification",
+      "reopened": "Devis rouvert : une nouvelle révision est en cours.",
+      "convert": "Transformer en commande",
+      "converted": "Commande créée.",
+      "orderCreated": "Commande {ref} créée : le stock est alloué et les ordres de coupe sont en file d'attente.",
+      "pdf": "Télécharger le PDF",
+      "pdfError": "Impossible d'ouvrir le PDF.",
+      "cancel": "Annuler le devis",
+      "cancelTitle": "Annuler ce devis",
+      "cancelHint": "Le client est informé du motif.",
+      "cancelReason": "Motif (obligatoire)",
+      "cancelConfirm": "Confirmer l'annulation",
+      "keep": "Garder le devis",
+      "cancelled": "Devis annulé.",
+      "reasonRequired": "Indiquez un motif.",
+      "actionError": "Action impossible dans l'état actuel du devis."
     }
   },
   "structures": {
@@ -1355,7 +1440,8 @@
         "cancelled": "Cette demande a été annulée.",
         "converted": "Ce devis est devenu une commande.",
         "other": "Aucune action n'est possible pour le moment."
-      }
+      },
+      "pdf": "Télécharger le PDF"
     }
   },
   "reservations": {
@@ -1446,5 +1532,28 @@
       "reason": "Motif du refus : {reason}",
       "tracking": "Transporteur : {carrier} · Suivi : {number}"
     }
+  },
+  "quotePdf": {
+    "quote": "Devis",
+    "revision": "Révision",
+    "date": "Date",
+    "validUntil": "Valable jusqu'au",
+    "client": "Client",
+    "taxId": "N° fiscal",
+    "billing": "Facturation",
+    "shipping": "Livraison",
+    "reference": "Réf.",
+    "fabric": "Tissu et coloris",
+    "meters": "Mètres",
+    "unitPrice": "Prix / m",
+    "lineTotal": "Total HT",
+    "subtotal": "Sous-total HT",
+    "discount": "Remise",
+    "vat": "TVA",
+    "total": "Total TTC",
+    "totalNote": "Les montants sont exprimés hors frais de livraison.",
+    "message": "Votre message",
+    "terms": "Conditions",
+    "footer": "Expert textile depuis {year}"
   }
 }

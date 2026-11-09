@@ -8,6 +8,7 @@ import { useStaffRole } from "./useRole";
 const ITEMS = [
   { href: "/admin", key: "dashboard", exact: true, adminOnly: false },
   { href: "/admin/fabrics", key: "fabrics", exact: false, adminOnly: false },
+  { href: "/admin/quotes", key: "quotes", exact: false, adminOnly: false },
   { href: "/admin/stock", key: "stock", exact: false, adminOnly: false },
   { href: "/admin/departments", key: "departments", exact: false, adminOnly: true },
   { href: "/admin/users", key: "users", exact: false, adminOnly: true },

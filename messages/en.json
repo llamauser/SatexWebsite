@@ -269,7 +269,8 @@
       "departments": "Departments",
       "users": "Users",
       "settings": "Settings",
-      "matchLogs": "AI log"
+      "matchLogs": "AI log",
+      "quotes": "Quotes"
     },
     "home": {
       "fabrics": "Create and edit fabrics, colors and photos; import a CSV file.",
@@ -277,7 +278,8 @@
       "departments": "The showroom departments and their floor plan.",
       "users": "Staff accounts and roles.",
       "settings": "Company, VAT, durations, limits, notifications.",
-      "matchLogs": "What visitors asked the AI search."
+      "matchLogs": "What visitors asked the AI search.",
+      "quotes": "Review quote requests, adjust prices, send the PDF, create the order."
     },
     "fabrics": {
       "title": "Fabrics",
@@ -642,6 +644,89 @@
       "roleOf": "Role of {email}",
       "loading": "Loading…",
       "empty": "No user."
+    },
+    "quotes": {
+      "title": "Quotes",
+      "todo": "{n} request(s) to handle",
+      "search": "Search (reference, company)",
+      "filter": "Status",
+      "filterTodo": "To handle",
+      "filterAll": "All",
+      "error": "Could not load the quotes.",
+      "loading": "Loading…",
+      "empty": "No quote.",
+      "cols": {
+        "ref": "Reference",
+        "client": "Company",
+        "status": "Status",
+        "lines": "Lines",
+        "submitted": "Received",
+        "total": "Total incl. VAT"
+      }
+    },
+    "quote": {
+      "loading": "Loading…",
+      "notFound": "Quote not found.",
+      "back": "← All quotes",
+      "revision": "revision {n}",
+      "client": "Client",
+      "clientMessage": "Client's message",
+      "reason": "Reason: {reason}",
+      "dates": {
+        "created": "Created",
+        "submitted": "Received",
+        "sentAt": "Sent",
+        "decided": "Decision"
+      },
+      "lines": "Quote lines",
+      "cols": {
+        "fabric": "Fabric",
+        "meters": "Meters",
+        "unitPrice": "Price / m (excl. VAT)",
+        "lineTotal": "Total excl. VAT"
+      },
+      "remove": "Remove the line",
+      "overridden": "price changed",
+      "noLines": "No line.",
+      "addColor": "Add a color",
+      "choose": "Choose…",
+      "addLine": "Add the line",
+      "addInvalid": "Choose a color and a positive quantity.",
+      "addDuplicate": "This color is already in the quote.",
+      "conditions": "Conditions",
+      "discount": "Discount (%)",
+      "discountInvalid": "The discount must be between 0 and 100%.",
+      "validUntil": "Valid until",
+      "validHint": "Default: {days} days after sending.",
+      "internalNotes": "Internal notes (never shown to the client)",
+      "subtotal": "Subtotal excl. VAT",
+      "discountAmount": "Discount",
+      "vat": "VAT ({pct}%)",
+      "total": "Total incl. VAT",
+      "save": "Save",
+      "saved": "Changes saved.",
+      "saveError": "Could not save. Please try again.",
+      "linesInvalid": "Every line needs positive meters and a price. The quote needs at least one line.",
+      "send": "Send to the client (PDF)",
+      "sent": "Quote sent to the client with its PDF.",
+      "sendPast": "The validity date has passed.",
+      "sendError": "Could not send. Check the quote and try again.",
+      "reopen": "Reopen to edit",
+      "reopened": "Quote reopened: a new revision is in progress.",
+      "convert": "Convert to order",
+      "converted": "Order created.",
+      "orderCreated": "Order {ref} created: stock is allocated and the cutting jobs are queued.",
+      "pdf": "Download the PDF",
+      "pdfError": "Could not open the PDF.",
+      "cancel": "Cancel the quote",
+      "cancelTitle": "Cancel this quote",
+      "cancelHint": "The client is told the reason.",
+      "cancelReason": "Reason (required)",
+      "cancelConfirm": "Confirm cancellation",
+      "keep": "Keep the quote",
+      "cancelled": "Quote cancelled.",
+      "reasonRequired": "Give a reason.",
+      "actionError": "Not possible in the quote's current status."
     }
   },
   "structures": {
@@ -1355,7 +1440,8 @@
         "cancelled": "This request was cancelled.",
         "converted": "This quote became an order.",
         "other": "No action is possible right now."
-      }
+      },
+      "pdf": "Download the PDF"
     }
   },
   "reservations": {
@@ -1446,5 +1532,28 @@
       "reason": "Reason for declining: {reason}",
       "tracking": "Carrier: {carrier} · Tracking: {number}"
     }
+  },
+  "quotePdf": {
+    "quote": "Quote",
+    "revision": "Revision",
+    "date": "Date",
+    "validUntil": "Valid until",
+    "client": "Client",
+    "taxId": "Tax ID",
+    "billing": "Billing",
+    "shipping": "Delivery",
+    "reference": "Ref.",
+    "fabric": "Fabric and color",
+    "meters": "Meters",
+    "unitPrice": "Price / m",
+    "lineTotal": "Total excl. VAT",
+    "subtotal": "Subtotal excl. VAT",
+    "discount": "Discount",
+    "vat": "VAT",
+    "total": "Total incl. VAT",
+    "totalNote": "Amounts exclude delivery costs.",
+    "message": "Your message",
+    "terms": "Terms",
+    "footer": "Textile expert since {year}"
   }
 }

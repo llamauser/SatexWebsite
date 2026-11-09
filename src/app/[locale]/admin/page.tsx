@@ -4,8 +4,8 @@ import { notFound } from "next/navigation";
 import { Link } from "@/i18n/navigation";
 import { routing } from "@/i18n/routing";
 
-const SECTIONS = ["fabrics", "stock", "departments", "users", "settings", "matchLogs"] as const;
-const HREF = { fabrics: "/admin/fabrics", stock: "/admin/stock", departments: "/admin/departments", users: "/admin/users", settings: "/admin/settings", matchLogs: "/admin/match-logs" } as const;
+const SECTIONS = ["quotes", "fabrics", "stock", "departments", "users", "settings", "matchLogs"] as const;
+const HREF = { quotes: "/admin/quotes", fabrics: "/admin/fabrics", stock: "/admin/stock", departments: "/admin/departments", users: "/admin/users", settings: "/admin/settings", matchLogs: "/admin/match-logs" } as const;
 
 // The KPI dashboard arrives with P1-15; until then this page is the entry to the sections that exist. Access is enforced by the middleware.
 export default async function AdminHome({ params }: { params: Promise<{ locale: string }> }) {
