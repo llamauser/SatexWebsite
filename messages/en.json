@@ -177,7 +177,8 @@
       "label": "Customer area",
       "overview": "Overview",
       "profile": "Profile",
-      "quotes": "Quotes"
+      "quotes": "Quotes",
+      "reservations": "Reservations"
     },
     "overview": {
       "loading": "Loading…",
@@ -873,6 +874,32 @@
         "max": "Maximum 10,000 m.",
         "invalid": "Invalid quantity."
       }
+    },
+    "reserve": {
+      "title": "Reserve this stock",
+      "titleHours": "Reserve for {hours} h",
+      "help": "We hold these meters for you, no commitment. Request a quote to keep them.",
+      "quantity": "Quantity (m)",
+      "button": "Reserve",
+      "slots": "{used} of {max} active reservations used",
+      "limit": "You have reached the limit of {max} active reservations. Cancel one or let it expire.",
+      "manage": "Manage my reservations",
+      "out": "This color can no longer be reserved.",
+      "signInHelp": "Sign in to hold these meters for a few days, no commitment.",
+      "signIn": "Sign in to reserve",
+      "done": "{m} m reserved.",
+      "view": "View my reservations",
+      "problem": {
+        "min": "Minimum {m} m.",
+        "step": "In steps of 0.5 m.",
+        "max": "Maximum 10,000 m.",
+        "invalid": "Invalid quantity.",
+        "stock": "Not enough stock: {left} m available.",
+        "limit": "Limit of {max} active reservations reached.",
+        "inactive": "This color is no longer available.",
+        "auth": "Sign in to reserve.",
+        "error": "Could not reserve right now. Please try again."
+      }
     }
   },
   "quotes": {
@@ -941,6 +968,32 @@
         "converted": "This quote became an order.",
         "other": "No action is possible right now."
       }
+    }
+  },
+  "reservations": {
+    "title": "My reservations",
+    "intro": "Reserved meters are held for you until the countdown ends.",
+    "slots": "{used} of {max} active reservations",
+    "loading": "Loading…",
+    "error": "Could not load your reservations.",
+    "actionError": "Could not do that right now. Please try again.",
+    "none": "You have no reservation yet. Reserve meters from a fabric page: they are held for {hours} h.",
+    "browse": "Browse the catalog",
+    "active": "Active",
+    "history": "History",
+    "meters": "{m} m",
+    "until": "until {date}",
+    "soon": "This reservation expires soon.",
+    "toQuote": "Add to my quote",
+    "cancel": "Cancel reservation",
+    "added": "Added to your quote request.",
+    "keepHint": "Request a quote before the countdown ends to keep these meters.",
+    "full": "Limit of {max} active reservations reached.",
+    "status": {
+      "active": "Active",
+      "expired": "Expired",
+      "cancelled": "Cancelled",
+      "converted": "Turned into an order"
     }
   }
 }
