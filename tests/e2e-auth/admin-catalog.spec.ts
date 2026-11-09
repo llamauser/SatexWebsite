@@ -211,7 +211,7 @@ test("the fabric list searches, filters and switches a fabric off", async ({ pag
   await asAdmin(page);
   await page.goto("/fr/admin/fabrics");
   await page.getByTestId("fabric-search").fill("IMP-00");
-  await expect(page.getByTestId("fabric-row")).toHaveCount(9);
+  await expect(page.getByTestId("fabric-row")).toHaveCount(8); // IMP-001..006, 008, 009 (IMP-010 does not contain "IMP-00")
   await page.getByTestId("fabric-state").selectOption("active");
   await expect(page.getByTestId("fabrics-empty")).toBeVisible();
   await page.getByTestId("fabric-state").selectOption("all");

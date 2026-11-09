@@ -1,4 +1,4 @@
-import { expect, test, type Page } from "@playwright/test";
+﻿import { expect, test, type Page } from "@playwright/test";
 import { seededPassword, signInOk, withDb } from "./helpers";
 
 test.use({ locale: "fr-FR" });
@@ -12,8 +12,20 @@ const cleanup = async () => {
   const id = await clientId();
   await withDb((c) => c.query(`delete from public.sample_requests where client_id = $1`, [id]));
 };
-test.beforeAll(cleanup);
-test.afterAll(cleanup);
+test.beforeAll(async () => {
+  await cleanup();
+  // the form is prefilled from the account: give the client a shipping address (the CI database is seeded without demo addresses)
+  const id = await clientId();
+  await withDb(async (c) => {
+    await c.query(`delete from public.addresses where client_id = $1`, [id]);
+    await c.query(`insert into public.addresses (client_id, kind, line1, city, postal_code, country, is_default) values ($1, 'shipping', '45 rue des Tissus', 'Lyon', '69002', 'FR', true)`, [id]);
+  });
+});
+test.afterAll(async () => {
+  await cleanup();
+  const id = await clientId();
+  await withDb((c) => c.query(`delete from public.addresses where client_id = $1`, [id]));
+});
 
 const requests = async () =>
   withDb(async (c) =>

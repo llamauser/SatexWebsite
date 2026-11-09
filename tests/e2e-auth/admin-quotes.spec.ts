@@ -13,6 +13,7 @@ const clientId = () => withDb(async (c) => (await c.query(`select p.client_id fr
 async function cleanup() {
   const id = await clientId();
   await withDb(async (c) => {
+    await c.query(`delete from public.deliveries where order_id in (select id from public.orders where client_id = $1)`, [id]);
     await c.query(`delete from public.orders where client_id = $1`, [id]);
     await c.query(`delete from public.quotes where client_id = $1`, [id]);
   });

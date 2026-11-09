@@ -1859,5 +1859,73 @@
       "noDelivery": "Delivery will be scheduled when your order is ready.",
       "carrier": "Carrier: {carrier}"
     }
+  },
+  "showroom": {
+    "title": "The SATEX showroom",
+    "lead": "Visit both floors: fabric halls, cutting room, shipping, studio and offices. Click a department to see live stock.",
+    "planLabel": "Floor {floor} plan",
+    "sceneLabel": "Interactive 3D showroom: use the department list for keyboard navigation.",
+    "hint": "Click a department on the plan or in the list. Drag to move the view, scroll to zoom.",
+    "empty": "The showroom is not available right now.",
+    "views": {
+      "label": "Display mode",
+      "3d": "3D view",
+      "2d": "2D view"
+    },
+    "floors": {
+      "label": "Floor",
+      "both": "Both floors",
+      "ground": "Ground floor",
+      "upper": "Upper floor"
+    },
+    "floorName": "floor {n}",
+    "fallback": {
+      "webgl": "Your browser cannot display 3D: here is the plan.",
+      "memory": "To stay smooth on this device we show the 2D plan. You can switch to the 3D view.",
+      "motion": "You asked for less animation: here is the 2D plan. You can switch to the 3D view."
+    },
+    "legend": {
+      "title": "TWO FLOORS",
+      "f0": "Fabric halls",
+      "f1": "Studio and offices"
+    },
+    "list": {
+      "label": "Showroom departments"
+    },
+    "kinds": {
+      "fabric_hall": "Fabric hall",
+      "cutting": "Cutting room",
+      "shipping": "Shipping",
+      "studio": "Design studio",
+      "client_suite": "Client suite",
+      "office": "Offices"
+    },
+    "dept": {
+      "natural-fibers": "Linen, silk, wool and organic cotton: the natural fibers.",
+      "upholstery": "Velvets, canvases and jacquards for seating, curtains and decoration.",
+      "knits": "Jerseys, piqués, fleeces and technical fabrics for sport.",
+      "shirting-suiting": "Poplins, oxfords, gabardines and linings for shirts and tailoring.",
+      "denim": "Raw, stretch and washed denims.",
+      "eveningwear": "Satins, chiffons and velvets for the evening.",
+      "cutting": "Your meters are cut here before they ship.",
+      "shipping": "Ready orders leave from here.",
+      "design-studio": "Where collections and samples are born.",
+      "client-suite": "The lounge where we welcome our clients.",
+      "offices": "The sales and administration teams."
+    },
+    "panel": {
+      "close": "Close the panel",
+      "total": "{m} m available in this hall",
+      "noFabrics": "No fabric in this hall yet.",
+      "out": "sold out",
+      "catalog": "See all in the catalog",
+      "ai": "Ask the AI",
+      "cuttingToday": "Cuts finished today",
+      "cuttingQueue": "Cuts waiting",
+      "shippedWeek": "Deliveries shipped this week",
+      "tourSoon": "Live guided tours are coming soon. Meanwhile, contact us to arrange a visit.",
+      "contact": "Contact us",
+      "placeholder": "Choose a department to see its live stock, its fabrics and today's figures."
+    }
   }
 }
