@@ -102,7 +102,7 @@ test("clients: search, history and private notes; reservations can be released",
   await page.goto("/fr/admin/reservations");
   const row = page.getByTestId("reservation-row").filter({ hasText: company });
   await expect(row).toBeVisible();
-  await expect(row.getByTestId("reservation-left")).toHaveText(/^2[89]:[0-5]\d$/);
+  await expect(row.getByTestId("reservation-left")).toHaveText(/^(29|30):[0-5]\d$/); // 30 h minus the seconds that passed
   await row.getByTestId("release-reservation").click();
   await expect(page.getByTestId("reservation-row").filter({ hasText: company })).toHaveCount(0);
   expect(await withDb(async (c) => Number((await c.query(`select available_m from public.v_color_availability_all where color_id = $1`, [color])).rows[0].available_m))).toBe(before + 8);

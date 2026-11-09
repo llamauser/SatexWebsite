@@ -96,8 +96,11 @@ export function ShowroomView({ initial }: { initial: ShowroomData }) {
             {show3D ? (
               <div className="relative h-[460px] overflow-hidden rounded-md border border-border sm:h-[560px]" data-testid="scene">
                 <SceneBoundary onError={() => setCrashed(true)}>
-                  <Scene3D data={data} selected={selected} hovered={hovered} floor={floor} labels={labels} ariaLabel={t("sceneLabel")} onSelect={(slug) => select(slug)} onHover={setHovered} />
+                  <Scene3D data={data} selected={selected} hovered={hovered} floor={floor} ariaLabel={t("sceneLabel")} onSelect={(slug) => select(slug)} onHover={setHovered} />
                 </SceneBoundary>
+                {(hovered ?? selected) && labels[(hovered ?? selected)!] && (
+                  <div className="pointer-events-none absolute start-1/2 top-3 -translate-x-1/2 whitespace-nowrap rounded-full bg-text px-4 py-1.5 text-sm font-semibold text-white shadow-card rtl:translate-x-1/2" data-testid="scene-label">{labels[(hovered ?? selected)!]}</div>
+                )}
               </div>
             ) : (
               <FloorPlan2D departments={data.departments} floor={planFloor} selected={selected} onSelect={(slug) => select(slug)} />

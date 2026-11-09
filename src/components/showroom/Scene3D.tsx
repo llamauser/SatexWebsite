@@ -1,6 +1,6 @@
 ﻿"use client";
 
-import { Html, MapControls } from "@react-three/drei";
+import { MapControls } from "@react-three/drei";
 import { Canvas, useFrame, useThree, type ThreeEvent } from "@react-three/fiber";
 import { useEffect, useLayoutEffect, useMemo, useRef, type ComponentRef } from "react";
 import * as THREE from "three";
@@ -137,8 +137,8 @@ function otherItems(dep: ShowroomDepartment): Item[] {
 }
 
 // ------------------------------------------------------------------ one department
-function Zone({ dep, label, data, selected, hovered, dimmed, onSelect, onHover }: {
-  dep: ShowroomDepartment; label: string; data: ShowroomData; selected: boolean; hovered: boolean; dimmed: boolean; onSelect: (slug: string) => void; onHover: (slug: string | null) => void;
+function Zone({ dep, data, selected, hovered, dimmed, onSelect, onHover }: {
+  dep: ShowroomDepartment; data: ShowroomData; selected: boolean; hovered: boolean; dimmed: boolean; onSelect: (slug: string) => void; onHover: (slug: string | null) => void;
 }) {
   const l = dep.layout;
   const y = floorY(dep.floor) + (dep.floor === 1 ? 0.15 : 0);
@@ -164,11 +164,6 @@ function Zone({ dep, label, data, selected, hovered, dimmed, onSelect, onHover }
       {active && !dimmed && [edge(l.w, 0.12, 0, -l.d / 2), edge(l.w, 0.12, 0, l.d / 2), edge(0.12, l.d, -l.w / 2, 0), edge(0.12, l.d, l.w / 2, 0)]}
       {!dimmed && <Boxes items={parts.boxes} />}
       {!dimmed && <Rolls items={parts.rolls} />}
-      {active && !dimmed && (
-        <Html center position={[0, 3.6, 0]} style={{ pointerEvents: "none" }} zIndexRange={[10, 0]}>
-          <div className="whitespace-nowrap rounded-full bg-text px-3 py-1 text-xs font-semibold text-white shadow-card" data-testid="scene-label">{label}</div>
-        </Html>
-      )}
     </group>
   );
 }
@@ -186,6 +181,7 @@ function Shell({ mode }: { mode: FloorMode }) {
       <mesh position={[FLOOR_W / 2, -0.2, FLOOR_D / 2]} receiveShadow><boxGeometry args={[FLOOR_W + 1, 0.4, FLOOR_D + 1]} /><meshStandardMaterial color="#F7F9FB" roughness={1} /></mesh>
       <mesh position={[FLOOR_W / 2, 1.2, FLOOR_D + 0.15]} castShadow><boxGeometry args={[FLOOR_W + 0.6, 2.4, 0.3]} /><meshStandardMaterial color="#DDE3EA" /></mesh>
       <mesh position={[-0.15, 1.2, FLOOR_D / 2]} castShadow><boxGeometry args={[0.3, 2.4, FLOOR_D]} /><meshStandardMaterial color="#DDE3EA" /></mesh>
+      <mesh position={[3, 3.4, -0.2]}><boxGeometry args={[3.2, 0.9, 0.2]} /><meshStandardMaterial color="#1F6FEB" /></mesh>
       <Boxes items={path} shadow={false} />
       <Boxes items={steps} />
       {upper && (
@@ -194,9 +190,6 @@ function Shell({ mode }: { mode: FloorMode }) {
           <Boxes items={posts} />
         </group>
       )}
-      <Html position={[3, 3.2, -0.4]} center style={{ pointerEvents: "none" }} zIndexRange={[5, 0]}>
-        <div className="rounded-sm bg-primary px-3 py-1 font-display text-sm font-bold tracking-widest text-white shadow-card">SATEX</div>
-      </Html>
     </group>
   );
 }
@@ -236,7 +229,7 @@ function Rig({ selected, departments, controls, zoom0 }: { selected: string | nu
   return null;
 }
 
-function Scene({ data, selected, hovered, floor, labels, onSelect, onHover }: Props) {
+function Scene({ data, selected, hovered, floor, onSelect, onHover }: Props) {
   const size = useThree((s) => s.size);
   const camera = useThree((s) => s.camera);
   const invalidate = useThree((s) => s.invalidate);
@@ -261,7 +254,7 @@ function Scene({ data, selected, hovered, floor, labels, onSelect, onHover }: Pr
       <directionalLight ref={light} position={[CAMERA.target[0] + 18, 44, CAMERA.target[2] - 20]} intensity={1.1} castShadow shadow-mapSize={[1024, 1024]} shadow-camera-left={-34} shadow-camera-right={34} shadow-camera-top={34} shadow-camera-bottom={-34} shadow-camera-near={1} shadow-camera-far={120} />
       <Shell mode={floor} />
       {data.departments.filter((d) => d.floor === 0 || isVisibleFloor(floor, 1)).map((d) => (
-        <Zone key={d.id} dep={d} label={labels[d.slug] ?? d.slug} data={data} selected={selected === d.slug} hovered={hovered === d.slug}
+        <Zone key={d.id} dep={d} data={data} selected={selected === d.slug} hovered={hovered === d.slug}
           dimmed={d.floor === 0 && !isVisibleFloor(floor, 0)} onSelect={onSelect} onHover={onHover} />
       ))}
       <MapControls ref={controls} makeDefault enableDamping={false} target={CAMERA.target as unknown as [number, number, number]} minPolarAngle={CAMERA.pitch} maxPolarAngle={CAMERA.pitch}
@@ -276,7 +269,6 @@ interface Props {
   selected: string | null;
   hovered: string | null;
   floor: FloorMode;
-  labels: Record<string, string>;
   ariaLabel: string;
   onSelect: (slug: string) => void;
   onHover: (slug: string | null) => void;

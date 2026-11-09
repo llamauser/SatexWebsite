@@ -264,9 +264,10 @@ test("settings: values are checked, percentages typed as %, and the demo purge a
   await asAdmin(page);
   await page.goto("/fr/admin/settings");
   await page.getByTestId("setting-vat_rate").fill("19,6");
-  await page.getByTestId("setting-reservation_hours").fill("0");
+  await page.getByTestId("setting-quote_validity_days").fill("0"); // same group as the VAT: a value out of range stops the whole group
   await page.getByTestId("save-commerce").click();
   await expect(page.getByText("Corrigez les champs en rouge.")).toBeVisible();
+  await page.getByTestId("setting-quote_validity_days").fill("15");
   await page.getByTestId("setting-vat_rate").fill("19,6");
   await page.getByTestId("save-commerce").click();
   await expect(page.getByText("1 réglage(s) enregistré(s).")).toBeVisible();
