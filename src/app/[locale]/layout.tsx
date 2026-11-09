@@ -16,7 +16,7 @@ const poppins = Poppins({
   subsets: ["latin"],
   weight: ["600", "700"],
   variable: "--font-poppins",
-  display: "swap",
+  display: "optional", // same reason as Inter: headings are never re-painted late by a font swap
 });
 // Arabic font: its CSS variable class is only applied when locale === "ar".
 const plexArabic = IBM_Plex_Sans_Arabic({
