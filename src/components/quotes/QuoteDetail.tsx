@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useLocale, useTranslations } from "next-intl";
 import { useCallback, useEffect, useState } from "react";
@@ -12,7 +12,7 @@ import { StatusPill } from "./StatusPill";
 
 interface Quote {
   id: string; ref: string; status: string; currency: string; discount_pct: number | string; vat_rate: number | string; subtotal: number | string; total: number | string;
-  valid_until: string | null; client_message: string | null; rejection_reason: string | null; revision: number;
+  valid_until: string | null; client_message: string | null; rejection_reason: string | null; revision: number; pdf_path: string | null;
   created_at: string; submitted_at: string | null; sent_at: string | null; decided_at: string | null;
   quote_lines: { id: string; color_id: string; meters: number | string; unit_price: number | string; line_total: number | string; sort: number }[];
 }
@@ -34,7 +34,7 @@ export function QuoteDetail({ id }: { id: string }) {
     if (!sb) return setState("missing");
     const { data } = await sb
       .from("quotes")
-      .select("id, ref, status, currency, discount_pct, vat_rate, subtotal, total, valid_until, client_message, rejection_reason, revision, created_at, submitted_at, sent_at, decided_at, quote_lines(id, color_id, meters, unit_price, line_total, sort)")
+      .select("id, ref, status, currency, discount_pct, vat_rate, subtotal, total, valid_until, client_message, rejection_reason, revision, pdf_path, created_at, submitted_at, sent_at, decided_at, quote_lines(id, color_id, meters, unit_price, line_total, sort)")
       .eq("id", id)
       .maybeSingle();
     if (!data) return setState("missing");
@@ -62,6 +62,14 @@ export function QuoteDetail({ id }: { id: string }) {
     await load();
   }
 
+  async function downloadPdf() {
+    const sb = await loadBrowserSupabase();
+    if (!sb || !quote?.pdf_path) return;
+    const { data } = await sb.storage.from("quote-pdfs").createSignedUrl(quote.pdf_path, 120);
+    if (data?.signedUrl) window.open(data.signedUrl, "_blank", "noopener");
+    else setError(true);
+  }
+
   if (state === "loading") return <p className="text-text-muted">{t("loading")}</p>;
   if (state === "missing" || !quote) return <Alert>{t("missing")}</Alert>;
 
@@ -85,7 +93,10 @@ export function QuoteDetail({ id }: { id: string }) {
           <Link href="/account/quotes" className="text-sm text-primary hover:underline">{t("back")}</Link>
           <h1 className="mt-1 font-display text-3xl font-bold" dir="ltr" data-testid="quote-ref">{quote.ref}</h1>
         </div>
-        <StatusPill status={quote.status} />
+        <div className="flex items-center gap-3">
+          {quote.pdf_path && quote.status !== "draft" && <Button variant="secondary" onClick={() => void downloadPdf()} data-testid="client-download-pdf">{t("pdf")}</Button>}
+          <StatusPill status={quote.status} />
+        </div>
       </div>
 
       <Card className="p-0 sm:p-0">
