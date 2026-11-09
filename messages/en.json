@@ -178,7 +178,8 @@
       "overview": "Overview",
       "profile": "Profile",
       "quotes": "Quotes",
-      "reservations": "Reservations"
+      "reservations": "Reservations",
+      "samples": "Samples"
     },
     "overview": {
       "loading": "Loading…",
@@ -900,6 +901,11 @@
         "auth": "Sign in to reserve.",
         "error": "Could not reserve right now. Please try again."
       }
+    },
+    "sample": {
+      "button": "Request a sample",
+      "full": "Your selection is full.",
+      "openForm": "Open my sample request"
     }
   },
   "quotes": {
@@ -994,6 +1000,69 @@
       "expired": "Expired",
       "cancelled": "Cancelled",
       "converted": "Turned into an order"
+    }
+  },
+  "samples": {
+    "status": {
+      "requested": "Requested",
+      "approved": "Approved",
+      "rejected": "Declined",
+      "preparing": "Preparing",
+      "shipped": "Shipped",
+      "delivered": "Delivered"
+    },
+    "form": {
+      "title": "Sample request",
+      "intro": "Choose up to {max} colors and tell us where to send them. Our team replies quickly.",
+      "colors": "Requested colors",
+      "count": "{n} of {max} colors",
+      "loading": "Loading…",
+      "none": "You have not chosen any color yet. Open a fabric page and click “Request a sample”.",
+      "browse": "Browse the catalog",
+      "remove": "Remove this color",
+      "tooMany": "You cannot request more than {max} colors at once: remove some.",
+      "address": "Shipping address",
+      "addressHelp": "Prefilled from your account. Fields marked with a star are required.",
+      "field": {
+        "recipient": "Recipient",
+        "line1": "Address",
+        "line2": "Address line 2",
+        "city": "City",
+        "postal_code": "Postal code",
+        "country": "Country",
+        "phone": "Phone"
+      },
+      "required": "This field is required.",
+      "openLimit": "You already have {max} sample requests in progress: wait for one to be delivered before making a new one.",
+      "viewRequests": "View my requests",
+      "submit": "Send my request",
+      "submitted": "Your request {ref} was sent. We write to you at every step.",
+      "error": {
+        "colors": "Choose at least one color.",
+        "openLimit": "Limit of {open} requests in progress reached.",
+        "tooMany": "Too many colors (maximum {max}).",
+        "address": "Enter a complete shipping address (street, city, country).",
+        "inactive": "One of the colors is no longer available.",
+        "auth": "Sign in to request samples.",
+        "error": "Could not send right now. Please try again."
+      }
+    },
+    "list": {
+      "title": "My samples",
+      "open": "{n} of {max} requests in progress",
+      "filter": "Status",
+      "all": "All",
+      "new": "New request",
+      "error": "Could not load your requests.",
+      "loading": "Loading…",
+      "none": "You have not requested any samples yet.",
+      "noneForFilter": "No request with this status.",
+      "browse": "Browse the catalog",
+      "sentOn": "Requested on {date}",
+      "colors": "{count, plural, one {# color} other {# colors}}",
+      "progress": "Progress",
+      "reason": "Reason for declining: {reason}",
+      "tracking": "Carrier: {carrier} · Tracking: {number}"
     }
   }
 }

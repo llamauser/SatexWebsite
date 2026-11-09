@@ -178,7 +178,8 @@
       "overview": "Vue d'ensemble",
       "profile": "Profil",
       "quotes": "Devis",
-      "reservations": "Réservations"
+      "reservations": "Réservations",
+      "samples": "Échantillons"
     },
     "overview": {
       "loading": "Chargement…",
@@ -900,6 +901,11 @@
         "auth": "Connectez-vous pour réserver.",
         "error": "Réservation impossible pour le moment. Réessayez."
       }
+    },
+    "sample": {
+      "button": "Demander un échantillon",
+      "full": "Votre sélection est pleine.",
+      "openForm": "Ouvrir ma demande d'échantillons"
     }
   },
   "quotes": {
@@ -994,6 +1000,69 @@
       "expired": "Expirée",
       "cancelled": "Annulée",
       "converted": "Transformée en commande"
+    }
+  },
+  "samples": {
+    "status": {
+      "requested": "Demandée",
+      "approved": "Acceptée",
+      "rejected": "Refusée",
+      "preparing": "En préparation",
+      "shipped": "Expédiée",
+      "delivered": "Livrée"
+    },
+    "form": {
+      "title": "Demande d'échantillons",
+      "intro": "Choisissez jusqu'à {max} coloris et indiquez où les envoyer. Notre équipe vous répond rapidement.",
+      "colors": "Coloris demandés",
+      "count": "{n} sur {max} coloris",
+      "loading": "Chargement…",
+      "none": "Vous n'avez choisi aucun coloris. Ouvrez une fiche tissu et cliquez sur « Demander un échantillon ».",
+      "browse": "Parcourir le catalogue",
+      "remove": "Retirer ce coloris",
+      "tooMany": "Vous ne pouvez pas demander plus de {max} coloris à la fois : retirez-en.",
+      "address": "Adresse de livraison",
+      "addressHelp": "Préremplie avec les informations de votre compte. Les champs marqués d'une étoile sont obligatoires.",
+      "field": {
+        "recipient": "Destinataire",
+        "line1": "Adresse",
+        "line2": "Complément d'adresse",
+        "city": "Ville",
+        "postal_code": "Code postal",
+        "country": "Pays",
+        "phone": "Téléphone"
+      },
+      "required": "Ce champ est obligatoire.",
+      "openLimit": "Vous avez déjà {max} demandes d'échantillons en cours : attendez qu'une soit livrée pour en faire une nouvelle.",
+      "viewRequests": "Voir mes demandes",
+      "submit": "Envoyer ma demande",
+      "submitted": "Votre demande {ref} a bien été envoyée. Nous vous écrivons à chaque étape.",
+      "error": {
+        "colors": "Choisissez au moins un coloris.",
+        "openLimit": "Limite de {open} demandes en cours atteinte.",
+        "tooMany": "Trop de coloris (maximum {max}).",
+        "address": "Indiquez une adresse de livraison complète (adresse, ville, pays).",
+        "inactive": "Un des coloris n'est plus disponible.",
+        "auth": "Connectez-vous pour demander des échantillons.",
+        "error": "Envoi impossible pour le moment. Réessayez."
+      }
+    },
+    "list": {
+      "title": "Mes échantillons",
+      "open": "{n} demande(s) en cours sur {max}",
+      "filter": "Statut",
+      "all": "Tous",
+      "new": "Nouvelle demande",
+      "error": "Impossible de charger vos demandes.",
+      "loading": "Chargement…",
+      "none": "Vous n'avez pas encore demandé d'échantillons.",
+      "noneForFilter": "Aucune demande avec ce statut.",
+      "browse": "Parcourir le catalogue",
+      "sentOn": "Demandée le {date}",
+      "colors": "{count, plural, one {# coloris} other {# coloris}}",
+      "progress": "Avancement",
+      "reason": "Motif du refus : {reason}",
+      "tracking": "Transporteur : {carrier} · Suivi : {number}"
     }
   }
 }

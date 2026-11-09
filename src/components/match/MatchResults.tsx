@@ -6,6 +6,7 @@ import { useLocale, useTranslations } from "next-intl";
 import { useState } from "react";
 import { AddToQuote } from "@/components/cart/AddToQuote";
 import { buttonStyles } from "@/components/ui/Button";
+import { RequestSample } from "@/components/samples/RequestSample";
 import { Alert } from "@/components/ui/Field";
 import { Link, useRouter } from "@/i18n/navigation";
 import { compositionShort } from "@/lib/catalog/params";
@@ -169,6 +170,7 @@ export function MatchResults({
                   <p className="mt-1 text-xs text-text-muted" dir="ltr">{compositionShort(r.composition)}</p>
                   <div className="mt-5 flex flex-wrap items-center gap-3">
                     <AddToQuote colorId={r.colorId} moqM={r.moqM ?? 1} defaultMeters={input.requiredM ?? undefined} compact />
+                    <RequestSample colorId={r.colorId} compact />
                     <Link href={{ pathname: "/contact", query: { ref: r.sku } }} className={buttonStyles()} style={{ background: "var(--primary-gradient)" }}>
                       {t("actions.ask")}
                     </Link>
