@@ -81,7 +81,7 @@ test("messages: the contact form messages can be marked as handled", async ({ pa
 
 test("clients: search, history and private notes; reservations can be released", async ({ page }) => {
   const color = await withDb(async (c) => {
-    const col = (await c.query(`select c.id from public.fabric_colors c join public.fabrics f on f.id = c.fabric_id where f.slug = 'cotton-elastane-pique' order by c.sort limit 1`)).rows[0].id;
+    const col = (await c.query(`select c.id from public.fabric_colors c join public.fabrics f on f.id = c.fabric_id join public.v_color_availability_all a on a.color_id = c.id where f.slug = 'cotton-elastane-pique' order by a.available_m desc limit 1`)).rows[0].id; // a color with stock, so releasing visibly gives meters back
     await c.query(`insert into public.stock_reservations (color_id, client_id, meters, expires_at) values ($1, $2, 8, now() + interval '30 hours')`, [col, await clientId()]);
     return col as string;
   });
