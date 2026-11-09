@@ -1,22 +1,22 @@
-# SatexWebsite
+# SATEX Commerce
 
-Website for **SATEX Commerce** (wholesale fabrics): AI fabric matching, live stock, 3D showroom, quotes/orders back-office, with Snap & Match, Collection Planner, Feel Card + Virtual Drape and Guided Live Tour planned in later phases.
+Website prototype for **SATEX Commerce** (wholesale fabrics, "Vente des tissus en gros"): a catalog with live stock, an AI fabric matcher (describe a project or upload a photo), a 3D showroom, a feel card with an interactive cloth swatch, a collection planner, quotes and orders with a back office. French (default), English and Arabic (right to left).
 
-**Stack:** Next.js 15 · Supabase · Vercel · Claude + Voyage embeddings · French / English / Arabic (RTL).
+**Stack:** Next.js 15, Supabase (Postgres, auth, storage), three.js / React Three Fiber, Ollama or Claude + Voyage for the AI.
 
-## Where to start
-1. [`docs/00-setup-and-tools.md`](docs/00-setup-and-tools.md): what to install, accounts, Ollama for local AI.
-2. [`docs/README.md`](docs/README.md): specification index and rules for implementers.
-3. [`docs/13-phase1-backlog.md`](docs/13-phase1-backlog.md): ordered tasks for Phase 1.
-4. [`PLAN.md`](PLAN.md): one-page overview. [`video_audio_notes.md`](video_audio_notes.md): notes from the original promo video.
+## Run it on a Windows PC (one click)
+Needs Docker Desktop, Ollama with its models, and an Internet connection the first time. Then double-click:
 
-Status: specification complete; Phase 1 tasks P1-01 (scaffold) and P1-02 (i18n + RTL) done.
+    START-SATEX.bat
 
-## Develop
-```bash
-pnpm install
-pnpm dev          # http://localhost:3000
-pnpm lint && pnpm typecheck && pnpm test
-pnpm build && pnpm e2e   # first time: pnpm exec playwright install chromium
-```
-Node 22+ and pnpm 9 required (see `docs/00-setup-and-tools.md`). Copy `.env.example` to `.env.local` when later tasks need keys.
+It starts the database, prepares the settings, fills the demo data, starts the website and the background jobs, and opens http://localhost:3000. The first start takes several minutes (downloads, build, embedding of the fabrics). `STOP-SATEX.bat` stops everything.
+
+Demo accounts (passwords in `.seed-credentials.local.json`, created by the first start): admin `admin@satex.test`, sales `sales1@satex.test`, clients `client1@satex.test` to `client5@satex.test`.
+
+## Run it by hand or on another system
+See [`docs/run-locally.md`](docs/run-locally.md). Useful commands: `pnpm dev`, `pnpm build && pnpm start`, `pnpm test`, `pnpm lint`, `pnpm typecheck`, `pnpm e2e:auth` (needs the database running).
+
+## Documentation
+[`docs/README.md`](docs/README.md) is the index of the specification (sitemap, flows, permissions, database, AI matching, showroom, cloth, i18n, design, operations). [`PLAN.md`](PLAN.md) is the one-page overview.
+
+The 3D models of the showroom are built with Blender scripts (`scripts/showroom`, `pnpm showroom:build`); the built files are already in `public/showroom`, so Blender is only needed to change the scene.

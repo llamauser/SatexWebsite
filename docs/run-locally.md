@@ -1,5 +1,7 @@
 # Run the app on a computer (Windows, macOS or Linux)
 
+**Windows shortcut:** with Docker Desktop and Ollama installed, double-click `START-SATEX.bat` in the project folder: it does steps 1 to 7 below by itself (and `STOP-SATEX.bat` stops it). The rest of this page is the manual way.
+
 Everything runs on the computer: the website, a local database (Supabase in Docker) and fake AI and e-mail, so **no account or key is needed** for a demo.
 
 ## 1. Install once

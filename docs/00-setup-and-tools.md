@@ -44,7 +44,7 @@ LiveKit Cloud account (no local install).
 ## 5. Ollama (local AI) – optional, for development
 **The production system uses Claude + Voyage (see `06-ai-matching.md`).** Ollama is only for **free local development and offline testing**, so nobody burns API credits while building. It is **not** a production dependency.
 
-Design rule for the implementer: all AI calls go through `src/lib/ai/claude.ts` and `src/lib/ai/embed.ts`. Add an env switch `AI_PROVIDER=anthropic|ollama` and `EMBED_PROVIDER=voyage|ollama` with an Ollama adapter behind the same interfaces. `OLLAMA_BASE_URL=http://localhost:11434`.
+Design rule: all AI calls go through `src/lib/ai/claude.ts` and `src/lib/ai/embed.ts`. Add an env switch `AI_PROVIDER=anthropic|ollama` and `EMBED_PROVIDER=voyage|ollama` with an Ollama adapter behind the same interfaces. `OLLAMA_BASE_URL=http://localhost:11434`.
 
 | Role | Ollama model (check the current tag with `ollama search` / the Ollama library) | Size (approx.) | Notes |
 |---|---|---|---|

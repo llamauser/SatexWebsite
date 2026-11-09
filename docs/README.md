@@ -3,7 +3,7 @@
 This folder is the **single source of truth** for building the SATEX Commerce website.
 `../PLAN.md` is the one-page overview. These documents hold the detail.
 
-## Instructions for the implementing model / developer
+## Working rules
 1. **Read in this order:** this README → `13-phase1-backlog.md` → the docs each task references.
 2. **Do not invent.** If something is not specified, use the default stated in the docs. If there is none, add a `TODO(spec):` comment and pick the simplest option. Never silently change a validated decision (see below).
 3. **Names are contracts.** Table names, column names, enum values, route paths, queue names and env var names in these docs must be used exactly as written.
@@ -15,12 +15,12 @@ This folder is the **single source of truth** for building the SATEX Commerce we
 | Topic | Decision |
 |---|---|
 | Hosting | Vercel (Next.js app) + Supabase (Postgres, Auth, Storage, Realtime, Queues, Cron) |
-| Extra service | One Docker worker (Python + headless Blender) on Modal/Railway/Fly.io for texture processing and drape bakes (Phase 3) |
+| Extra service | A Docker worker (Python + headless Blender) for texture processing was planned; the prototype does not need it |
 | Data | No real data. Build with seed data (`12-seed-data.md`) and an admin panel to load the real catalog later |
 | Languages | French (default), English, Arabic (RTL) |
-| Creative features | Snap & Match (P2), Collection Planner (P2), Feel Card + Virtual Drape (P3), Guided Live Tour (P4) |
-| Cloth physics | Option C: real-time XPBD swatch in browser + pre-baked garment drapes on worker |
-| AI | Claude `claude-sonnet-5-5` (reasoning, vision, explanations, translation) + Voyage multimodal embeddings |
+| Creative features | Snap & Match, Collection Planner, Feel Card with the interactive cloth swatch. Not built, by decision: baked garment drapes (virtual shirt/skirt) and the Guided Live Tour |
+| Cloth physics | Real-time XPBD swatch in the browser (garment drape bakes dropped) |
+| AI | Claude `claude-sonnet-5-5` (reasoning, vision, explanations, translation) + Voyage multimodal embeddings online; Ollama models (`bge-m3`, `qwen3:8b`, `qwen2.5vl:7b`) for the local prototype |
 
 ## Document map
 | File | Content |

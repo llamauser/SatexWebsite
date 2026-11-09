@@ -11,8 +11,8 @@ Source idea: the promo video and audio, see `video_audio_notes.md`.
 | Hosting | Vercel (web) + Supabase (DB, auth, storage, realtime, queues) |
 | Data | No real data yet, so we build with realistic seed data and an admin panel to load the real catalog later |
 | Languages | French (default), English, Arabic (RTL) |
-| Creative features | 1 Snap & Match · 2 Virtual Drape incl. 3 Feel Card · 5 Collection Planner · 10 Guided Live Tour |
-| Cloth physics | Option C hybrid: real-time interactive swatch in the browser + pre-baked garment drapes on a server worker |
+| Creative features | Snap & Match · Feel Card with the interactive cloth swatch · Collection Planner (baked garment drapes and the Guided Live Tour were dropped) |
+| Cloth physics | Real-time interactive swatch in the browser (no garment bakes) |
 
 ## Stack
 - **Frontend / API:** Next.js 15 (App Router, TypeScript, Server Actions), Tailwind, shadcn/ui
