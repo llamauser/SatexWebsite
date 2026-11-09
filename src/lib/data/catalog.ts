@@ -144,3 +144,15 @@ export async function getAllFabricSlugs(): Promise<string[]> {
     return [];
   }
 }
+
+/** Active fabrics with their last change, for the sitemap. */
+export async function getActiveFabricSlugs(): Promise<{ slug: string; updatedAt: string }[]> {
+  const sb = anon();
+  if (!sb) return [];
+  try {
+    const { data } = await sb.from("fabrics").select("slug, updated_at").eq("is_active", true).order("slug");
+    return ((data ?? []) as { slug: string; updated_at: string }[]).map((r) => ({ slug: r.slug, updatedAt: r.updated_at }));
+  } catch {
+    return [];
+  }
+}

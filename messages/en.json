@@ -616,7 +616,15 @@
       "purgeConfirm": "Type {word} to confirm",
       "purge": "Delete demo data",
       "purged": "Deleted: {fabrics} fabric(s), {clients} client(s), {quotes} quote(s), {orders} order(s). Fabrics kept (still in use): {kept}.",
-      "purgeError": "The deletion failed."
+      "purgeError": "The deletion failed.",
+      "monitoring": {
+        "title": "Error monitoring",
+        "hint": "Sends a test error to the error tracking service (Sentry) to check that it is connected.",
+        "test": "Send a test error",
+        "sent": "Test error sent: check that it shows up in Sentry.",
+        "off": "Monitoring is off: the SENTRY_DSN variable is not set.",
+        "error": "Sending failed."
+      }
     },
     "users": {
       "adminOnly": "This page is for administrators only.",

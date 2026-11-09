@@ -11,6 +11,7 @@ import { clientMessages } from "@/i18n/client-messages";
 import { routing } from "@/i18n/routing";
 import { digitsOnly } from "@/lib/data/format";
 import { getPublicSettings } from "@/lib/data/public";
+import { alternatesFor } from "@/lib/seo";
 
 type Props = { params: Promise<{ locale: string }> };
 
@@ -18,7 +19,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale } = await params;
   if (!hasLocale(routing.locales, locale)) return {};
   const t = await getTranslations({ locale, namespace: "contact" });
-  return { title: t("title"), description: t("lead") };
+  return { title: t("title"), description: t("lead"), alternates: alternatesFor(locale, "/contact") };
 }
 
 export default async function ContactPage({ params }: Props) {

@@ -20,8 +20,9 @@ language sql stable security definer set search_path = '' as $$
   select exists (select 1 from public.fabric_colors c where c.fabric_id = p_fabric_id and public.color_in_my_documents(c.id))
 $$;
 
-revoke all on function public.color_in_my_documents(uuid), public.fabric_in_my_documents(uuid) from public, anon;
-grant execute on function public.color_in_my_documents(uuid), public.fabric_in_my_documents(uuid) to authenticated;
+-- Policies run with the caller's rights, so anonymous visitors need EXECUTE too (the functions simply answer false for them).
+revoke all on function public.color_in_my_documents(uuid), public.fabric_in_my_documents(uuid) from public;
+grant execute on function public.color_in_my_documents(uuid), public.fabric_in_my_documents(uuid) to anon, authenticated;
 
 drop policy fabrics_read on public.fabrics;
 create policy fabrics_read on public.fabrics for select using (is_active or public.is_staff() or public.fabric_in_my_documents(id));

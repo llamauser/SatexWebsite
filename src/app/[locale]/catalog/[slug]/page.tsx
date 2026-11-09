@@ -14,6 +14,9 @@ import { getFabricDetail, getSimilarFabrics } from "@/lib/data/catalog";
 import { formatMoney, localized } from "@/lib/data/format";
 import { getPublicSettings, storageUrl } from "@/lib/data/public";
 import { loose } from "@/lib/i18n-loose";
+import { breadcrumbLd, localizedPath, productLd, siteUrl } from "@/lib/seo";
+import { JsonLd } from "@/components/seo/JsonLd";
+import { alternatesFor } from "@/lib/seo";
 
 type Props = { params: Promise<{ locale: string; slug: string }> };
 
@@ -29,7 +32,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title: localized(fabric.name, locale),
     description: localized(fabric.shortDescription, locale),
-    openGraph: image ? { images: [image] } : undefined,
+    alternates: alternatesFor(locale, `/catalog/${slug}`),
+    openGraph: { type: "website", title: localized(fabric.name, locale), description: localized(fabric.shortDescription, locale), ...(image ? { images: [image] } : {}) },
   };
 }
 
@@ -57,6 +61,21 @@ export default async function FabricPage({ params }: Props) {
   const related = await getSimilarFabrics({ id: fabric.id, categorySlug: fabric.category.slug, gsm: fabric.gsm, structure: fabric.structure }, 4);
 
   const name = localized(fabric.name, locale);
+  const url = `${siteUrl()}${localizedPath(locale, `/catalog/${slug}`)}`;
+  const prices = fabric.tiers.map((x) => x.pricePerM); // empty when prices are not shown to visitors: then there is no offer either
+  const inStock = Object.values(fabric.availability).some((m) => m >= fabric.moqM);
+  const structured = [
+    productLd({
+      name, description: localized(fabric.shortDescription, locale) || undefined, sku: fabric.sku, url, brand: settings.companyName, currency: settings.currency,
+      image: (fabric.colors[0]?.photoPath ? storageUrl(fabric.colors[0].photoPath) : null) ?? undefined,
+      lowPrice: prices.length ? Math.min(...prices) : null, highPrice: prices.length ? Math.max(...prices) : null, inStock,
+    }),
+    breadcrumbLd([
+      { name: tn("home"), url: `${siteUrl()}${localizedPath(locale, "/")}` },
+      { name: tn("catalog"), url: `${siteUrl()}${localizedPath(locale, "/catalog")}` },
+      { name, url },
+    ]),
+  ];
   const colors: ColorView[] = fabric.colors.map((c) => ({
     id: c.id,
     code: c.code,
@@ -84,6 +103,7 @@ export default async function FabricPage({ params }: Props) {
 
   return (
     <main className="mx-auto max-w-[1200px] px-4 py-8 sm:px-6 lg:px-8">
+      {structured.map((d, i) => <JsonLd key={i} data={d} />)}
       <BlobBackground />
       <nav aria-label={t("breadcrumb")} className="flex flex-wrap items-center gap-1 text-sm text-text-muted">
         <Link href="/" className="hover:text-primary">{tn("home")}</Link>
