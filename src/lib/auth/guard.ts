@@ -23,8 +23,11 @@ export function needsSession(rest: string): boolean {
   return /^\/(account|admin|auth\/(sign-in|sign-up))(\/|$)/.test(rest);
 }
 
-/** Back-office sections that only admins may open (docs/03-permissions.md): match logs, users, settings, bake jobs. */
-const ADMIN_ONLY = /^\/admin\/(match-logs|users|settings|bakes|cloth-lab)(\/|$)/;
+/**
+ * Back-office sections that only admins may open (docs/03-permissions.md): match logs, users, settings, bake jobs,
+ * departments, and creating / editing / importing fabrics (sales may only look at the fabric list).
+ */
+const ADMIN_ONLY = /^\/admin\/(match-logs|users|settings|bakes|cloth-lab|departments|fabrics\/.+)(\/|$)/;
 
 export function guard(rest: string, role: string | null): GuardDecision {
   const signedIn = role !== null;

@@ -28,7 +28,7 @@ export default async function MatchLogsPage({ params }: { params: Promise<{ loca
   const rows = (data ?? []) as Row[];
 
   return (
-    <main className="mx-auto max-w-[1200px] px-4 py-10 sm:px-6 lg:px-8">
+    <div>
       <h1 className="font-display text-3xl font-bold">{t("title")}</h1>
       <p className="mt-2 text-text-muted">{t("lead")}</p>
       <div className="mt-6 overflow-x-auto rounded-md border border-border bg-surface">
@@ -65,6 +65,6 @@ export default async function MatchLogsPage({ params }: { params: Promise<{ loca
         </table>
         {rows.length === 0 && <p className="p-6 text-center text-text-muted">{t("empty")}</p>}
       </div>
-    </main>
+    </div>
   );
 }
