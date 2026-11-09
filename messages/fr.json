@@ -243,7 +243,21 @@
   },
   "admin": {
     "title": "Back-office",
-    "placeholder": "Le tableau de bord et les outils de gestion arrivent bientôt."
+    "placeholder": "Le tableau de bord et les outils de gestion arrivent bientôt.",
+    "matchLogs": {
+      "title": "Journal de la recherche IA",
+      "lead": "Ce que les visiteurs ont demandé, ce que nous avons compris, la réponse, la rapidité et le coût.",
+      "empty": "Aucune recherche pour le moment.",
+      "cols": {
+        "date": "Date",
+        "locale": "Langue",
+        "brief": "Demande (détail de la lecture IA)",
+        "top": "Premier résultat",
+        "feedback": "Avis",
+        "latency": "Durée",
+        "cost": "Coût (USD)"
+      }
+    }
   },
   "structures": {
     "jersey": "Jersey",
@@ -681,6 +695,137 @@
       "reservation_created": "Réservation créée : {fabric}",
       "reservation_expiring": "Réservation bientôt expirée : {fabric}",
       "reservation_expired": "Réservation expirée : {fabric}"
+    }
+  },
+  "match": {
+    "wizard": {
+      "title": "Recherche de tissu par IA",
+      "lead": "Répondez à 5 questions courtes : notre IA analyse notre stock et vous propose le tissu qui correspond.",
+      "steps": {
+        "label": "Étapes",
+        "audience": "Public",
+        "style": "Style",
+        "brand": "Marque",
+        "describe": "Projet",
+        "match": "Résultat"
+      },
+      "progress": "{pct} % terminé",
+      "back": "Retour",
+      "next": "Continuer",
+      "find": "Trouver mon tissu",
+      "q": {
+        "audience": "Pour qui créez-vous ?",
+        "style": "Quel style visez-vous pour votre création ?",
+        "brand": "Quel esprit de marque recherchez-vous ?",
+        "describe": "Décrivez votre projet textile",
+        "match": "Tout est prêt"
+      },
+      "audience": {
+        "women": "Femmes",
+        "men": "Hommes",
+        "kids": "Enfants",
+        "unisex": "Mixte",
+        "home": "Maison / intérieur",
+        "workwear": "Vêtements de travail"
+      },
+      "audienceText": "Autre précision (facultatif)",
+      "upTo3": "Jusqu'à 3 choix.",
+      "styles": {
+        "minimal": "Minimaliste",
+        "innovative": "Innovant",
+        "sporty": "Sportif",
+        "classic": "Classique",
+        "luxurious": "Luxueux",
+        "casual": "Décontracté",
+        "romantic": "Romantique",
+        "streetwear": "Streetwear",
+        "eco": "Éco / naturel",
+        "technical": "Technique"
+      },
+      "brand": {
+        "premium": "Premium",
+        "accessible": "Accessible",
+        "sustainable": "Durable",
+        "bold": "Audacieux",
+        "heritage": "Héritage",
+        "playful": "Ludique",
+        "performance": "Performance"
+      },
+      "priceTarget": "Budget cible par mètre (facultatif)",
+      "describeHint": "Type de vêtement · saison · usage · poids cible (GSM)",
+      "describePlaceholder": "Jersey respirant pour une collection de sport d'été, environ 200 GSM.",
+      "descriptionMin": "10 caractères minimum",
+      "requiredM": "Quantité nécessaire en mètres (facultatif)",
+      "scanning": "Analyse de {count} références…",
+      "stage": {
+        "understanding": "Nous comprenons votre projet…",
+        "searching": "Nous parcourons le stock disponible…",
+        "ranking": "Nous classons les meilleurs tissus…",
+        "explaining": "Nous rédigeons les explications…"
+      },
+      "error": {
+        "invalid": "Vérifiez vos réponses : la description doit faire au moins 10 caractères.",
+        "rate": "Trop de recherches pour le moment. Réessayez dans une heure ou contactez-nous.",
+        "server": "La recherche est momentanément indisponible. Réessayez dans un instant."
+      }
+    },
+    "results": {
+      "eyebrow": "Votre match",
+      "title": "Nos meilleures propositions",
+      "understood": "Voici comment nous avons compris votre projet :",
+      "refine": "Affiner les résultats",
+      "refineError": "Impossible d'affiner pour le moment. Réessayez.",
+      "refinements": {
+        "lighter": "Plus léger",
+        "heavier": "Plus lourd",
+        "cheaper": "Moins cher",
+        "moreStretch": "Plus extensible",
+        "softer": "Plus doux",
+        "natural": "Plus de fibres naturelles",
+        "otherColors": "Autres couleurs"
+      },
+      "badge": "{pct} % de correspondance",
+      "available": "{m} m disponibles",
+      "spec": {
+        "gsm": "{min}–{max} g/m²",
+        "budget": "Jusqu'à {price} / m",
+        "composition": "Composition",
+        "weight": "Poids",
+        "width": "Largeur",
+        "bestFor": "Idéal pour"
+      },
+      "actions": {
+        "ask": "Demander un échantillon ou un devis",
+        "view": "Voir le tissu"
+      },
+      "newSearch": "Nouvelle recherche",
+      "feedback": {
+        "question": "Ces résultats vous aident ?",
+        "up": "Utile",
+        "down": "Pas utile",
+        "thanks": "Merci pour votre retour !"
+      },
+      "empty": {
+        "title": "Aucun tissu en stock ne correspond à ce brief",
+        "body": "Essayez de modifier votre description, ou parlez-en à notre équipe : nous trouverons une solution.",
+        "cta": "Contacter l'équipe"
+      }
+    },
+    "explain": {
+      "intro": "{name} ({color}) : {gsm} GSM, {composition}.",
+      "fit": {
+        "gsm": "Le poids correspond à votre cible.",
+        "stretch": "Il offre l'extensibilité demandée.",
+        "use": "Il convient à l'usage et à la saison visés.",
+        "fiber": "Sa composition correspond à vos fibres préférées.",
+        "color": "La couleur est très proche de celle souhaitée."
+      },
+      "caveat": {
+        "gsm": "Attention : son poids s'éloigne de votre cible.",
+        "stretch": "Attention : il est moins extensible que souhaité.",
+        "use": "Attention : il est moins adapté à l'usage visé.",
+        "price": "Attention : son prix dépasse votre budget."
+      }
     }
   }
 }

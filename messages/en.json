@@ -243,7 +243,21 @@
   },
   "admin": {
     "title": "Back-office",
-    "placeholder": "The dashboard and management tools are coming soon."
+    "placeholder": "The dashboard and management tools are coming soon.",
+    "matchLogs": {
+      "title": "AI match log",
+      "lead": "What visitors asked, what we understood, the answer, how fast it was and what it cost.",
+      "empty": "No searches yet.",
+      "cols": {
+        "date": "Date",
+        "locale": "Language",
+        "brief": "Brief (open for the AI reading)",
+        "top": "Top result",
+        "feedback": "Feedback",
+        "latency": "Duration",
+        "cost": "Cost (USD)"
+      }
+    }
   },
   "structures": {
     "jersey": "Jersey",
@@ -681,6 +695,137 @@
       "reservation_created": "Reservation created: {fabric}",
       "reservation_expiring": "Reservation expires soon: {fabric}",
       "reservation_expired": "Reservation expired: {fabric}"
+    }
+  },
+  "match": {
+    "wizard": {
+      "title": "AI fabric matching",
+      "lead": "Answer 5 short questions: our AI scans our stock and suggests the fabric that fits.",
+      "steps": {
+        "label": "Steps",
+        "audience": "Audience",
+        "style": "Style",
+        "brand": "Brand",
+        "describe": "Describe",
+        "match": "Match"
+      },
+      "progress": "{pct}% complete",
+      "back": "Back",
+      "next": "Continue",
+      "find": "Find my fabric",
+      "q": {
+        "audience": "Who are you designing for?",
+        "style": "What style are you aiming for in your design?",
+        "brand": "What brand feel are you after?",
+        "describe": "Describe your textile project",
+        "match": "All set"
+      },
+      "audience": {
+        "women": "Women",
+        "men": "Men",
+        "kids": "Kids",
+        "unisex": "Unisex",
+        "home": "Home / interior",
+        "workwear": "Workwear"
+      },
+      "audienceText": "Anything else (optional)",
+      "upTo3": "Up to 3 choices.",
+      "styles": {
+        "minimal": "Minimal",
+        "innovative": "Innovative",
+        "sporty": "Sporty",
+        "classic": "Classic",
+        "luxurious": "Luxurious",
+        "casual": "Casual",
+        "romantic": "Romantic",
+        "streetwear": "Streetwear",
+        "eco": "Eco / natural",
+        "technical": "Technical"
+      },
+      "brand": {
+        "premium": "Premium",
+        "accessible": "Accessible",
+        "sustainable": "Sustainable",
+        "bold": "Bold",
+        "heritage": "Heritage",
+        "playful": "Playful",
+        "performance": "Performance"
+      },
+      "priceTarget": "Target budget per meter (optional)",
+      "describeHint": "Garment type · season · usage · target weight (GSM)",
+      "describePlaceholder": "Breathable jersey for a summer activewear line, ~200 GSM.",
+      "descriptionMin": "10 characters minimum",
+      "requiredM": "Quantity needed in meters (optional)",
+      "scanning": "Scanning {count} references…",
+      "stage": {
+        "understanding": "Understanding your project…",
+        "searching": "Searching the available stock…",
+        "ranking": "Ranking the best fabrics…",
+        "explaining": "Writing the explanations…"
+      },
+      "error": {
+        "invalid": "Please check your answers: the description needs at least 10 characters.",
+        "rate": "Too many searches for now. Try again in an hour or contact us.",
+        "server": "The search is temporarily unavailable. Please try again in a moment."
+      }
+    },
+    "results": {
+      "eyebrow": "Your match",
+      "title": "Our best suggestions",
+      "understood": "This is how we understood your project:",
+      "refine": "Refine the results",
+      "refineError": "Could not refine right now. Please try again.",
+      "refinements": {
+        "lighter": "Lighter",
+        "heavier": "Heavier",
+        "cheaper": "Cheaper",
+        "moreStretch": "More stretch",
+        "softer": "Softer",
+        "natural": "More natural fibers",
+        "otherColors": "Other colors"
+      },
+      "badge": "{pct}% match",
+      "available": "{m} m available",
+      "spec": {
+        "gsm": "{min}–{max} GSM",
+        "budget": "Up to {price} / m",
+        "composition": "Composition",
+        "weight": "Weight",
+        "width": "Width",
+        "bestFor": "Best for"
+      },
+      "actions": {
+        "ask": "Request a sample or a quote",
+        "view": "View the fabric"
+      },
+      "newSearch": "New search",
+      "feedback": {
+        "question": "Were these results helpful?",
+        "up": "Helpful",
+        "down": "Not helpful",
+        "thanks": "Thanks for your feedback!"
+      },
+      "empty": {
+        "title": "No in-stock fabric matches this brief",
+        "body": "Try changing your description, or talk to our team: we will find a solution.",
+        "cta": "Contact the team"
+      }
+    },
+    "explain": {
+      "intro": "{name} ({color}): {gsm} GSM, {composition}.",
+      "fit": {
+        "gsm": "The weight is on your target.",
+        "stretch": "It gives the stretch you asked for.",
+        "use": "It suits the intended use and season.",
+        "fiber": "Its composition matches your preferred fibers.",
+        "color": "The color is very close to what you wanted."
+      },
+      "caveat": {
+        "gsm": "Note: its weight is away from your target.",
+        "stretch": "Note: it stretches less than you wanted.",
+        "use": "Note: it is less suited to the intended use.",
+        "price": "Note: its price is above your budget."
+      }
     }
   }
 }

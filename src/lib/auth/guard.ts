@@ -23,11 +23,15 @@ export function needsSession(rest: string): boolean {
   return /^\/(account|admin|auth\/(sign-in|sign-up))(\/|$)/.test(rest);
 }
 
+/** Back-office sections that only admins may open (docs/03-permissions.md): match logs, users, settings, bake jobs. */
+const ADMIN_ONLY = /^\/admin\/(match-logs|users|settings|bakes|cloth-lab)(\/|$)/;
+
 export function guard(rest: string, role: string | null): GuardDecision {
   const signedIn = role !== null;
   if (/^\/account(\/|$)/.test(rest)) return signedIn ? "allow" : "sign-in";
   if (/^\/admin(\/|$)/.test(rest)) {
     if (!signedIn) return "sign-in";
+    if (ADMIN_ONLY.test(rest)) return role === "admin" ? "allow" : "forbidden";
     return isStaff(role) ? "allow" : "forbidden";
   }
   if (/^\/auth\/(sign-in|sign-up)(\/|$)/.test(rest)) return signedIn ? "to-account" : "allow";
