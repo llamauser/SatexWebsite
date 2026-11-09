@@ -10,6 +10,7 @@ const ITEMS = [
   { href: "/account/orders", key: "orders", exact: false },
   { href: "/account/reservations", key: "reservations", exact: false },
   { href: "/account/samples", key: "samples", exact: false },
+  { href: "/account/planner", key: "planner", exact: false },
   { href: "/account/profile", key: "profile", exact: false },
 ] as const;
 

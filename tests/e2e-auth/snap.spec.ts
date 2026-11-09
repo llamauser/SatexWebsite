@@ -1,16 +1,12 @@
 import { expect, test } from "@playwright/test";
 import sharp from "sharp";
-import { withDb } from "./helpers";
+import { deltaE00, hexToLab } from "@/lib/color/lab";
+import { resetGuestRateLimits, withDb } from "./helpers";
 
 test.use({ locale: "fr-FR" });
+test.beforeAll(resetGuestRateLimits);
 
 const solid = (hex: string, size = 600) => sharp({ create: { width: size, height: size, channels: 3, background: hex } }).png().toBuffer();
-
-/** Blue-ness of a hex color: how much more blue than the other channels (a rough check that the colors drove the ranking). */
-const blueness = (hex: string) => {
-  const [r, g, b] = [1, 3, 5].map((i) => parseInt(hex.slice(i, i + 2), 16)) as [number, number, number];
-  return b - Math.max(r, g);
-};
 
 test("a photo dropped on the page finds fabrics of its color, shows the photo to its owner and keeps it private", async ({ page, browser }) => {
   await page.goto("/fr/snap");
@@ -50,9 +46,11 @@ test("a photo dropped on the page finds fabrics of its color, shows the photo to
   expect(row.specs.colors[0].hex).toMatch(/^#(1[0-9A-F]|2[0-9A-F])[0-9A-F]{2}[8-9A-F][0-9A-F]$/); // the dominant color measured on the server is the navy of the photo
   expect(row.specs.seasons).toEqual(["spring_summer"]);
   expect(row.specs.stretch).toBeNull();
-  // the colors drove the ranking: the best result is bluer than the worst
+  // the colors drove the ranking: most results are close to the measured dominant color (weight, structure and the rest also count, so the first one is not always the closest)
   const hexes = (row.results as { hex: string }[]).map((r) => r.hex);
-  expect(blueness(hexes[0]!)).toBeGreaterThanOrEqual(blueness(hexes.at(-1)!));
+  const targetHex = row.specs.colors[0].hex as string;
+  const close = hexes.filter((hex) => deltaE00(hexToLab(targetHex), hexToLab(hex)) <= 8);
+  expect(close.length).toBeGreaterThanOrEqual(Math.ceil(hexes.length / 2));
 
   const stored = await withDb(async (c) => (await c.query(`select metadata->>'mimetype' as mime from storage.objects where bucket_id = 'snap-uploads' and name = $1`, [row.path])).rows[0]);
   expect(stored.mime).toBe("image/webp");

@@ -4,6 +4,9 @@ import { hasLocale } from "next-intl";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
 import { ColorStock, type ColorView } from "@/components/catalog/ColorStock";
+import { FeelCard } from "@/components/feel/FeelCard";
+import { FabricDetailTabs } from "@/components/feel/FabricDetailTabs";
+import { LazyClothSwatch } from "@/components/feel/LazyClothSwatch";
 import { FabricCard } from "@/components/catalog/FabricCard";
 import { BlobBackground } from "@/components/layout/BlobBackground";
 import { buttonStyles } from "@/components/ui/Button";
@@ -117,7 +120,8 @@ export default async function FabricPage({ params }: Props) {
         <span aria-current="page" className="text-text">{name}</span>
       </nav>
 
-      <div className="mt-6 grid gap-10 lg:grid-cols-2">
+      <FabricDetailTabs details={<>
+      <div className="grid gap-10 lg:grid-cols-2">
         <ColorStock
           fabricId={fabric.id}
           fabricName={name}
@@ -206,6 +210,7 @@ export default async function FabricPage({ params }: Props) {
           </ul>
         </section>
       )}
+      </>} feel={<div className="grid gap-6 lg:grid-cols-2"><FeelCard profile={fabric.feel} /><LazyClothSwatch colors={fabric.colors.map((color) => ({ id: color.id, label: localized(color.name, locale), hex: color.hex }))} gsm={fabric.gsm} feel={fabric.feel} stretchLimitPct={fabric.stretchPct} /></div>} />
     </main>
   );
 }

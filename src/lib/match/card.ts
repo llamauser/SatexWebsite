@@ -1,4 +1,5 @@
 import type { Components, ScoredCandidate } from "./schema";
+import { estimateFeel, type FeelScores } from "@/lib/cloth/feel";
 
 /** What is stored and shown for one result (a snapshot of the facts at match time; the fabric page has the live stock). */
 export interface ResultCard {
@@ -25,14 +26,24 @@ export interface ResultCard {
   price: number | null;
   imagePath: string | null;
   explanation: string;
+  /** Absent on results saved before the feel profile existed: screens must cope. */
+  feel?: FeelScores;
 }
 
 export function toResultCard(r: ScoredCandidate, explanation: string): ResultCard {
   const c = r.candidate;
+  const estimated = estimateFeel({ composition: c.composition, gsm: c.gsm, structure: c.structure, construction: c.construction, stretch: c.stretch, stretchPct: null, finish: [] });
+  const feel: FeelScores = {
+    softness: c.feel?.softness ?? estimated.softness,
+    drape: c.feel?.drape ?? estimated.drape,
+    stretch: c.feel?.stretch ?? estimated.stretch,
+    sheen: c.feel?.sheen ?? estimated.sheen,
+    breathability: c.feel?.breathability ?? estimated.breathability,
+  };
   return {
     colorId: c.color_id, fabricId: c.fabric_id, slug: c.slug, sku: c.sku, name: c.name, colorName: c.color_name, colorCode: c.color_code, hex: c.hex,
     pct: r.pct, components: r.components, structure: c.structure, construction: c.construction, gsm: c.gsm, widthCm: c.width_cm,
     composition: c.composition, stretch: c.stretch, uses: c.uses, seasons: c.seasons, availableM: Math.floor(Number(c.available_m)), moqM: Number(c.moq_m),
-    price: c.price === null ? null : Number(c.price), imagePath: c.image_path, explanation,
+    price: c.price === null ? null : Number(c.price), imagePath: c.image_path, explanation, feel,
   };
 }

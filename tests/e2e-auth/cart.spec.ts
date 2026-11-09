@@ -7,6 +7,13 @@ test.describe.configure({ mode: "serial" });
 const EMAIL = "client5@satex.test";
 const jobs = { authorization: "Bearer e2e-cron-secret" };
 
+// the test starts from an account without a draft: a run that stopped half way (or any other test) must not change what it sees
+test.beforeAll(async () => {
+  await withDb(async (c) => {
+    await c.query(`delete from public.quotes q using public.profiles p, auth.users u where p.client_id = q.client_id and u.id = p.id and u.email = $1 and q.status = 'draft'`, [EMAIL]);
+  });
+});
+
 const draft = () =>
   withDb(async (c) => {
     const q = (await c.query(
@@ -74,7 +81,8 @@ test("a guest builds a cart, signs in, the cart follows, and the request is sent
   await page.getByTestId("cart-button").click();
   await expect(page.getByTestId("cart-line")).toHaveCount(2);
   const total = await page.getByTestId("cart-total").innerText();
-  await page.getByTestId("cart-message").fill("Besoin de livraison avant fin décembre.");
+  const clientMessage = `Besoin de livraison avant fin décembre. (${Date.now().toString(36)})`; // unique, so earlier runs of this test are never mistaken for this one
+  await page.getByTestId("cart-message").fill(clientMessage);
   await page.getByTestId("cart-submit").click();
   await expect(page.getByTestId("cart-submitted")).toBeVisible();
   await expect(page.getByTestId("cart-count")).toHaveCount(0); // the cart is empty again
@@ -82,8 +90,8 @@ test("a guest builds a cart, signs in, the cart follows, and the request is sent
   const sent = await withDb(async (c) =>
     (await c.query(
       `select q.id, q.ref, q.status, q.client_message, q.submitted_at, q.total, (select count(*)::int from public.quote_lines where quote_id = q.id) as n
-         from public.quotes q join public.profiles p on p.client_id = q.client_id join auth.users u on u.id = p.id where u.email = $1 and q.status = 'submitted'`, [EMAIL])).rows[0]);
-  expect(sent).toMatchObject({ status: "submitted", client_message: "Besoin de livraison avant fin décembre.", n: 2 });
+         from public.quotes q join public.profiles p on p.client_id = q.client_id join auth.users u on u.id = p.id where u.email = $1 and q.status = 'submitted' and q.client_message = $2 order by q.submitted_at desc limit 1`, [EMAIL, clientMessage])).rows[0]);
+  expect(sent).toMatchObject({ status: "submitted", client_message: clientMessage, n: 2 });
   expect(sent.ref).toMatch(/^Q-\d{4}-\d{6}$/);
   expect(sent.submitted_at).not.toBeNull();
   expect((await draft()).quote).toBeUndefined(); // no draft left: a new cart starts empty
@@ -111,10 +119,15 @@ test("a guest builds a cart, signs in, the cart follows, and the request is sent
 
   await page.goto("/fr/account/quotes");
   await expect(page.getByTestId("quote-row").filter({ hasText: sent.ref })).toBeVisible();
-  await page.getByTestId("quote-filter").selectOption("accepted");
-  await expect(page.getByTestId("quotes-empty")).toBeVisible();
-  await page.getByTestId("quote-filter").selectOption("submitted");
-  await expect(page.getByTestId("quote-row")).toHaveCount(1);
+  // the list agrees with the database for each status (the account may already have quotes, e.g. from the demo data)
+  const countOf = (status: string) => withDb(async (c) => (await c.query(`select count(*)::int as n from public.quotes q join public.profiles p on p.client_id = q.client_id join auth.users u on u.id = p.id where u.email = $1 and q.status = $2`, [EMAIL, status])).rows[0].n as number);
+  for (const status of ["accepted", "submitted"]) {
+    const expected = await countOf(status);
+    await page.getByTestId("quote-filter").selectOption(status);
+    await expect(page.getByTestId("quote-row")).toHaveCount(expected);
+    if (expected === 0) await expect(page.getByTestId("quotes-empty")).toBeVisible();
+  }
+  expect(await countOf("submitted")).toBeGreaterThanOrEqual(1);
 });
 
 test("a sent quote can be accepted; another can be declined with a reason; an expired one cannot be answered", async ({ page, request }) => {

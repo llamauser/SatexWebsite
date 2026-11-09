@@ -180,7 +180,8 @@
       "quotes": "Quotes",
       "reservations": "Reservations",
       "samples": "Samples",
-      "orders": "Orders"
+      "orders": "Orders",
+      "planner": "Collection planner"
     },
     "overview": {
       "loading": "Loading…",
@@ -191,6 +192,71 @@
         "title": "Your profile",
         "body": "Contact details, company, addresses and security.",
         "cta": "Manage my profile"
+      },
+      "planner": {
+        "title": "Collection planner",
+        "intro": "Build a coherent, in-stock fabric plan for your next line.",
+        "name": "Collection name",
+        "description": "Describe your collection",
+        "audience": "Target customer",
+        "pieces": "Pieces",
+        "piece": "Piece",
+        "garment": "Garment type",
+        "quantity": "Quantity",
+        "addPiece": "Add piece",
+        "build": "Build the plan",
+        "building": "Building…",
+        "requestQuote": "Request a quote",
+        "quoteMessage": "Message (optional)",
+        "saved": "Plan ready",
+        "error": "Could not build the plan. Please try again.",
+        "empty": "No collections yet.",
+        "new": "New collection",
+        "meters": "{meters} m",
+        "palette": "Palette",
+        "alternatives": "Alternatives",
+        "stockWarning": "Short by {meters} m",
+        "savedCollections": "Your collections",
+        "noCollections": "No collections yet.",
+        "editCollection": "Open plan",
+        "viewQuote": "View quote",
+        "newCollection": "Start a new collection",
+        "brief": "Collection brief",
+        "season": "Season",
+        "seasons": { "spring_summer": "Spring / summer", "autumn_winter": "Autumn / winter", "all_season": "All season" },
+        "budget": "Budget per metre (optional)",
+        "styles": "Style keywords (up to 3)",
+        "pieceLimit": "Add 1 to 12 pieces",
+        "pieceNumber": "Piece {number}",
+        "notes": "Notes (optional)",
+        "sizeRun": "Size run (must equal quantity)",
+        "removePiece": "Remove piece",
+        "results": "Your fabric plan",
+        "downloadBoard": "Download collection board",
+        "boardTitle": "Collection board",
+        "boardPalette": "Color palette",
+        "boardPieces": "Planned pieces",
+        "boardQuantity": "Quantity",
+        "boardSizeRun": "Size run",
+        "boardFabric": "Fabric",
+        "boardMeters": "Meters",
+        "boardWidth": "Width",
+        "boardWeight": "Weight",
+        "boardComposition": "Composition",
+        "boardGenerated": "Prepared",
+        "paletteFit": "Chosen colors fit the palette",
+        "supplierCoverage": "Stock covers the planned meters",
+        "distinctFabrics": "{count} distinct fabrics",
+        "available": "available",
+        "totalMeters": "Total: {meters} m",
+        "estimatedTotal": "Estimated fabric total: {price}",
+        "saveChoiceError": "The choice could not be saved. Reload the plan and try again.",
+        "quoteError": "Could not request the quote. Please try again.",
+        "garments": {
+          "t_shirt": "T-shirt", "polo": "Polo", "shirt": "Shirt", "dress_short": "Short dress", "dress_long": "Long dress",
+          "skirt": "Skirt", "trousers": "Trousers", "jeans": "Jeans", "shorts": "Shorts", "jacket": "Jacket", "coat": "Coat",
+          "hoodie": "Hoodie", "leggings": "Leggings", "sports_bra": "Sports bra", "swimsuit": "Swimsuit", "cushion_cover": "Cushion cover", "curtain_panel": "Curtain panel"
+        }
       }
     }
   },
@@ -1153,12 +1219,30 @@
       }
     }
   },
+  "compare": { "add": "Add to compare", "remove": "Remove from compare", "limit": "Up to 3 fabrics", "view": "Compare ({count})", "title": "Compare fabrics", "empty": "Add fabrics from the catalog or match results to compare them.", "weight": "Weight", "width": "Width", "composition": "Composition", "construction": "Construction", "stock": "Available stock", "price": "From price / m", "feel": "Feel profile", "source": { "estimated": "Estimated", "measured": "Measured" } },
   "fabric": {
     "breadcrumb": "Breadcrumb",
     "back": "Back to the catalog",
     "ask": "Request a sample or a quote",
     "tags": "Keywords",
     "similar": "Similar fabrics",
+    "tabs": { "details": "Details", "feel": "Feel & Drape" },
+    "feel": {
+      "title": "Feel Card", "intro": "Estimated feel from composition and weight, or measured in the lab.",
+      "estimated": "Estimated", "estimatedHint": "Computed from composition and weight", "measured": "Measured", "measuredHint": "Based on measurements entered by our team",
+      "radarLabel": "Fabric feel scores from zero to ten",
+      "axes": { "softness": "Softness", "drape": "Drape", "stretch": "Stretch", "sheen": "Sheen", "breathability": "Breathability" },
+      "lines": {
+        "softness": { "0": "Firm, crisp hand", "3": "A balanced, natural hand", "6": "Soft against the skin", "8": "Exceptionally soft" },
+        "drape": { "0": "Holds a structured shape", "3": "Keeps some shape", "6": "Falls with a gentle flow", "8": "Very fluid, falls softly" },
+        "stretch": { "0": "Little to no stretch", "3": "A little give", "6": "Flexible movement", "8": "High stretch and recovery" },
+        "sheen": { "0": "Matte appearance", "3": "A subtle surface glow", "6": "A clear soft sheen", "8": "A luminous finish" },
+        "breathability": { "0": "Warm and close-wearing", "3": "Moderate airflow", "6": "Breathable for daily wear", "8": "Light and airy" }
+      },
+      "swatchTitle": "Interactive fabric swatch", "color": "Fabric colors", "loading": "Preparing the interactive preview…", "unsupported": "Interactive preview is not supported on this device.",
+      "modes": { "hang": "Hang & pull", "table": "Table drape", "sphere": "Sphere drape", "wind": "Wind", "reset": "Reset" },
+      "strain": "Stretch: {value}% · fabric stretch: {limit}", "drapeSummary": "Drape score: {drape} / 10", "windSummary": "Weight: {gsm} GSM · airiness: {air} / 10"
+    },
     "specs": {
       "composition": "Composition",
       "weight": "Weight",
@@ -1322,7 +1406,7 @@
     "quote_sent": {
       "subject": "Your quote {ref} is ready",
       "title": "Your quote is ready",
-      "intro": "Find the details and the PDF in your customer area, then accept or decline the quote before it expires.",
+      "intro": "The quote PDF is attached to this email. You can also find the details in your customer area, then accept or decline the quote before it expires.",
       "cta": "View the quote"
     },
     "quote_accepted_staff": {
@@ -1528,6 +1612,7 @@
         "ask": "Request a sample or a quote",
         "view": "View the fabric"
       },
+      "feelProfile": "Feel profile",
       "newSearch": "New search",
       "feedback": {
         "question": "Were these results helpful?",

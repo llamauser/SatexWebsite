@@ -10,12 +10,20 @@ export function emailProvider(env: NodeJS.ProcessEnv = process.env): EmailProvid
   return env.RESEND_API_KEY ? "resend" : "log";
 }
 
+export interface EmailAttachment {
+  filename: string;
+  content: Buffer;
+}
 export interface OutgoingEmail {
   to: string;
   subject: string;
   html: string;
   text: string;
+  attachments?: EmailAttachment[];
 }
+
+/** Resend refuses a message over 40 MB in total; stay well under, so one big attachment never blocks the email. */
+export const MAX_ATTACHMENT_BYTES = 15 * 1024 * 1024;
 
 /** Returns the provider message id (null for the log provider). Throws on failure so the job is retried. */
 export async function sendEmail(mail: OutgoingEmail, env: NodeJS.ProcessEnv = process.env): Promise<string | null> {
@@ -29,6 +37,7 @@ export async function sendEmail(mail: OutgoingEmail, env: NodeJS.ProcessEnv = pr
       subject: mail.subject,
       html: mail.html,
       text: mail.text,
+      ...(mail.attachments?.length ? { attachments: mail.attachments.map((a) => ({ filename: a.filename, content: a.content.toString("base64") })) } : {}),
     }),
   });
   if (!res.ok) throw new Error(`resend responded ${res.status}: ${(await res.text()).slice(0, 300)}`);

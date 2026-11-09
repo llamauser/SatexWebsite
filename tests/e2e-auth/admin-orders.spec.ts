@@ -171,9 +171,9 @@ test("order: payment, delivery (needs a tracking number), shipping and delivery 
   await clientContext.close();
 
   await runJobs(request);
-  const mails = await withDb(async (c) => (await c.query(`select template, status from public.email_log where template in ('delivery_in_transit', 'delivery_delivered') and to_email = $1 order by template`, [CLIENT])).rows);
+  const mails = await withDb(async (c) => (await c.query(`select template, status from public.email_log where template in ('delivery_in_transit', 'delivery_delivered') and payload->>'entityId' in (select d.id::text from public.deliveries d where d.order_id = $1) order by template`, [order!.id])).rows); // these emails are about the delivery, not the order
   expect(mails).toEqual([{ template: "delivery_delivered", status: "logged" }, { template: "delivery_in_transit", status: "logged" }]);
-  expect(await withDb(async (c) => (await c.query(`select count(*)::int as n from public.notifications n join auth.users u on u.id = n.user_id where u.email = $1 and n.type in ('delivery_in_transit', 'delivery_delivered')`, [CLIENT])).rows[0].n)).toBe(2);
+  expect(await withDb(async (c) => (await c.query(`select count(*)::int as n from public.notifications n where n.type in ('delivery_in_transit', 'delivery_delivered') and n.payload->>'entityId' in (select d.id::text from public.deliveries d where d.order_id = $1)`, [order!.id])).rows[0].n)).toBe(2);
 });
 
 test("a failed delivery sends the order back to 'ready'; cancelling an order needs a reason, frees the stock and clears the board", async ({ page }) => {

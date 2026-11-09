@@ -70,15 +70,14 @@ export function ColorsEditor({ fabricId }: { fabricId: string }) {
   async function upload(c: ColorRow, file: File) {
     setMessage(null);
     setBusy(c.id);
-    const sb = await loadBrowserSupabase();
-    const ext = (file.name.split(".").pop() ?? "jpg").toLowerCase().replace(/[^a-z0-9]/g, "");
-    const path = `${fabricId}/${c.id}/${crypto.randomUUID()}.${ext}`;
-    const up = await sb!.storage.from("fabric-images").upload(path, file, { contentType: file.type, upsert: false });
-    if (up.error) { setBusy(null); return fail(t("uploadError")); }
-    const count = images.filter((i) => i.color_id === c.id).length;
-    const { error } = await sb!.from("fabric_images").insert({ fabric_id: fabricId, color_id: c.id, storage_path: `fabric-images/${path}`, kind: "photo", sort: count });
+    // the server decodes and re-encodes the photo (upright, no EXIF/GPS, 2000 px, WebP) before it is stored
+    const form = new FormData();
+    form.set("fabricId", fabricId);
+    form.set("colorId", c.id);
+    form.set("file", file);
+    const res = await fetch("/api/admin/fabric-images", { method: "POST", body: form }).catch(() => null);
     setBusy(null);
-    if (error) return fail(t("uploadError"));
+    if (!res || !res.ok) return fail(t("uploadError"));
     setMessage({ kind: "success", text: t("uploaded") });
     await load();
   }

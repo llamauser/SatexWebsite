@@ -180,7 +180,8 @@
       "quotes": "Devis",
       "reservations": "Réservations",
       "samples": "Échantillons",
-      "orders": "Commandes"
+      "orders": "Commandes",
+      "planner": "Planificateur de collection"
     },
     "overview": {
       "loading": "Chargement…",
@@ -191,6 +192,71 @@
         "title": "Votre profil",
         "body": "Coordonnées, société, adresses et sécurité.",
         "cta": "Gérer mon profil"
+      },
+      "planner": {
+        "title": "Planificateur de collection",
+        "intro": "Construisez un plan de tissus cohérent et disponible pour votre prochaine ligne.",
+        "name": "Nom de la collection",
+        "description": "Décrivez votre collection",
+        "audience": "Clientèle cible",
+        "pieces": "Pièces",
+        "piece": "Pièce",
+        "garment": "Type de vêtement",
+        "quantity": "Quantité",
+        "addPiece": "Ajouter une pièce",
+        "build": "Construire le plan",
+        "building": "Construction…",
+        "requestQuote": "Demander un devis",
+        "quoteMessage": "Message (facultatif)",
+        "saved": "Plan prêt",
+        "error": "Impossible de construire le plan. Réessayez.",
+        "empty": "Aucune collection pour le moment.",
+        "new": "Nouvelle collection",
+        "meters": "{meters} m",
+        "palette": "Palette",
+        "alternatives": "Alternatives",
+        "stockWarning": "Il manque {meters} m en stock",
+        "savedCollections": "Vos collections",
+        "noCollections": "Aucune collection pour le moment.",
+        "editCollection": "Ouvrir le plan",
+        "viewQuote": "Voir le devis",
+        "newCollection": "Créer une nouvelle collection",
+        "brief": "Brief de collection",
+        "season": "Saison",
+        "seasons": { "spring_summer": "Printemps / été", "autumn_winter": "Automne / hiver", "all_season": "Toutes saisons" },
+        "budget": "Budget par mètre (facultatif)",
+        "styles": "Mots-clés de style (3 max.)",
+        "pieceLimit": "Ajoutez 1 à 12 pièces",
+        "pieceNumber": "Pièce {number}",
+        "notes": "Notes (facultatif)",
+        "sizeRun": "Répartition des tailles (égale à la quantité)",
+        "removePiece": "Supprimer la pièce",
+        "results": "Votre plan de tissus",
+        "downloadBoard": "Télécharger le dossier de collection",
+        "boardTitle": "Dossier de collection",
+        "boardPalette": "Palette de couleurs",
+        "boardPieces": "Pièces planifiées",
+        "boardQuantity": "Quantité",
+        "boardSizeRun": "Répartition des tailles",
+        "boardFabric": "Tissu",
+        "boardMeters": "Mètres",
+        "boardWidth": "Laize",
+        "boardWeight": "Grammage",
+        "boardComposition": "Composition",
+        "boardGenerated": "Préparé le",
+        "paletteFit": "Les couleurs choisies suivent la palette",
+        "supplierCoverage": "Le stock couvre le métrage prévu",
+        "distinctFabrics": "{count} tissus différents",
+        "available": "disponibles",
+        "totalMeters": "Total : {meters} m",
+        "estimatedTotal": "Total tissus estimé : {price}",
+        "saveChoiceError": "Impossible d'enregistrer ce choix. Rechargez le plan et réessayez.",
+        "quoteError": "Impossible de demander le devis. Réessayez.",
+        "garments": {
+          "t_shirt": "T-shirt", "polo": "Polo", "shirt": "Chemise", "dress_short": "Robe courte", "dress_long": "Robe longue",
+          "skirt": "Jupe", "trousers": "Pantalon", "jeans": "Jean", "shorts": "Short", "jacket": "Veste", "coat": "Manteau",
+          "hoodie": "Sweat à capuche", "leggings": "Legging", "sports_bra": "Brassière de sport", "swimsuit": "Maillot de bain", "cushion_cover": "Housse de coussin", "curtain_panel": "Panneau de rideau"
+        }
       }
     }
   },
@@ -1153,12 +1219,30 @@
       }
     }
   },
+  "compare": { "add": "Ajouter à la comparaison", "remove": "Retirer de la comparaison", "limit": "3 tissus maximum", "view": "Comparer ({count})", "title": "Comparer les tissus", "empty": "Ajoutez des tissus depuis le catalogue ou les résultats IA pour les comparer.", "weight": "Poids", "width": "Largeur", "composition": "Composition", "construction": "Construction", "stock": "Stock disponible", "price": "Prix à partir de / m", "feel": "Profil sensoriel", "source": { "estimated": "Estimé", "measured": "Mesuré" } },
   "fabric": {
     "breadcrumb": "Fil d'Ariane",
     "back": "Retour au catalogue",
     "ask": "Demander un échantillon ou un devis",
     "tags": "Mots-clés",
     "similar": "Tissus similaires",
+    "tabs": { "details": "Détails", "feel": "Toucher et tombé" },
+    "feel": {
+      "title": "Carte de toucher", "intro": "Toucher estimé d'après la composition et le poids, ou mesuré au laboratoire.",
+      "estimated": "Estimé", "estimatedHint": "Calculé à partir de la composition et du poids", "measured": "Mesuré", "measuredHint": "D'après les mesures saisies par notre équipe",
+      "radarLabel": "Scores sensoriels du tissu de zéro à dix",
+      "axes": { "softness": "Douceur", "drape": "Tombé", "stretch": "Extensibilité", "sheen": "Brillance", "breathability": "Respirabilité" },
+      "lines": {
+        "softness": { "0": "Toucher ferme et net", "3": "Toucher naturel et équilibré", "6": "Doux contre la peau", "8": "Très doux au toucher" },
+        "drape": { "0": "Garde une forme structurée", "3": "Conserve un peu de tenue", "6": "Tombe avec souplesse", "8": "Très fluide, tombe avec douceur" },
+        "stretch": { "0": "Peu ou pas extensible", "3": "Légère élasticité", "6": "Accompagne les mouvements", "8": "Très extensible et résilient" },
+        "sheen": { "0": "Aspect mat", "3": "Léger éclat de surface", "6": "Brillance douce et visible", "8": "Finition lumineuse" },
+        "breathability": { "0": "Chaud et près du corps", "3": "Aération modérée", "6": "Respirant au quotidien", "8": "Léger et très aéré" }
+      },
+      "swatchTitle": "Échantillon de tissu interactif", "color": "Couleurs du tissu", "loading": "Préparation de l'aperçu interactif…", "unsupported": "L'aperçu interactif n'est pas disponible sur cet appareil.",
+      "modes": { "hang": "Suspendu et étiré", "table": "Tombé sur table", "sphere": "Tombé sur sphère", "wind": "Vent", "reset": "Réinitialiser" },
+      "strain": "Étirement : {value} % · extensibilité du tissu : {limit}", "drapeSummary": "Score de tombé : {drape} / 10", "windSummary": "Poids : {gsm} GSM · respirabilité : {air} / 10"
+    },
     "specs": {
       "composition": "Composition",
       "weight": "Poids",
@@ -1322,7 +1406,7 @@
     "quote_sent": {
       "subject": "Votre devis {ref} est disponible",
       "title": "Votre devis est prêt",
-      "intro": "Retrouvez le détail et le PDF dans votre espace client, puis acceptez ou refusez le devis avant sa date de validité.",
+      "intro": "Le PDF du devis est joint à cet e-mail. Retrouvez aussi le détail dans votre espace client, puis acceptez ou refusez le devis avant sa date de validité.",
       "cta": "Consulter le devis"
     },
     "quote_accepted_staff": {
@@ -1528,6 +1612,7 @@
         "ask": "Demander un échantillon ou un devis",
         "view": "Voir le tissu"
       },
+      "feelProfile": "Profil sensoriel",
       "newSearch": "Nouvelle recherche",
       "feedback": {
         "question": "Ces résultats vous aident ?",

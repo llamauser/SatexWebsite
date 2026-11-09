@@ -180,7 +180,7 @@ test("time passes: 'expires soon' is flagged and reminded once; an expired reser
   await expect(page.getByTestId("reservation-countdown")).toHaveAttribute("data-soon", "true");
   await expect(page.getByTestId("reservation-countdown")).toHaveText(/^0[45]:[0-5]\d$/);
   await expect(page.getByTestId("reservation-soon")).toBeVisible();
-  await expect(page.getByTestId("reservation-past").filter({ has: page.getByText("Expirée") })).toHaveCount(1);
+  await expect(page.locator(`[data-testid="reservation-past"][data-id="${expiredId}"]`).filter({ has: page.getByText("Expirée") })).toBeVisible();
 
   // reminder (once) and expiry emails
   expect((await request.get("/api/jobs/run", { headers: jobs })).status()).toBe(200);

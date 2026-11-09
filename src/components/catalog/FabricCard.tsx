@@ -1,5 +1,6 @@
 import { getTranslations } from "next-intl/server";
 import { FabricImage } from "@/components/home/FabricImage";
+import { AddToCompare } from "@/components/compare/AddToCompare";
 import { Link } from "@/i18n/navigation";
 import { compositionShort } from "@/lib/catalog/params";
 import type { CatalogItem } from "@/lib/data/catalog";
@@ -25,10 +26,8 @@ export async function FabricCard({
   const extra = item.colorCount - item.colors.length;
 
   return (
-    <Link
-      href={`/catalog/${item.slug}`}
-      className="group flex h-full flex-col overflow-hidden rounded-md border border-border bg-surface shadow-card transition hover:-translate-y-0.5"
-    >
+    <article className="flex h-full flex-col overflow-hidden rounded-md border border-border bg-surface shadow-card transition hover:-translate-y-0.5">
+      <Link href={`/catalog/${item.slug}`} className="group flex flex-1 flex-col">
       <div className="relative aspect-[4/3] bg-surface-muted">
         <FabricImage path={item.imagePath} alt={name} sizes="(min-width: 1280px) 280px, (min-width: 640px) 33vw, 100vw" priority={priority} />
         <span className="absolute start-3 top-3">
@@ -53,6 +52,8 @@ export async function FabricCard({
           <p className="mt-auto pt-3 text-sm font-medium text-primary-strong">{t("from", { price: formatMoney(item.fromPrice, currency, locale) })}</p>
         )}
       </div>
-    </Link>
+      </Link>
+      <AddToCompare fabricId={item.id} slug={item.slug} className="px-4 pb-4" />
+    </article>
   );
 }

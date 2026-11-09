@@ -1,8 +1,9 @@
 import { expect, request as pwRequest, test, type APIRequestContext } from "@playwright/test";
-import { seededPassword, signInOk, withDb } from "./helpers";
+import { resetGuestRateLimits, seededPassword, signInOk, withDb } from "./helpers";
 
 test.use({ locale: "fr-FR" });
 test.describe.configure({ mode: "serial" });
+test.beforeAll(resetGuestRateLimits);
 
 interface Card {
   colorId: string; sku: string; slug: string; pct: number; structure: string; gsm: number; stretch: string; uses: string[];

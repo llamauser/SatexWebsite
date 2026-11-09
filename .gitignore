@@ -52,3 +52,6 @@ assets/showroom-src/
 # local MCP server configs (paths on one machine)
 .mcp.json
 *.mcpb
+
+# browser diagnostic logs
+debug.log

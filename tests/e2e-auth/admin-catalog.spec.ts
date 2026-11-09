@@ -1,4 +1,5 @@
 ﻿import { readFileSync } from "node:fs";
+import sharp from "sharp";
 import { expect, test, type APIRequestContext, type Page } from "@playwright/test";
 import { purgeFabrics, seededPassword, signInOk, withDb } from "./helpers";
 
@@ -7,7 +8,11 @@ test.describe.configure({ mode: "serial" });
 
 const ADMIN = "admin@satex.test";
 const SALES = "sales1@satex.test";
-const SKU = "E2E-ADM-1";
+const RUN_SUFFIX = Date.now().toString(36);
+const SKU = `E2E-ADM-${RUN_SUFFIX}`;
+const NAME = `Tissu de test admin ${RUN_SUFFIX}`;
+const SLUG = `tissu-de-test-admin-${RUN_SUFFIX}`;
+const LOT = `LOT-E2E-${RUN_SUFFIX.toUpperCase()}`;
 const STAFF_EMAIL = "e2e-new-staff@satex.test";
 const jobs = { authorization: "Bearer e2e-cron-secret" };
 // a 1x1 transparent PNG
@@ -55,8 +60,8 @@ test("an admin creates a fabric with a color and a photo, and it becomes public 
   await expect(page.getByText("Corrigez les champs en rouge.")).toBeVisible();
 
   await page.getByTestId("f-sku").fill(SKU);
-  await page.getByTestId("f-name").fill("Tissu de test admin");
-  await expect(page.getByTestId("f-slug")).toHaveValue("tissu-de-test-admin"); // the identifier follows the French name
+  await page.getByTestId("f-name").fill(NAME);
+  await expect(page.getByTestId("f-slug")).toHaveValue(SLUG); // the identifier follows the French name
   await page.getByTestId("f-category").selectOption({ index: 1 });
   await page.getByTestId("f-gsm").fill("150");
   await page.getByTestId("f-moq").fill("5");
@@ -79,7 +84,7 @@ test("an admin creates a fabric with a color and a photo, and it becomes public 
 
   // a second fabric with the same SKU is refused
   const row = await withDb(async (c) => (await c.query(`select slug, name, base_price_per_m::float as price, is_active from public.fabrics where id = $1`, [id])).rows[0]);
-  expect(row).toMatchObject({ slug: "tissu-de-test-admin", name: { fr: "Tissu de test admin" }, price: 9.9, is_active: true });
+  expect(row).toMatchObject({ slug: SLUG, name: { fr: NAME }, price: 9.9, is_active: true });
   const tiers = await withDb(async (c) => (await c.query(`select min_m::float as m, price_per_m::float as p from public.fabric_price_tiers where fabric_id = $1`, [id])).rows);
   expect(tiers).toEqual([{ m: 50, p: 8.5 }]);
 
@@ -93,7 +98,25 @@ test("an admin creates a fabric with a color and a photo, and it becomes public 
   await expect(page.getByTestId("color-images").locator("img")).toHaveCount(1, { timeout: 15_000 });
   const photo = await withDb(async (c) => (await c.query(`select storage_path from public.fabric_images where fabric_id = $1`, [id])).rows);
   expect(photo).toHaveLength(1);
-  expect(photo[0].storage_path).toMatch(/^fabric-images\/.+\.png$/);
+  expect(photo[0].storage_path).toMatch(/^fabric-images\/.+\.webp$/); // re-encoded on the server, whatever was uploaded
+
+  // a phone photo with EXIF (orientation, copyright, software): stored upright and without any of it
+  const phone = await sharp({ create: { width: 600, height: 400, channels: 3, background: "#CC0000" } }).jpeg().withMetadata({ orientation: 6, exif: { IFD0: { Copyright: "Studio Secret", Software: "PhoneCam 9" } } }).toBuffer();
+  await page.getByTestId("color-upload").setInputFiles({ name: "IMG_0001.jpg", mimeType: "image/jpeg", buffer: phone });
+  await expect(page.getByTestId("color-images").locator("img")).toHaveCount(2, { timeout: 15_000 });
+  const stored = await withDb(async (c) => (await c.query(`select storage_path from public.fabric_images where fabric_id = $1 order by sort desc limit 1`, [id])).rows[0].storage_path as string);
+  const file = await page.request.get(`${process.env.NEXT_PUBLIC_SUPABASE_URL ?? "http://127.0.0.1:54321"}/storage/v1/object/public/${stored}`);
+  expect(file.status()).toBe(200);
+  expect(file.headers()["content-type"]).toBe("image/webp");
+  const bytes = await file.body();
+  const meta = await sharp(bytes).metadata();
+  expect([meta.format, meta.width, meta.height, meta.exif]).toEqual(["webp", 400, 600, undefined]);
+  expect(bytes.toString("latin1")).not.toContain("Studio Secret");
+
+  // the server decides what is a photo: a web page renamed .jpg is refused and nothing is stored
+  const fake = await page.request.post("/api/admin/fabric-images", { multipart: { fabricId: id, colorId: (await withDb(async (c) => (await c.query(`select id from public.fabric_colors where fabric_id = $1`, [id])).rows[0].id as string)), file: { name: "x.jpg", mimeType: "image/jpeg", buffer: Buffer.from("<html>not a photo</html>") } } });
+  expect(fake.status()).toBe(415);
+  expect(await withDb(async (c) => (await c.query(`select count(*)::int as n from public.fabric_images where fabric_id = $1`, [id])).rows[0].n)).toBe(2);
   const lab = await withDb(async (c) => (await c.query(`select lab from public.fabric_colors where fabric_id = $1`, [id])).rows[0].lab);
   expect(lab).toHaveLength(3); // the color was converted for color matching
 
@@ -101,10 +124,10 @@ test("an admin creates a fabric with a color and a photo, and it becomes public 
   await page.goto("/fr/admin/stock");
   const colorOption = await page.getByTestId("recv-color").locator("option", { hasText: SKU }).getAttribute("value");
   await page.getByTestId("recv-color").selectOption(colorOption!);
-  await page.getByTestId("recv-code").fill("LOT-E2E-ADM");
+  await page.getByTestId("recv-code").fill(LOT);
   await page.getByTestId("recv-meters").fill("120");
   await page.getByTestId("recv-submit").click();
-  await expect(page.getByText("Lot LOT-E2E-ADM reçu.")).toBeVisible();
+  await expect(page.getByRole("status").filter({ hasText: `Lot ${LOT} reçu.` })).toBeVisible({ timeout: 15_000 });
 
   // background jobs: translations and the search data
   await expect.poll(async () => {
@@ -128,12 +151,14 @@ test("an admin creates a fabric with a color and a photo, and it becomes public 
   const marks = await withDb(async (c) => (await c.query(`select machine_translated from public.fabrics where id = $1`, [id])).rows[0].machine_translated);
   expect(marks.name ?? []).not.toContain("en");
   expect(marks.name ?? []).toContain("ar");
+  const publicRow = await withDb(async (c) => (await c.query(`select slug, is_active from public.fabrics where id = $1`, [id])).rows[0]);
+  expect(publicRow).toEqual({ slug: SLUG, is_active: true });
 
   // public: the page, the stock and the search
   const anon = await page.context().browser()!.newContext({ locale: "fr-FR" });
   const visitor = await anon.newPage();
-  await visitor.goto("http://localhost:3100/fr/catalog/tissu-de-test-admin");
-  await expect(visitor.getByRole("heading", { level: 1, name: "Tissu de test admin" })).toBeVisible();
+  await visitor.goto(`http://localhost:3100/fr/catalog/${SLUG}`);
+  await expect(visitor.getByRole("heading", { level: 1, name: NAME })).toBeVisible();
   await expect(visitor.getByTestId("available-RED")).toHaveAttribute("data-meters", "120");
   await anon.close();
 });
@@ -141,8 +166,8 @@ test("an admin creates a fabric with a color and a photo, and it becomes public 
 test("stock: adjustments need a reason, cannot overdraw, and are kept in the history; a lot can change department", async ({ page }) => {
   await asAdmin(page);
   await page.goto("/fr/admin/stock");
-  await page.getByTestId("lot-search").fill("LOT-E2E-ADM");
-  const lot = page.getByTestId("lot-row").filter({ hasText: "LOT-E2E-ADM" });
+  await page.getByTestId("lot-search").fill(LOT);
+  const lot = page.getByTestId("lot-row").filter({ hasText: LOT });
   await expect(lot.getByTestId("lot-meters")).toHaveText("120");
 
   await lot.getByTestId("adj-delta").fill("-5");
@@ -158,12 +183,12 @@ test("stock: adjustments need a reason, cannot overdraw, and are kept in the his
   await lot.getByTestId("adj-delta").fill("-5,5");
   await lot.getByTestId("adj-reason").fill("Rouleau abîmé");
   await lot.getByTestId("adj-submit").click();
-  await expect(page.getByText("Lot LOT-E2E-ADM ajusté.")).toBeVisible();
+  await expect(page.getByText(`Lot ${LOT} ajusté.`)).toBeVisible();
   await expect(lot.getByTestId("lot-meters")).toHaveText("114.5");
 
   const option = await lot.getByTestId("lot-dept").locator("option").nth(1).getAttribute("value");
   await lot.getByTestId("lot-dept").selectOption(option!);
-  await expect(page.getByText("Lot LOT-E2E-ADM déplacé.")).toBeVisible();
+  await expect(page.getByText(`Lot ${LOT} déplacé.`)).toBeVisible();
 
   await lot.getByTestId("lot-history").click();
   const movements = lot.getByTestId("lot-movements");
@@ -312,4 +337,16 @@ test("users: add a team member by e-mail, change a role, and nobody can change t
   // the API itself refuses anyone who is not an admin signed in
   expect((await request.get("/api/admin/users")).status()).toBe(403);
   expect((await request.patch("/api/admin/users", { data: { userId: "00000000-0000-4000-8000-000000000000", role: "admin" } })).status()).toBe(403);
+});
+
+test("only an admin can upload a fabric photo through the server", async ({ browser }) => {
+  const body = { multipart: { fabricId: "00000000-0000-4000-8000-000000000001", colorId: "00000000-0000-4000-8000-000000000002", file: { name: "p.png", mimeType: "image/png", buffer: PNG } } };
+  const anonymous = await browser.newContext();
+  expect((await anonymous.request.post("http://localhost:3100/api/admin/fabric-images", body)).status()).toBe(401);
+  await anonymous.close();
+  const context = await browser.newContext({ locale: "fr-FR", baseURL: "http://localhost:3100" });
+  const page = await context.newPage();
+  await signInOk(page, SALES, seededPassword(SALES));
+  expect((await page.request.post("/api/admin/fabric-images", body)).status()).toBe(403);
+  await context.close();
 });

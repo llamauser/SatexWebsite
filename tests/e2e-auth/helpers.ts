@@ -84,3 +84,10 @@ export async function purgeFabrics(where: string, params: unknown[] = []) {
     }
   });
 }
+
+/** Guests may start 10 matches (or photos) an hour from one address, counted in the database: several runs of the suite in an hour would hit that wall. */
+export async function resetGuestRateLimits() {
+  await withDb(async (c) => {
+    await c.query(`delete from public.rate_limits where key like 'match:g:%' or key like 'snap:g:%'`);
+  });
+}

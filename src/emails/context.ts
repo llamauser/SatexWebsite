@@ -16,6 +16,8 @@ export interface EmailJob {
   recipients: Recipient[];
   /** Facts of the email, formatted for one language. */
   vars: (locale: EmailLocale) => Record<string, string>;
+  /** A file kept in Storage that goes with the email (the quote PDF). */
+  attachment?: { bucket: string; path: string; filename: string };
 }
 export interface SiteSettings {
   company: string;
@@ -117,15 +119,18 @@ export async function loadEmailJob(sb: SupabaseClient, message: JobPayload, sett
     case "quote_expired": {
       const { data } = await sb
         .from("quotes")
-        .select("id, ref, client_id, total, currency, valid_until, rejection_reason, clients(company_name)")
+        .select("id, ref, client_id, total, currency, valid_until, rejection_reason, pdf_path, revision, clients(company_name)")
         .eq("id", id)
         .maybeSingle();
       if (!data) return null;
       const company = (data.clients as unknown as { company_name: string } | null)?.company_name ?? "";
       const recipients = def.audience === "staff" ? staffRecipient(settings) : await clientRecipients(sb, data.client_id);
-      return job(recipients, (l) => ({
+      const quoteJob = job(recipients, (l) => ({
         id, ref: text(data.ref), company, total: money(data.total, data.currency, l), validUntil: formatDateTime(data.valid_until, l, tz, false), reason: text(data.rejection_reason),
       }));
+      // the quote the client receives comes with its PDF
+      if (template === "quote_sent" && data.pdf_path) quoteJob.attachment = { bucket: "quote-pdfs", path: data.pdf_path, filename: `${text(data.ref) || "quote"}.pdf` };
+      return quoteJob;
     }
     case "order_confirmed":
     case "order_ready": {

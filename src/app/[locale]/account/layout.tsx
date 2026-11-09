@@ -8,7 +8,7 @@ export const metadata: Metadata = { robots: NOINDEX };
 
 export default async function AccountLayout({ children }: { children: React.ReactNode }) {
   return (
-    <NextIntlClientProvider messages={await clientMessages("account", "profile", "auth", "quotes", "reservations", "samples", "orders")}>
+    <NextIntlClientProvider messages={await clientMessages("account", "profile", "auth", "quotes", "reservations", "samples", "orders", "planner", "match")}>
       <main className="mx-auto max-w-[1200px] px-4 py-8 sm:px-6 lg:px-8">
         <AccountNav />
         <div className="py-8">{children}</div>

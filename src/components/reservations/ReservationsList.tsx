@@ -139,7 +139,7 @@ export function ReservationsList() {
             {history.map((r) => {
               const status = r.status === "active" ? "expired" : r.status; // past its time, not yet closed by the job
               return (
-                <li key={r.id} className="flex flex-wrap items-center justify-between gap-3 px-4 py-3" data-testid="reservation-past" data-status={status}>
+                <li key={r.id} className="flex flex-wrap items-center justify-between gap-3 px-4 py-3" data-testid="reservation-past" data-id={r.id} data-status={status}>
                   <span className="flex items-center gap-3">
                     <span className="size-5 shrink-0 rounded-full border border-border" style={{ background: r.hex }} aria-hidden />
                     <span>

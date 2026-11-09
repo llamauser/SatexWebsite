@@ -1,6 +1,8 @@
 "use client";
 
 import { ThumbsDown, ThumbsUp } from "lucide-react";
+import { AddToCompare } from "@/components/compare/AddToCompare";
+import { MiniFeelCard } from "@/components/feel/FeelCard";
 import Image from "next/image";
 import { useLocale, useTranslations } from "next-intl";
 import { useState } from "react";
@@ -154,6 +156,7 @@ export function MatchResults({
                     {colorName} · {t("available", { m: r.availableM })}
                   </p>
                   <p className="mt-3 text-text-muted" data-testid="match-explanation">{r.explanation}</p>
+                  {r.feel && <div className="mt-3 flex items-center gap-3"><MiniFeelCard scores={r.feel} /><p className="text-sm text-text-muted">{t("feelProfile")}</p></div>}
                   <dl className="mt-4 divide-y divide-border text-sm">
                     {([
                       [t("spec.composition"), r.composition.map((c) => `${c.pct}% ${loose(tf)(c.fiber)}`).join(" · ")],
@@ -177,6 +180,7 @@ export function MatchResults({
                     <Link href={`/catalog/${r.slug}`} className={buttonStyles({ variant: "secondary" })}>
                       {t("actions.view")}
                     </Link>
+                    <AddToCompare fabricId={r.fabricId} slug={r.slug} />
                   </div>
                 </div>
               </li>

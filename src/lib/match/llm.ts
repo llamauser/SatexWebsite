@@ -17,7 +17,7 @@ export type Locale = "fr" | "en" | "ar";
 const NO_USAGE: Usage = { inputTokens: 0, outputTokens: 0 };
 
 /** Forced tool call on the Anthropic Messages API: the reply is guaranteed to be a JSON object for `tool`. */
-async function callTool(opts: { system: string; user: string; tool: string; description: string; schema: object; maxTokens: number; env: NodeJS.ProcessEnv }): Promise<{ input: unknown; usage: Usage }> {
+export async function callTool(opts: { system: string; user: string; tool: string; description: string; schema: object; maxTokens: number; env: NodeJS.ProcessEnv }): Promise<{ input: unknown; usage: Usage }> {
   const res = await fetch("https://api.anthropic.com/v1/messages", {
     method: "POST",
     headers: { "content-type": "application/json", "x-api-key": opts.env.ANTHROPIC_API_KEY ?? "", "anthropic-version": "2023-06-01" },
@@ -39,7 +39,7 @@ async function callTool(opts: { system: string; user: string; tool: string; desc
 }
 
 /** JSON-mode request to a local Ollama model (development). */
-async function callOllamaJson(system: string, user: string, env: NodeJS.ProcessEnv): Promise<unknown> {
+export async function callOllamaJson(system: string, user: string, env: NodeJS.ProcessEnv): Promise<unknown> {
   const res = await fetch(`${ollamaUrl(env)}/api/chat`, {
     method: "POST",
     headers: { "content-type": "application/json" },

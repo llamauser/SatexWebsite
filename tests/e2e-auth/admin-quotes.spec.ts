@@ -135,6 +135,11 @@ test("send: PDF stored, status 'sent', e-mail and notification; the client downl
   await runJobs(request);
   const mail = await withDb(async (c) => (await c.query(`select to_email, status from public.email_log where template = 'quote_sent' and payload->>'entityId' = $1`, [q.id])).rows);
   expect(mail).toEqual([{ to_email: CLIENT, status: "logged" }]);
+  // the stored PDF goes with the email (the log provider records what would have been attached)
+  const attached = await withDb(async (c) => (await c.query(`select payload->'attachments' as a from public.email_log where template = 'quote_sent' and payload->>'entityId' = $1`, [q.id])).rows[0].a as { filename: string; bytes: number }[]);
+  expect(attached).toHaveLength(1);
+  expect(attached[0]!.filename).toMatch(/\.pdf$/);
+  expect(attached[0]!.bytes).toBe(stored.size);
   expect(await withDb(async (c) => (await c.query(`select count(*)::int as n from public.notifications n join auth.users u on u.id = n.user_id where u.email = $1 and n.type = 'quote_sent' and n.payload->>'entityId' = $2`, [CLIENT, q.id])).rows[0].n)).toBe(1);
 
   const clientContext = await browser.newContext({ locale: "fr-FR" });
