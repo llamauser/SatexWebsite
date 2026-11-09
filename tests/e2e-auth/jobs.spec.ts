@@ -142,9 +142,9 @@ test("the notification bell shows unread notifications and marks them read", asy
 
   await page.getByTestId("bell-mark-all").click();
   await expect(page.getByTestId("bell-count")).toHaveCount(0);
-  const unread = await withDb(async (c) =>
-    (await c.query(`select count(*)::int as n from public.notifications n join auth.users u on u.id = n.user_id where u.email = 'client2@satex.test' and n.read_at is null`)).rows[0].n);
-  expect(unread).toBe(0);
+  // the page updates at once and saves in the background: wait for the database
+  await expect.poll(async () => withDb(async (c) =>
+    (await c.query(`select count(*)::int as n from public.notifications n join auth.users u on u.id = n.user_id where u.email = 'client2@satex.test' and n.read_at is null`)).rows[0].n)).toBe(0);
 });
 
 test("guests do not see the bell", async ({ page }) => {

@@ -139,7 +139,11 @@ test("the reservations page shows countdowns; cancelling frees the stock; a rese
   const meters = await withDb(async (c) => Number((await c.query(`select meters from public.stock_reservations where id = $1`, [firstId])).rows[0].meters));
   await first.getByTestId("reservation-to-quote").click();
   await expect(page.getByTestId("cart-drawer")).toBeVisible();
-  await expect(page.getByTestId("cart-meters").first()).toHaveValue(String(meters));
+  // the reserved meters join the line of that color in the quote cart (which may already hold some, in a database seeded with demo data)
+  const firstColor = await withDb(async (c) => (await c.query(`select color_id from public.stock_reservations where id = $1`, [firstId])).rows[0].color_id as string);
+  const line = page.locator(`[data-testid="cart-line"][data-color="${firstColor}"]`);
+  await expect(line).toBeVisible();
+  expect(Number(await line.getByTestId("cart-meters").inputValue())).toBeGreaterThanOrEqual(meters);
   await page.keyboard.press("Escape");
 
   // cancel the oldest: it leaves the active list, enters the history, the stock comes back
@@ -151,9 +155,10 @@ test("the reservations page shows countdowns; cancelling frees the stock; a rese
   await expect(page.getByTestId("reservation-row")).toHaveCount(2);
   await expect(page.getByTestId("reservation-slots")).toHaveText("2 sur 3 réservations actives");
   await expect(page.getByTestId("reservations-full")).toHaveCount(0);
-  await expect(page.getByTestId("reservation-past")).toHaveCount(1);
-  await expect(page.getByTestId("reservation-past").first()).toHaveAttribute("data-status", "cancelled");
-  await expect(page.getByTestId("reservation-status").first()).toHaveText("Annulée");
+  // the history may hold other, older reservations (a database seeded with demo data): look for the cancelled one
+  const cancelled = page.locator('[data-testid="reservation-past"][data-status="cancelled"]');
+  await expect(cancelled.first()).toBeVisible();
+  await expect(cancelled.first().getByTestId("reservation-status")).toHaveText("Annulée");
   expect(await available(colorId)).toBeGreaterThan(held);
 });
 
