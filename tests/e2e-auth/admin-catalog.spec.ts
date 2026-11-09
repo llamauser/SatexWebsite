@@ -1,6 +1,6 @@
-import { readFileSync } from "node:fs";
+﻿import { readFileSync } from "node:fs";
 import { expect, test, type APIRequestContext, type Page } from "@playwright/test";
-import { seededPassword, signInOk, withDb } from "./helpers";
+import { purgeFabrics, seededPassword, signInOk, withDb } from "./helpers";
 
 test.use({ locale: "fr-FR" });
 test.describe.configure({ mode: "serial" });
@@ -13,13 +13,14 @@ const jobs = { authorization: "Bearer e2e-cron-secret" };
 // a 1x1 transparent PNG
 const PNG = Buffer.from("iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNkYPhfDwAChwGA60e6kgAAAABJRU5ErkJggg==", "base64");
 
-const cleanup = () =>
-  withDb(async (c) => {
-    await c.query(`delete from public.fabrics where sku = $1 or sku like 'IMP-%'`, [SKU]);
+const cleanup = async () => {
+  await purgeFabrics("f.sku = $1 or f.sku like 'IMP-%'", [SKU]);
+  await withDb(async (c) => {
     await c.query(`delete from public.departments where slug = 'e2e-dept'`);
     await c.query(`update public.app_settings set value = '0.20' where key = 'vat_rate'`);
     await c.query(`delete from auth.users where email = $1`, [STAFF_EMAIL]);
   });
+};
 test.beforeAll(cleanup);
 test.afterAll(cleanup);
 

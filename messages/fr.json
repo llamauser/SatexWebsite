@@ -179,7 +179,8 @@
       "profile": "Profil",
       "quotes": "Devis",
       "reservations": "Réservations",
-      "samples": "Échantillons"
+      "samples": "Échantillons",
+      "orders": "Commandes"
     },
     "overview": {
       "loading": "Chargement…",
@@ -270,7 +271,14 @@
       "users": "Utilisateurs",
       "settings": "Réglages",
       "matchLogs": "Journal IA",
-      "quotes": "Devis"
+      "quotes": "Devis",
+      "orders": "Commandes",
+      "cutting": "Coupe",
+      "deliveries": "Livraisons",
+      "samples": "Échantillons",
+      "clients": "Clients",
+      "messages": "Messages",
+      "reservations": "Réservations"
     },
     "home": {
       "fabrics": "Créer et modifier les tissus, les coloris, les photos, importer un fichier CSV.",
@@ -727,6 +735,249 @@
       "cancelled": "Devis annulé.",
       "reasonRequired": "Indiquez un motif.",
       "actionError": "Action impossible dans l'état actuel du devis."
+    },
+    "dashboard": {
+      "error": "Impossible de charger le tableau de bord.",
+      "loading": "Chargement…",
+      "cards": {
+        "quotes_to_review": "Devis à étudier",
+        "quotes_to_convert": "Devis acceptés à transformer",
+        "orders_open": "Commandes en cours",
+        "cutting_queue": "Coupes à faire",
+        "deliveries_today": "Livraisons du jour",
+        "samples_to_prepare": "Échantillons à préparer",
+        "low_stock_colors": "Coloris en stock bas",
+        "reservations_expiring": "Réservations qui expirent (6 h)",
+        "messages_unhandled": "Messages à traiter"
+      },
+      "hints": {
+        "quotes_to_review": "Demandes reçues, en attente d'un prix",
+        "quotes_to_convert": "Le client a accepté : créer la commande",
+        "orders_open": "Confirmées, en préparation, prêtes ou expédiées",
+        "cutting_queue": "Ordres de coupe en attente ou en cours",
+        "deliveries_today": "Planifiées pour aujourd'hui",
+        "samples_to_prepare": "Demandées, acceptées ou en préparation",
+        "low_stock_colors": "Sous le seuil de stock bas",
+        "reservations_expiring": "À relancer ou à libérer",
+        "messages_unhandled": "Formulaire de contact"
+      },
+      "openValue": "Valeur des devis envoyés en attente de réponse : {amount}"
+    },
+    "orders": {
+      "title": "Commandes",
+      "search": "Rechercher (référence, société)",
+      "filter": "Statut",
+      "filterOpen": "En cours",
+      "filterAll": "Toutes",
+      "error": "Impossible de charger les commandes.",
+      "loading": "Chargement…",
+      "empty": "Aucune commande.",
+      "cols": {
+        "ref": "Référence",
+        "client": "Société",
+        "status": "Statut",
+        "payment": "Paiement",
+        "lines": "Lignes",
+        "date": "Date",
+        "total": "Total TTC"
+      }
+    },
+    "order": {
+      "notFound": "Commande introuvable.",
+      "loading": "Chargement…",
+      "back": "← Toutes les commandes",
+      "statusDone": "Statut : {status}.",
+      "reasonRequired": "Indiquez un motif.",
+      "actionError": "Action impossible dans l'état actuel de la commande.",
+      "paymentDone": "Paiement mis à jour.",
+      "saveError": "Enregistrement impossible.",
+      "notesSaved": "Notes enregistrées.",
+      "summary": "Résumé",
+      "client": "Client",
+      "quote": "Devis",
+      "total": "Total TTC",
+      "progress": "Coupes terminées",
+      "jobsDone": "{done} sur {total}",
+      "shipTo": "Livraison à",
+      "payment": "Paiement",
+      "start": "Démarrer la préparation",
+      "markReady": "Marquer comme prête",
+      "cancel": "Annuler la commande",
+      "cancelReason": "Motif (obligatoire)",
+      "cancelHint": "Le stock réservé est libéré et les coupes non terminées sont annulées.",
+      "cancelConfirm": "Confirmer l'annulation",
+      "keep": "Garder la commande",
+      "cancelledReason": "Commande annulée : {reason}",
+      "lines": "Lignes et coupes",
+      "cols": {
+        "fabric": "Tissu",
+        "meters": "Mètres",
+        "unitPrice": "Prix / m",
+        "lineTotal": "Total HT",
+        "cutting": "Coupe"
+      },
+      "toBoard": "Ouvrir le tableau de coupe",
+      "deliveries": "Livraisons",
+      "deliveryHint": "La commande est prête : planifiez la livraison.",
+      "carrier": "Transporteur",
+      "tracking": "Numéro de suivi",
+      "date": "Date prévue",
+      "createDelivery": "Planifier la livraison",
+      "noDelivery": "Aucune livraison pour le moment.",
+      "notes": "Notes",
+      "internalNotes": "Notes internes (jamais visibles par le client)",
+      "saveNotes": "Enregistrer les notes"
+    },
+    "delivery": {
+      "needTracking": "Indiquez le transporteur et le numéro de suivi pour expédier.",
+      "needReason": "Indiquez un motif.",
+      "error": "Action impossible dans l'état actuel de la livraison.",
+      "failure": "Échec : {reason}",
+      "carrier": "Transporteur",
+      "tracking": "Numéro de suivi",
+      "date": "Date prévue",
+      "save": "Enregistrer",
+      "ship": "Expédier",
+      "delivered": "Marquer comme livrée",
+      "fail": "Signaler un échec",
+      "failReason": "Motif de l'échec",
+      "failConfirm": "Confirmer l'échec",
+      "keep": "Annuler"
+    },
+    "cutting": {
+      "title": "Tableau de coupe",
+      "lead": "Glissez une carte de colonne en colonne, ou utilisez les boutons.",
+      "loading": "Chargement…",
+      "columns": {
+        "queued": "En attente",
+        "cutting": "En coupe",
+        "ready": "Coupé"
+      },
+      "age": "{days} j",
+      "start": "Démarrer la coupe",
+      "finish": "Terminer la coupe",
+      "emptyColumn": "Aucune carte.",
+      "startTitle": "Démarrer la coupe — {ref}",
+      "finishTitle": "Terminer la coupe — {ref}",
+      "chooseLot": "Choisissez le lot à couper",
+      "noLot": "Aucun lot de ce coloris n'a assez de mètres ({m} m). Recevez du stock ou ajustez un lot.",
+      "actualMeters": "Mètres réellement coupés",
+      "actualHint": "Prévu : {m} m. La différence est enregistrée.",
+      "cancel": "Annuler",
+      "confirmStart": "Démarrer",
+      "confirmFinish": "Terminer",
+      "lotTooSmall": "Ce lot n'a pas assez de mètres.",
+      "cutInvalid": "Indiquez un nombre de mètres positif.",
+      "cutTooMuch": "Le lot ne contient pas autant de mètres.",
+      "error": "Action impossible. Réessayez.",
+      "started": "Coupe démarrée pour {ref}.",
+      "finished": "Coupe terminée pour {ref}.",
+      "badMove": "Ce déplacement n'est pas possible : une carte avance d'une colonne à la fois."
+    },
+    "deliveries": {
+      "title": "Livraisons",
+      "filter": "Filtre",
+      "filterOpen": "À livrer",
+      "filterToday": "Aujourd'hui",
+      "filterAll": "Toutes",
+      "error": "Impossible de charger les livraisons.",
+      "loading": "Chargement…",
+      "empty": "Aucune livraison."
+    },
+    "samples": {
+      "title": "Demandes d'échantillons",
+      "filter": "Statut",
+      "filterTodo": "À traiter",
+      "filterAll": "Toutes",
+      "needReason": "Indiquez le motif du refus.",
+      "needTracking": "Indiquez le numéro de suivi pour expédier.",
+      "error": "Action impossible. Réessayez.",
+      "moved": "{ref} : {status}.",
+      "loading": "Chargement…",
+      "loadError": "Impossible de charger les demandes.",
+      "empty": "Aucune demande.",
+      "reason": "Motif du refus : {reason}",
+      "tracking": "Transporteur : {carrier} · Suivi : {number}",
+      "rejectReason": "Motif du refus (si refus)",
+      "carrier": "Transporteur",
+      "trackingNumber": "Numéro de suivi",
+      "actions": {
+        "requested": "Remettre en attente",
+        "approved": "Accepter",
+        "rejected": "Refuser",
+        "preparing": "En préparation",
+        "shipped": "Expédier",
+        "delivered": "Marquer comme livrée"
+      }
+    },
+    "reservations": {
+      "title": "Réservations",
+      "lead": "Mètres gardés pour les clients. Libérer une réservation remet le stock en vente.",
+      "error": "Impossible de charger les réservations.",
+      "loading": "Chargement…",
+      "cols": {
+        "client": "Client",
+        "fabric": "Tissu et coloris",
+        "meters": "Mètres",
+        "left": "Temps restant"
+      },
+      "release": "Libérer",
+      "expired": "expirée",
+      "empty": "Aucune réservation active."
+    },
+    "clients": {
+      "title": "Clients",
+      "search": "Rechercher (société, contact)",
+      "error": "Impossible de charger les clients.",
+      "loading": "Chargement…",
+      "demo": "démo",
+      "empty": "Aucun client.",
+      "cols": {
+        "company": "Société",
+        "contact": "Contact",
+        "country": "Pays",
+        "quotes": "Devis",
+        "orders": "Commandes",
+        "samples": "Échantillons",
+        "since": "Depuis"
+      }
+    },
+    "client": {
+      "notFound": "Client introuvable.",
+      "loading": "Chargement…",
+      "back": "← Tous les clients",
+      "company": "Société et contacts",
+      "fields": {
+        "taxId": "N° fiscal",
+        "website": "Site web",
+        "country": "Pays",
+        "since": "Client depuis"
+      },
+      "address": {
+        "billing": "Facturation",
+        "shipping": "Livraison"
+      },
+      "quotes": "Devis",
+      "orders": "Commandes",
+      "samples": "Échantillons",
+      "none": "Rien pour le moment.",
+      "notes": "Notes internes",
+      "notesHint": "Visibles par l'équipe uniquement.",
+      "notesLabel": "Notes sur ce client",
+      "saveNotes": "Enregistrer les notes",
+      "notesSaved": "Notes enregistrées.",
+      "notesError": "Enregistrement impossible."
+    },
+    "messages": {
+      "title": "Messages du formulaire de contact",
+      "filter": "Affichage",
+      "open": "À traiter",
+      "handled": "Traités",
+      "all": "Tous",
+      "error": "Impossible de charger les messages.",
+      "loading": "Chargement…",
+      "empty": "Aucun message.",
+      "markHandled": "Traité"
     }
   },
   "structures": {
@@ -1555,5 +1806,58 @@
     "message": "Votre message",
     "terms": "Conditions",
     "footer": "Expert textile depuis {year}"
+  },
+  "orders": {
+    "status": {
+      "confirmed": "Confirmée",
+      "in_preparation": "En préparation",
+      "ready": "Prête",
+      "shipped": "Expédiée",
+      "delivered": "Livrée",
+      "cancelled": "Annulée"
+    },
+    "payment": {
+      "unpaid": "Non payée",
+      "partial": "Partiellement payée",
+      "paid": "Payée"
+    },
+    "delivery": {
+      "scheduled": "Planifiée",
+      "in_transit": "En transit",
+      "delivered": "Livrée",
+      "failed": "Échec"
+    },
+    "cutting": {
+      "queued": "En attente",
+      "cutting": "En coupe",
+      "ready": "Coupé",
+      "cancelled": "Annulé"
+    },
+    "list": {
+      "title": "Mes commandes",
+      "loading": "Chargement…",
+      "error": "Impossible de charger vos commandes.",
+      "none": "Vous n'avez pas encore de commande. Une commande est créée par notre équipe quand vous acceptez un devis.",
+      "toQuotes": "Voir mes devis",
+      "lines": "{count, plural, one {# ligne} other {# lignes}}"
+    },
+    "detail": {
+      "back": "← Toutes mes commandes",
+      "loading": "Chargement…",
+      "missing": "Cette commande est introuvable.",
+      "placed": "Passée le {date}",
+      "progress": "Avancement",
+      "cancelled": "Cette commande a été annulée. Motif : {reason}",
+      "fabric": "Tissu",
+      "meters": "Quantité",
+      "unit": "Prix / m",
+      "lineTotal": "Total HT",
+      "subtotal": "Sous-total HT",
+      "discount": "Remise ({pct} %)",
+      "total": "Total TTC (TVA {vat} %)",
+      "delivery": "Livraison",
+      "noDelivery": "La livraison sera planifiée quand votre commande sera prête.",
+      "carrier": "Transporteur : {carrier}"
+    }
   }
 }
