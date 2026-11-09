@@ -78,7 +78,7 @@ export function AccountMenu() {
         </Link>
         <Link
           href="/auth/sign-up"
-          className={`${buttonStyles({ size: "sm" })} hidden sm:inline-flex`}
+          className={`${buttonStyles({ size: "sm" })} max-sm:hidden`}
           style={{ background: "var(--primary-gradient)" }}
         >
           {t("createAccount")}

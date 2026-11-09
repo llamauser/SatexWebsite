@@ -25,7 +25,7 @@ export function DesktopNav() {
   const t = useTranslations("nav");
   const isActive = useActive();
   return (
-    <nav aria-label={t("main")} className="hidden items-center gap-1 md:flex">
+    <nav aria-label={t("main")} className="hidden items-center gap-1 min-[1100px]:flex">
       {NAV_ITEMS.map((item) => (
         <Link
           key={item.href}
@@ -59,7 +59,7 @@ export function MobileNav() {
   }, [open]);
 
   return (
-    <div className="md:hidden">
+    <div className="min-[1100px]:hidden">
       <button
         type="button"
         aria-expanded={open}

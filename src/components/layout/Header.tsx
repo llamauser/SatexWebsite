@@ -19,7 +19,7 @@ export function Header() {
         </Link>
         <DesktopNav />
         <div className="flex items-center gap-2 sm:gap-3">
-          <div className="hidden md:block">
+          <div className="hidden min-[1100px]:block">
             <LanguageSwitcher />
           </div>
           <CartButton />

@@ -24,6 +24,8 @@ function supabaseImagePattern() {
 }
 
 const nextConfig: NextConfig = {
+  // `pnpm dev` writes to its own folder, so a production build (or the e2e tests) can never break a dev server that is running.
+  distDir: process.env.NODE_ENV === "development" ? ".next-dev" : ".next",
   reactStrictMode: true,
   poweredByHeader: false,
   images: { remotePatterns: supabaseImagePattern(), formats: ["image/avif", "image/webp"] },

@@ -59,7 +59,7 @@ export async function Footer() {
           <ul className="mt-3 space-y-2 text-sm" data-testid="footer-contact">
             {settings.contactEmail && (
               <li>
-                <a href={`mailto:${settings.contactEmail}`} className="hover:text-primary" dir="ltr">
+                <a href={`mailto:${settings.contactEmail}`} className="break-all hover:text-primary" dir="ltr">
                   {settings.contactEmail}
                 </a>
               </li>
