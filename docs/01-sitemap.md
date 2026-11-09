@@ -16,7 +16,7 @@ Roles: **G** guest, **C** client, **S** sales, **A** admin (see `03-permissions.
 | `/catalog/[slug]` | all | P1 | Fabric detail: gallery, name, tags, spec table (composition, GSM, width, construction, structure, stretch, finish, best uses, seasons), color swatches with live stock per color, price tiers, MOQ, buttons "Add to quote", "Request sample", "Reserve 48h" (C only); similar fabrics (vector, 4 items). P3 adds the "Feel & Drape" tab |
 | `/match` | all | P1 | AI Fabric Matching wizard, 5 steps (see `06-ai-matching.md`) |
 | `/match/[sessionId]` | all (owner or by link) | P1 | Results: top 3–5 matches, score, explanation, refinement chips, actions |
-| `/showroom` | all | P1 | 3D showroom (see `07-showroom-3d.md`), with 2D fallback |
+| `/showroom` | all | P1 | 3D showroom (see `07-showroom-3d.md`), with a picture when WebGL is missing |
 | `/about` | all | P1 | Company story, since 1995, departments, values (static i18n content) |
 | `/contact` | all | P1 | Contact form (name, company, email, phone, message, consent checkbox) → `contact_messages` + email to staff; contact details; map placeholder |
 | `/legal/privacy`, `/legal/terms` | all | P1 | Static legal pages (i18n markdown) |

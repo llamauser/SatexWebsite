@@ -24,10 +24,17 @@ for (const locale of ["fr", "en", "ar"] as const) {
   });
 }
 
-test("the showroom plan with a department panel open, and the cart drawer", async ({ page }) => {
-  await page.addInitScript(() => { if (localStorage.getItem("satex.showroom.view") === null) localStorage.setItem("satex.showroom.view", "2d"); });
+test("the showroom with a department panel open, and the cart drawer", async ({ page }) => {
+  // no WebGL: the page shows its picture and the list, which is what this audits (the 3D scene has its own tests)
+  await page.addInitScript(() => {
+    const original = HTMLCanvasElement.prototype.getContext;
+    HTMLCanvasElement.prototype.getContext = function (this: HTMLCanvasElement, kind: string, ...rest: unknown[]) {
+      if (kind === "webgl" || kind === "webgl2" || kind === "experimental-webgl") return null;
+      return (original as (...a: unknown[]) => unknown).call(this, kind, ...rest) as never;
+    } as never;
+  });
   await page.goto("/fr/showroom");
-  await page.locator('[data-testid="plan-department"][data-slug="knits"]').click();
+  await page.locator('[data-testid="department-chip"][data-slug="knits"]').click();
   await expect(page.getByTestId("department-panel")).toBeVisible();
   await audit(page, "showroom panel");
   await page.goto("/fr/catalog/linen-plain-160");

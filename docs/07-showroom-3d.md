@@ -42,9 +42,9 @@ Inspired by the video: an isometric, stylized two-floor warehouse (fabric halls 
 - Live stock: subscribe to Realtime on `stock_lots`; rack roll counts scale with available meters (1 roll per 100 m, max 12).
 
 ## 5. Fallback & performance
-- Show the **2D floor plan** (SVG generated from the same layouts, two tabs for the floors, same click → panel) when: WebGL is unavailable, `navigator.deviceMemory < 4`, `prefers-reduced-motion`, or the user toggles "2D view". The toggle state is saved in localStorage.
+- There is **no 2D view** (it was removed on purpose). Without WebGL, or if the scene crashes, the page shows the picture `public/showroom/preview.webp` with a note saying why; the department list and the panels keep working. Small or low-memory devices and visitors who prefer reduced motion get the 3D scene like everyone else (it is optimised for phones).
 - Budget: < 150 draw calls (instanced props), < 1.5 MB JS for the showroom chunk (the models, about 6 MB, are loaded separately), 60 fps on a mid laptop, ≥ 30 fps on a mid phone.
-- A static pre-rendered image (`public/showroom/preview.webp`, made from a screenshot) is used on the home page teaser and as the loading placeholder.
+- A static pre-rendered image (`public/showroom/preview.webp`, made from a screenshot) is used on the home page teaser, as the loading placeholder and as the picture when 3D is not available.
 - Accessibility: the department list is also rendered as an accessible HTML list (screen readers and keyboard navigation), synced with the 3D selection.
 
 ## 6. Polish pass (people, props, shadows)

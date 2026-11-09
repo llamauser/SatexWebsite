@@ -1960,15 +1960,10 @@
   "showroom": {
     "title": "Le showroom SATEX",
     "lead": "Visitez nos deux étages : halls de tissus, atelier de coupe, expédition, studio et bureaux. Cliquez sur un département pour voir le stock en direct.",
-    "planLabel": "Plan de l'étage {floor}",
     "sceneLabel": "Showroom 3D interactif : utilisez la liste des départements pour une navigation au clavier.",
-    "hint": "Cliquez sur un département, sur le plan ou dans la liste. Glissez pour déplacer la vue, molette pour zoomer.",
+    "hint": "Cliquez sur un département, dans la scène ou dans la liste. Glissez pour déplacer la vue, molette pour zoomer.",
     "empty": "Le showroom n'est pas disponible pour le moment.",
-    "views": {
-      "label": "Mode d'affichage",
-      "3d": "Vue 3D",
-      "2d": "Vue 2D"
-    },
+    "pictureAlt": "Image du showroom SATEX : les halls de tissus au rez-de-chaussée, le studio et les bureaux à l'étage",
     "floors": {
       "label": "Étage",
       "both": "Les deux étages",
@@ -1977,9 +1972,8 @@
     },
     "floorName": "étage {n}",
     "fallback": {
-      "webgl": "Votre navigateur ne peut pas afficher la 3D : voici le plan.",
-      "memory": "Pour rester fluide sur cet appareil, nous affichons le plan 2D. Vous pouvez passer en vue 3D.",
-      "motion": "Vous avez demandé moins d'animations : voici le plan 2D. Vous pouvez passer en vue 3D."
+      "webgl": "Votre navigateur ne peut pas afficher la 3D : voici une image du showroom. La liste des départements ci-dessous fonctionne normalement.",
+      "crashed": "La 3D n'a pas pu démarrer sur cet appareil : voici une image du showroom. La liste des départements ci-dessous fonctionne normalement."
     },
     "legend": {
       "title": "DEUX ÉTAGES",

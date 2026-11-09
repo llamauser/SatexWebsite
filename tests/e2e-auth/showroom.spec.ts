@@ -3,20 +3,26 @@ import { withDb } from "./helpers";
 
 test.use({ locale: "fr-FR" });
 
-// only the first visit is forced: a later choice made on the page (and kept in the browser) must survive a reload
-const prefer = (page: Page, view: "2d" | "3d") => page.addInitScript((v) => { if (localStorage.getItem("satex.showroom.view") === null) localStorage.setItem("satex.showroom.view", v); }, view);
+// a browser without WebGL: the page shows a picture, and the department list and the panels work the same (and the test does not wait for 3D)
+const noWebgl = (page: Page) => page.addInitScript(() => {
+  const original = HTMLCanvasElement.prototype.getContext;
+  HTMLCanvasElement.prototype.getContext = function (this: HTMLCanvasElement, kind: string, ...rest: unknown[]) {
+    if (kind === "webgl" || kind === "webgl2" || kind === "experimental-webgl") return null;
+    return (original as (...a: unknown[]) => unknown).call(this, kind, ...rest) as never;
+  } as never;
+});
+const chip = (page: Page, slug: string) => page.locator(`[data-testid="department-chip"][data-slug="${slug}"]`);
 
-test("the plan shows the 11 departments of the database, floor by floor, and the panels say true things", async ({ page }) => {
-  await prefer(page, "2d");
+test("the list shows the 11 departments of the database, and the panels say true things", async ({ page }) => {
+  await noWebgl(page);
   await page.goto("/fr/showroom");
   await expect(page.getByRole("heading", { level: 1, name: "Le showroom SATEX" })).toBeVisible();
-  await expect(page.getByTestId("showroom")).toHaveAttribute("data-view", "2d");
+  await expect(page.getByTestId("showroom")).toHaveAttribute("data-view", "picture");
   await expect(page.getByTestId("department-chip")).toHaveCount(11);
-  await expect(page.getByTestId("plan-department")).toHaveCount(8); // ground floor: 6 fabric halls, cutting, shipping
   await expect(page.getByTestId("panel-placeholder")).toBeVisible();
 
   // a fabric hall: live stock from the same data as the catalog
-  await page.locator('[data-testid="plan-department"][data-slug="knits"]').click();
+  await chip(page, "knits").click();
   await expect(page.getByTestId("panel-title")).toHaveText("Maille & sport");
   const expected = await withDb(async (c) =>
     (await c.query(
@@ -36,61 +42,50 @@ test("the plan shows the 11 departments of the database, floor by floor, and the
   await expect(page.getByTestId("panel-ai")).toHaveAttribute("href", /^\/fr\/match\?topic=Maille/); // the department goes with the visitor
 
   // cutting room and dock: public, anonymous counters
-  await page.locator('[data-testid="plan-department"][data-slug="cutting"]').click();
+  await chip(page, "cutting").click();
   await expect(page.getByTestId("panel-counters")).toBeVisible();
   const counters = await withDb(async (c) => (await c.query(`select public.showroom_stats() as s`)).rows[0].s as { cutting_today: number; cutting_queue: number; shipped_week: number });
   // the page is cached for a few minutes, so the number may be a little behind the database: it is a whole number of the right order
   const queue = Number((await page.getByTestId("counter-cutting-queue").innerText()).trim());
   expect(Number.isInteger(queue)).toBe(true);
   expect(Math.abs(queue - counters.cutting_queue)).toBeLessThanOrEqual(Math.max(5, counters.cutting_queue));
-  await page.locator('[data-testid="plan-department"][data-slug="shipping"]').click();
+  await chip(page, "shipping").click();
   await expect(page.getByTestId("counter-shipped")).toBeVisible();
 
   // the upper floor
-  await page.getByTestId("floor-1").click();
-  await expect(page.getByTestId("plan-department")).toHaveCount(3);
-  await page.locator('[data-testid="plan-department"][data-slug="client-suite"]').click();
+  await chip(page, "client-suite").click();
   await expect(page.getByTestId("panel-contact")).toHaveAttribute("href", "/fr/contact");
   await page.getByTestId("panel-close").click();
   await expect(page.getByTestId("panel-placeholder")).toBeVisible();
 });
 
-test("the department list works with the keyboard and switches floors by itself", async ({ page }) => {
-  await prefer(page, "2d");
+test("the department list works with the keyboard", async ({ page }) => {
+  await noWebgl(page);
   await page.goto("/fr/showroom");
-  const chip = page.locator('[data-testid="department-chip"][data-slug="offices"]');
-  await chip.focus();
+  await chip(page, "offices").focus();
   await page.keyboard.press("Enter");
   await expect(page.getByTestId("panel-title")).toHaveText("Bureaux");
-  await expect(page.getByTestId("showroom")).toHaveAttribute("data-view", "2d");
-  await expect(page.getByTestId("floor-plan")).toHaveAttribute("data-floor", "1"); // the plan followed the choice
-  await expect(chip).toHaveAttribute("aria-pressed", "true");
-  await page.locator('[data-testid="plan-department"][data-slug="offices"]').focus();
-  await page.keyboard.press("Enter");
-  await expect(page.getByTestId("panel-title")).toHaveText("Bureaux");
+  await expect(chip(page, "offices")).toHaveAttribute("aria-pressed", "true");
+  await page.keyboard.press("Enter"); // pressed again: back to no department
+  await expect(page.getByTestId("panel-placeholder")).toBeVisible();
 });
 
-test("without WebGL the plan is shown, with the reason", async ({ page }) => {
-  await page.addInitScript(() => {
-    const original = HTMLCanvasElement.prototype.getContext;
-    HTMLCanvasElement.prototype.getContext = function (this: HTMLCanvasElement, kind: string, ...rest: unknown[]) {
-      if (kind === "webgl" || kind === "webgl2" || kind === "experimental-webgl") return null;
-      return (original as (...a: unknown[]) => unknown).call(this, kind, ...rest) as never;
-    } as never;
-  });
-  await prefer(page, "3d"); // even when 3D was chosen before
+test("without WebGL a picture is shown, with the reason, and there is no 2D plan", async ({ page }) => {
+  await noWebgl(page);
   await page.goto("/fr/showroom");
-  await expect(page.getByTestId("showroom")).toHaveAttribute("data-view", "2d");
+  await expect(page.getByTestId("showroom")).toHaveAttribute("data-view", "picture");
   await expect(page.getByTestId("showroom")).toHaveAttribute("data-reason", "webgl");
   await expect(page.getByTestId("fallback-note")).toContainText("ne peut pas afficher la 3D");
-  await expect(page.getByTestId("floor-plan")).toBeVisible();
+  await expect(page.getByTestId("scene-picture").getByRole("img")).toBeVisible();
+  await expect(page.getByTestId("floor-plan")).toHaveCount(0);
+  await expect(page.getByTestId("view-2d")).toHaveCount(0);
+  await expect(page.getByTestId("floor-toggle")).toHaveCount(0);
   await expect(page.locator("canvas")).toHaveCount(0);
 });
 
-test("the 3D scene loads, follows the list, and the 2D choice is remembered", async ({ page }) => {
+test("the 3D scene loads and follows the list and the floor buttons", async ({ page }) => {
   const errors: string[] = [];
   page.on("pageerror", (e) => errors.push(e.message));
-  await prefer(page, "3d");
   await page.goto("/fr/showroom");
   await expect(page.getByTestId("showroom")).toHaveAttribute("data-view", "3d", { timeout: 20_000 });
   await expect(page.getByTestId("scene").locator("canvas")).toBeVisible({ timeout: 20_000 });
@@ -103,22 +98,17 @@ test("the 3D scene loads, follows the list, and the 2D choice is remembered", as
   await page.getByTestId("floor-both").click();
   await expect(page.getByTestId("scene").locator("canvas")).toBeVisible();
 
-  // 2D on demand, remembered for the next visit
-  await page.getByTestId("view-2d").click();
-  await expect(page.getByTestId("showroom")).toHaveAttribute("data-view", "2d");
-  expect(await page.evaluate(() => localStorage.getItem("satex.showroom.view"))).toBe("2d");
-  await page.reload();
-  await expect(page.getByTestId("showroom")).toHaveAttribute("data-view", "2d");
+  await expect(page.getByTestId("view-2d")).toHaveCount(0); // there is no 2D view any more
   expect(errors).toEqual([]);
 });
 
 test("the showroom works in Arabic (right to left)", async ({ page }) => {
-  await prefer(page, "2d");
+  await noWebgl(page);
   await page.goto("/ar/showroom");
   await expect(page.locator("html")).toHaveAttribute("dir", "rtl");
   await expect(page.getByRole("heading", { level: 1, name: "معرض ساتكس" })).toBeVisible();
   await expect(page.getByTestId("department-chip")).toHaveCount(11);
-  await page.locator('[data-testid="plan-department"][data-slug="denim"]').click();
+  await chip(page, "denim").click();
   await expect(page.getByTestId("panel-title")).toHaveText("دنيم");
   await expect(page.getByTestId("legend")).toContainText("طابقان");
 });

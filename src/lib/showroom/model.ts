@@ -1,4 +1,4 @@
-/** The showroom (docs/07-showroom-3d.md): shapes and rules shared by the server, the 3D scene and the 2D plan. Pure. */
+/** The showroom (docs/07-showroom-3d.md): shapes and rules shared by the server and the 3D scene. Pure. */
 import type { I18nField } from "@/lib/data/format";
 import { FLOOR_D, FLOOR_W, type Layout } from "@/lib/admin/departments";
 
@@ -54,19 +54,10 @@ export function departmentStock(dep: ShowroomDepartment, availability: Record<st
 export type FloorMode = "both" | 0 | 1;
 export const isVisibleFloor = (mode: FloorMode, floor: number) => mode === "both" || mode === floor;
 
-export type ViewChoice = "auto" | "3d" | "2d";
-export interface Capabilities { webgl: boolean; deviceMemoryGb: number | null; reducedMotion: boolean }
+export interface Capabilities { webgl: boolean }
 
-/** Why the plan is shown instead of the 3D scene, or null when 3D can be used (docs/07 §5). */
-export function fallbackReason(caps: Capabilities, choice: ViewChoice): "choice" | "webgl" | "memory" | "motion" | null {
-  if (choice === "2d") return "choice";
-  if (!caps.webgl) return "webgl";
-  if (choice === "3d") return null; // the visitor asked for 3D explicitly
-  if (caps.deviceMemoryGb !== null && caps.deviceMemoryGb < 4) return "memory";
-  if (caps.reducedMotion) return "motion";
-  return null;
-}
-export const parseViewChoice = (raw: string | null | undefined): ViewChoice => (raw === "2d" || raw === "3d" ? raw : "auto");
+/** Why the picture is shown instead of the 3D scene, or null when 3D can be used. Without WebGL nothing can be drawn. */
+export const fallbackReason = (caps: Capabilities): "webgl" | null => (caps.webgl ? null : "webgl");
 
 // ------------------------------------------------------------------ geometry
 export const centerOf = (l: Layout) => ({ x: l.x + l.w / 2, z: l.z + l.d / 2 });

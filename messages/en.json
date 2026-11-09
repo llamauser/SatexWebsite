@@ -1960,15 +1960,10 @@
   "showroom": {
     "title": "The SATEX showroom",
     "lead": "Visit both floors: fabric halls, cutting room, shipping, studio and offices. Click a department to see live stock.",
-    "planLabel": "Floor {floor} plan",
     "sceneLabel": "Interactive 3D showroom: use the department list for keyboard navigation.",
-    "hint": "Click a department on the plan or in the list. Drag to move the view, scroll to zoom.",
+    "hint": "Click a department in the scene or in the list. Drag to move the view, scroll to zoom.",
     "empty": "The showroom is not available right now.",
-    "views": {
-      "label": "Display mode",
-      "3d": "3D view",
-      "2d": "2D view"
-    },
+    "pictureAlt": "Picture of the SATEX showroom: the fabric halls on the ground floor, the studio and offices upstairs",
     "floors": {
       "label": "Floor",
       "both": "Both floors",
@@ -1977,9 +1972,8 @@
     },
     "floorName": "floor {n}",
     "fallback": {
-      "webgl": "Your browser cannot display 3D: here is the plan.",
-      "memory": "To stay smooth on this device we show the 2D plan. You can switch to the 3D view.",
-      "motion": "You asked for less animation: here is the 2D plan. You can switch to the 3D view."
+      "webgl": "Your browser cannot display 3D: here is a picture of the showroom. The department list below works as usual.",
+      "crashed": "3D could not start on this device: here is a picture of the showroom. The department list below works as usual."
     },
     "legend": {
       "title": "TWO FLOORS",

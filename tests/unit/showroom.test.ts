@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import {
   buildDepartments, CAMERA, baseZoom, centerOf, clampTarget, departmentStock, fallbackReason, FLOOR_D, FLOOR_W, floorY, isVisibleFloor, MAX_ROLLS, panelKind,
-  parseViewChoice, rollsFor, type ShowroomDepartment,
+  rollsFor, type ShowroomDepartment,
 } from "@/lib/showroom/model";
 
 const layout = { x: 2, z: 2, w: 8, d: 6, rotation: 0, racks: 4, color: "#C9B497" };
@@ -35,22 +35,10 @@ describe("live stock of a department", () => {
   });
 });
 
-describe("which view is used", () => {
-  const ok = { webgl: true, deviceMemoryGb: 8, reducedMotion: false };
-  it("3D when the device can, 2D when it cannot or when asked", () => {
-    expect(fallbackReason(ok, "auto")).toBeNull();
-    expect(fallbackReason({ ...ok, webgl: false }, "auto")).toBe("webgl");
-    expect(fallbackReason({ ...ok, webgl: false }, "3d")).toBe("webgl"); // nothing can be done without WebGL
-    expect(fallbackReason({ ...ok, deviceMemoryGb: 2 }, "auto")).toBe("memory");
-    expect(fallbackReason({ ...ok, reducedMotion: true }, "auto")).toBe("motion");
-    expect(fallbackReason(ok, "2d")).toBe("choice");
-  });
-  it("a visitor who explicitly asks for 3D gets it on a small or calm device", () => {
-    expect(fallbackReason({ ...ok, deviceMemoryGb: 2, reducedMotion: true }, "3d")).toBeNull();
-    expect(fallbackReason({ ...ok, deviceMemoryGb: null }, "auto")).toBeNull(); // unknown memory: assume fine
-  });
-  it("reads the stored choice safely", () => {
-    expect([parseViewChoice("2d"), parseViewChoice("3d"), parseViewChoice("x"), parseViewChoice(null), parseViewChoice(undefined)]).toEqual(["2d", "3d", "auto", "auto", "auto"]);
+describe("when the picture replaces the 3D scene", () => {
+  it("only when WebGL is missing: a small or calm device still gets 3D", () => {
+    expect(fallbackReason({ webgl: true })).toBeNull();
+    expect(fallbackReason({ webgl: false })).toBe("webgl");
   });
 });
 

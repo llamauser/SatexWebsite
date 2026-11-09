@@ -32,7 +32,7 @@ This folder is the **single source of truth** for building the SATEX Commerce we
 | `04-database.md` | Full schema: tables, columns, enums, indexes, functions, storage buckets |
 | `05-commerce.md` | Catalog, stock, reservations, quotes, samples, orders, cutting jobs, deliveries, PDFs, notifications |
 | `06-ai-matching.md` | Matching wizard, AI pipeline, prompts, JSON schemas, scoring formulas, refinement |
-| `07-showroom-3d.md` | 3D showroom (Phase 1) + 2D fallback |
+| `07-showroom-3d.md` | 3D showroom (Phase 1) |
 | `08-cloth-system.md` | Feel Card, feel→physics formulas, XPBD swatch, bake worker, texture pipeline (Phase 3) |
 | `08b-phase2-4-features.md` | Snap & Match, Collection Planner, Guided Live Tour specs |
 | `09-i18n.md` | Locales, RTL, translation workflow, formatting |

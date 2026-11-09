@@ -74,9 +74,9 @@ Refs: `05-commerce.md` §5–6, `02-user-flows.md` F4, F6.
 Refs: `02-user-flows.md` F4, F5, F7, `05-commerce.md` §7.
 **Done when:** cutting board drag-drop with lot selection and actual meters; order status auto-advances; delivery statuses email the client; dashboard KPIs match seed data.
 
-### P1-16 3D showroom + 2D fallback
+### P1-16 3D showroom (no 2D view)
 Refs: `07-showroom-3d.md`.
-**Done when:** 11 departments rendered from DB layouts; click → live panel; floor toggle; 2D fallback triggers correctly (test with WebGL disabled); performance budget met on a mid laptop.
+**Done when:** 11 departments rendered from DB layouts; click → live panel; floor toggle; the picture replaces the scene when WebGL is disabled; performance budget met on a mid laptop.
 
 ### P1-17 SEO, security headers, analytics, monitoring
 Refs: `11-non-functional.md` §4–7.

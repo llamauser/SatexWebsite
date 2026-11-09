@@ -6,10 +6,9 @@ import { Component, useEffect, useMemo, useState, type ReactNode } from "react";
 import { loadBrowserSupabase } from "@/lib/db/browser-lazy";
 import { localized } from "@/lib/data/format";
 import { loose } from "@/lib/i18n-loose";
-import { fallbackReason, parseViewChoice, type Capabilities, type FloorMode, type ShowroomData, type ViewChoice } from "@/lib/showroom/model";
+import { fallbackReason, type Capabilities, type FloorMode, type ShowroomData } from "@/lib/showroom/model";
 import { cn } from "@/lib/utils";
 import { DepartmentPanel } from "./DepartmentPanel";
-import { FloorPlan2D } from "./FloorPlan2D";
 
 const Scene3D = dynamic(() => import("./Scene3D"), {
   ssr: false,
@@ -22,9 +21,8 @@ const Scene3D = dynamic(() => import("./Scene3D"), {
     </div>
   ),
 });
-const VIEW_KEY = "satex.showroom.view";
 
-/** If the 3D scene fails (no GPU, lost context), the plan takes over instead of an empty page. */
+/** If the 3D scene fails (no GPU, lost context), the picture takes over instead of an empty page. */
 class SceneBoundary extends Component<{ onError: () => void; children: ReactNode }, { failed: boolean }> {
   state = { failed: false };
   static getDerivedStateFromError() { return { failed: true }; }
@@ -39,18 +37,16 @@ export function ShowroomView({ initial }: { initial: ShowroomData }) {
   const [selected, setSelected] = useState<string | null>(null);
   const [hovered, setHovered] = useState<string | null>(null);
   const [floor, setFloor] = useState<FloorMode>("both");
-  const [choice, setChoice] = useState<ViewChoice>("auto");
   const [caps, setCaps] = useState<Capabilities | null>(null);
   const [crashed, setCrashed] = useState(false);
 
   useEffect(() => {
-    try { setChoice(parseViewChoice(localStorage.getItem(VIEW_KEY))); } catch { /* storage unavailable */ }
     let webgl = false;
     try {
       const canvas = document.createElement("canvas");
       webgl = !!(canvas.getContext("webgl2") || canvas.getContext("webgl"));
     } catch { /* no WebGL */ }
-    setCaps({ webgl, deviceMemoryGb: (navigator as Navigator & { deviceMemory?: number }).deviceMemory ?? null, reducedMotion: window.matchMedia("(prefers-reduced-motion: reduce)").matches });
+    setCaps({ webgl });
   }, []);
 
   // live stock: the figures are refreshed from the public availability view
@@ -66,39 +62,29 @@ export function ShowroomView({ initial }: { initial: ShowroomData }) {
     return () => { stopped = true; clearInterval(id); };
   }, []);
 
-  const reason = caps ? fallbackReason(caps, choice) : "pending";
-  const show3D = caps !== null && reason === null && !crashed;
-  const planFloor: 0 | 1 = floor === 1 ? 1 : 0;
+  const reason = caps ? (crashed ? "crashed" : fallbackReason(caps)) : "pending";
+  const show3D = reason === null;
   const labels = useMemo(() => ({ ...Object.fromEntries(data.departments.map((d) => [d.slug, localized(d.name, locale)])) }), [data.departments, locale]);
   const current = data.departments.find((d) => d.slug === selected) ?? null;
 
   const select = (slug: string | null) => {
     setSelected(slug);
     const dep = data.departments.find((d) => d.slug === slug);
-    if (dep && (!show3D || floor !== "both") && floor !== dep.floor) setFloor(dep.floor);
-  };
-  const setView = (next: ViewChoice) => {
-    setChoice(next);
-    setCrashed(false);
-    try { localStorage.setItem(VIEW_KEY, next); } catch { /* ignore */ }
+    if (dep && floor !== "both" && floor !== dep.floor) setFloor(dep.floor);
   };
   const floors: { value: FloorMode; label: string }[] = [{ value: "both", label: t("floors.both") }, { value: 0, label: t("floors.ground") }, { value: 1, label: t("floors.upper") }];
 
   return (
-    <div data-testid="showroom" data-view={show3D ? "3d" : "2d"} data-reason={reason ?? "none"}>
-      <div className="flex flex-wrap items-center justify-between gap-3">
+    <div data-testid="showroom" data-view={show3D ? "3d" : "picture"} data-reason={reason ?? "none"}>
+      {show3D && (
         <div role="group" aria-label={t("floors.label")} className="inline-flex rounded-full border border-border bg-surface p-1" data-testid="floor-toggle">
-          {floors.filter((f) => show3D || f.value !== "both").map((f) => (
-            <button key={String(f.value)} type="button" aria-pressed={(show3D ? floor : planFloor) === f.value} onClick={() => setFloor(f.value)} data-testid={`floor-${f.value}`}
-              className={cn("rounded-full px-4 py-1.5 text-sm font-medium", (show3D ? floor : planFloor) === f.value ? "bg-primary text-white" : "text-text-muted hover:text-text")}>{f.label}</button>
+          {floors.map((f) => (
+            <button key={String(f.value)} type="button" aria-pressed={floor === f.value} onClick={() => setFloor(f.value)} data-testid={`floor-${f.value}`}
+              className={cn("rounded-full px-4 py-1.5 text-sm font-medium", floor === f.value ? "bg-primary text-white" : "text-text-muted hover:text-text")}>{f.label}</button>
           ))}
         </div>
-        <div role="group" aria-label={t("views.label")} className="inline-flex rounded-full border border-border bg-surface p-1">
-          <button type="button" aria-pressed={show3D} onClick={() => setView("3d")} data-testid="view-3d" className={cn("rounded-full px-4 py-1.5 text-sm font-medium", show3D ? "bg-primary text-white" : "text-text-muted hover:text-text")}>{t("views.3d")}</button>
-          <button type="button" aria-pressed={!show3D} onClick={() => setView("2d")} data-testid="view-2d" className={cn("rounded-full px-4 py-1.5 text-sm font-medium", !show3D ? "bg-primary text-white" : "text-text-muted hover:text-text")}>{t("views.2d")}</button>
-        </div>
-      </div>
-      {!show3D && reason && reason !== "choice" && reason !== "pending" && <p className="mt-3 text-sm text-text-muted" role="status" data-testid="fallback-note">{loose(t)(`fallback.${reason}`)}</p>}
+      )}
+      {!show3D && reason !== "pending" && <p className="mt-3 text-sm text-text-muted" role="status" data-testid="fallback-note">{loose(t)(`fallback.${reason}`)}</p>}
 
       <div className="mt-4 grid gap-6 lg:grid-cols-[1fr_380px]">
         <div>
@@ -113,7 +99,11 @@ export function ShowroomView({ initial }: { initial: ShowroomData }) {
                 )}
               </div>
             ) : (
-              <FloorPlan2D departments={data.departments} floor={planFloor} selected={selected} onSelect={(slug) => select(slug)} />
+              // no 3D here (no WebGL, or the scene crashed): a picture of the showroom; the list and the panels below work the same
+              <div className="relative h-[320px] overflow-hidden rounded-md border border-border sm:h-[460px]" data-testid="scene-picture">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src="/showroom/preview.webp" alt={t("pictureAlt")} className="h-full w-full object-cover" />
+              </div>
             )}
             <div className="pointer-events-none absolute bottom-3 start-3 rounded-md bg-surface/90 px-3 py-2 text-xs shadow-card" data-testid="legend">
               <p className="font-semibold tracking-widest text-text-muted">{t("legend.title")}</p>

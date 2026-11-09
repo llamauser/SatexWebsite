@@ -101,7 +101,7 @@ Handy addresses: **Mailpit** http://127.0.0.1:54324 (sign-up and password e-mail
 ## 9. Things to show in a demo
 1. Home, catalog with filters, a fabric page with live stock (change stock in /admin/stock and watch the page update).
 2. AI search (/fr/match): answer the 5 steps, get matches (fake AI gives deterministic answers; real answers need `ANTHROPIC_API_KEY` and `VOYAGE_API_KEY`).
-3. Showroom (/fr/showroom): 3D scene, click a department; "2D view" button for the plan.
+3. Showroom (/fr/showroom): 3D scene, click a department.
 4. As a client: add fabrics to the quote, sign in, send the request. As sales: /fr/admin/quotes, change prices, "Send to client" (PDF), then accept as the client, "Convert to order", cutting board, delivery.
 
 ## 10. Stop and restart

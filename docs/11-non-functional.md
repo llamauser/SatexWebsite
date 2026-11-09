@@ -20,7 +20,7 @@
 
 ## 3. Browser & device support
 - Last 2 versions of Chrome, Edge, Firefox, Safari (macOS + iOS), Samsung Internet. Min viewport 360 px.
-- WebGPU used when available; WebGL 2 fallback for 3D; 2D fallback when WebGL is missing (see `07`, `08`).
+- WebGPU used when available; WebGL 2 fallback for 3D; a picture when WebGL is missing (see `07`, `08`).
 
 ## 4. SEO
 - SSR/ISR for public pages; `generateMetadata` per page with localized title/description; Open Graph image per fabric (first photo) and a default brand OG image.
