@@ -68,12 +68,15 @@ jobs:
         run: sudo apt-get update
       - run: pnpm exec playwright install --with-deps chromium
       - run: pnpm e2e:auth
-      - name: "Lighthouse (mobile) on the home page"
+      - name: "Lighthouse (mobile) on the home page: median of 3 runs"
         run: |
           pnpm exec next start -p 3100 &
           npx --yes wait-on@8 http://localhost:3100/fr
-          npx --yes lighthouse@12.8.2 http://localhost:3100/fr --only-categories=performance --form-factor=mobile             --chrome-flags="--headless=new --no-sandbox" --output=json --output-path=lighthouse-home.json --quiet
-          node scripts/check-lighthouse.mjs lighthouse-home.json 0.85
+          for i in 1 2 3; do
+            npx --yes lighthouse@12.8.2 http://localhost:3100/fr --only-categories=performance --form-factor=mobile \
+              --chrome-flags="--headless=new --no-sandbox" --output=json --output-path=lighthouse-home-$i.json --quiet
+          done
+          node scripts/check-lighthouse.mjs 0.85 lighthouse-home-1.json lighthouse-home-2.json lighthouse-home-3.json
       - uses: actions/upload-artifact@v4
         if: failure()
         with:
@@ -85,5 +88,5 @@ jobs:
         if: always()
         with:
           name: lighthouse-home
-          path: lighthouse-home.json
+          path: lighthouse-home-*.json
           if-no-files-found: ignore

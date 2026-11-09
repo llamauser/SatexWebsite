@@ -9,7 +9,9 @@ import { clientMessages } from "@/i18n/client-messages";
 import { localeDirection, routing } from "@/i18n/routing";
 import "../globals.css";
 
-const inter = Inter({ subsets: ["latin"], variable: "--font-inter", display: "swap" });
+// "optional": if Inter is not ready for the first paint the fallback stays for this view (metrics-matched by next/font),
+// so the body text is never re-painted late by a font swap. The font is cached for the next page.
+const inter = Inter({ subsets: ["latin"], variable: "--font-inter", display: "optional" });
 const poppins = Poppins({
   subsets: ["latin"],
   weight: ["600", "700"],
