@@ -1,4 +1,4 @@
-import { expect, test, type APIRequestContext } from "@playwright/test";
+﻿import { expect, test, type APIRequestContext } from "@playwright/test";
 import { seededPassword, signInOk, withDb } from "./helpers";
 
 test.use({ locale: "fr-FR" });
@@ -36,6 +36,7 @@ test("samples: approve, prepare, ship (tracking needed) and deliver; a refusal n
   });
   await signInOk(page, SALES, seededPassword(SALES));
   await page.goto("/fr/admin/samples");
+  await page.getByTestId("sample-filter").selectOption("all");
   const card = (ref: string) => page.getByTestId("sample-card").filter({ hasText: ref });
   await expect(card(a!.ref)).toBeVisible();
 

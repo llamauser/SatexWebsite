@@ -1859,5 +1859,73 @@
       "noDelivery": "La livraison sera planifiée quand votre commande sera prête.",
       "carrier": "Transporteur : {carrier}"
     }
+  },
+  "showroom": {
+    "title": "Le showroom SATEX",
+    "lead": "Visitez nos deux étages : halls de tissus, atelier de coupe, expédition, studio et bureaux. Cliquez sur un département pour voir le stock en direct.",
+    "planLabel": "Plan de l'étage {floor}",
+    "sceneLabel": "Showroom 3D interactif : utilisez la liste des départements pour une navigation au clavier.",
+    "hint": "Cliquez sur un département, sur le plan ou dans la liste. Glissez pour déplacer la vue, molette pour zoomer.",
+    "empty": "Le showroom n'est pas disponible pour le moment.",
+    "views": {
+      "label": "Mode d'affichage",
+      "3d": "Vue 3D",
+      "2d": "Vue 2D"
+    },
+    "floors": {
+      "label": "Étage",
+      "both": "Les deux étages",
+      "ground": "Rez-de-chaussée",
+      "upper": "Étage"
+    },
+    "floorName": "étage {n}",
+    "fallback": {
+      "webgl": "Votre navigateur ne peut pas afficher la 3D : voici le plan.",
+      "memory": "Pour rester fluide sur cet appareil, nous affichons le plan 2D. Vous pouvez passer en vue 3D.",
+      "motion": "Vous avez demandé moins d'animations : voici le plan 2D. Vous pouvez passer en vue 3D."
+    },
+    "legend": {
+      "title": "DEUX ÉTAGES",
+      "f0": "Halls de tissus",
+      "f1": "Studio et bureaux"
+    },
+    "list": {
+      "label": "Départements du showroom"
+    },
+    "kinds": {
+      "fabric_hall": "Hall de tissus",
+      "cutting": "Atelier de coupe",
+      "shipping": "Expédition",
+      "studio": "Studio de création",
+      "client_suite": "Salon client",
+      "office": "Bureaux"
+    },
+    "dept": {
+      "natural-fibers": "Lin, soie, laine et coton biologique : les fibres naturelles.",
+      "upholstery": "Velours, toiles et jacquards pour sièges, rideaux et décoration.",
+      "knits": "Jerseys, piqués, molletons et tissus techniques pour le sport.",
+      "shirting-suiting": "Popelines, oxfords, gabardines et doublures pour la chemise et le tailleur.",
+      "denim": "Denims bruts, stretch et délavés.",
+      "eveningwear": "Satins, mousselines et velours pour la soirée.",
+      "cutting": "Ici, vos mètres sont coupés avant l'expédition.",
+      "shipping": "Les commandes prêtes partent d'ici.",
+      "design-studio": "Là où naissent les collections et les échantillons.",
+      "client-suite": "Le salon où nous recevons nos clients.",
+      "offices": "Les équipes commerciales et administratives."
+    },
+    "panel": {
+      "close": "Fermer le panneau",
+      "total": "{m} m disponibles dans ce hall",
+      "noFabrics": "Aucun tissu dans ce hall pour le moment.",
+      "out": "épuisé",
+      "catalog": "Voir tout dans le catalogue",
+      "ai": "Demander à l'IA",
+      "cuttingToday": "Coupes terminées aujourd'hui",
+      "cuttingQueue": "Coupes en attente",
+      "shippedWeek": "Livraisons expédiées cette semaine",
+      "tourSoon": "Les visites guidées en direct arrivent bientôt. En attendant, contactez-nous pour organiser un rendez-vous.",
+      "contact": "Nous contacter",
+      "placeholder": "Choisissez un département pour voir son stock en direct, ses tissus et ses chiffres du jour."
+    }
   }
 }
