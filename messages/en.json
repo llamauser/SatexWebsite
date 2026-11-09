@@ -135,7 +135,9 @@
       "haveAccount": "Already have an account?",
       "signIn": "Sign in",
       "checkEmailTitle": "Check your inbox",
-      "checkEmailBody": "We sent a confirmation link to {email}. Click it to activate your account."
+      "checkEmailBody": "We sent a confirmation link to {email}. Click it to activate your account.",
+      "localMail": "Local demo: e-mails are not sent to a real inbox, they arrive in the test mailbox.",
+      "localMailLink": "Open the test mailbox"
     },
     "reset": {
       "title": "Forgot your password",
@@ -150,6 +152,7 @@
       "backToSignIn": "Back to sign in"
     },
     "callbackError": "This link is invalid or has expired. Please request a new one.",
+    "callbackBrowser": "This link was opened in a different browser from the one that asked for it, so the sign-in could not finish here. If it was a confirmation link, your e-mail is confirmed: sign in with your password.",
     "validation": {
       "required": "This field is required.",
       "email": "Invalid email address.",

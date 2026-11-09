@@ -18,7 +18,7 @@ export function SignInForm() {
   const params = useSearchParams();
   const next = safeNext(params.get("next"), `/${locale}/account`);
   const [errors, setErrors] = useState<Record<string, string>>({});
-  const [formError, setFormError] = useState<string | null>(params.get("error") === "link" ? "linkInvalid" : null);
+  const [formError, setFormError] = useState<string | null>(params.get("error") === "link" ? "linkInvalid" : params.get("error") === "browser" ? "linkBrowser" : null);
   const [info, setInfo] = useState<string | null>(null);
   const [loading, setLoading] = useState<"password" | "magic" | null>(null);
 
@@ -66,7 +66,7 @@ export function SignInForm() {
 
   return (
     <form onSubmit={onSubmit} noValidate className="space-y-4">
-      {formError && <Alert>{loose(t)(formError === "linkInvalid" ? "callbackError" : `errors.${formError}`)}</Alert>}
+      {formError && <Alert>{loose(t)(formError === "linkInvalid" ? "callbackError" : formError === "linkBrowser" ? "callbackBrowser" : `errors.${formError}`)}</Alert>}
       {info && <Alert kind="success">{info}</Alert>}
       <Input name="email" type="email" autoComplete="email" label={t("signIn.email")} error={translateField(errors.email)} />
       <Input

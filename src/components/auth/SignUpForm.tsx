@@ -54,6 +54,12 @@ export function SignUpForm() {
       <div className="space-y-4">
         <h2 className="font-display text-xl font-semibold">{t("signUp.checkEmailTitle")}</h2>
         <Alert kind="success">{t("signUp.checkEmailBody", { email: sentTo })}</Alert>
+        {["localhost", "127.0.0.1"].includes(window.location.hostname) && (
+          <p className="text-sm text-text-muted" data-testid="local-mail-hint">
+            {t("signUp.localMail")}{" "}
+            <a href="http://127.0.0.1:54324" target="_blank" rel="noreferrer" className="font-medium text-primary hover:underline">{t("signUp.localMailLink")}</a>
+          </p>
+        )}
         <Link href="/auth/sign-in" className="text-sm font-medium text-primary hover:underline">
           {t("reset.backToSignIn")}
         </Link>

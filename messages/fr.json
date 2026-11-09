@@ -135,7 +135,9 @@
       "haveAccount": "Déjà un compte ?",
       "signIn": "Se connecter",
       "checkEmailTitle": "Vérifiez votre boîte mail",
-      "checkEmailBody": "Nous avons envoyé un lien de confirmation à {email}. Cliquez dessus pour activer votre compte."
+      "checkEmailBody": "Nous avons envoyé un lien de confirmation à {email}. Cliquez dessus pour activer votre compte.",
+      "localMail": "Démo locale : les e-mails ne partent pas vers une vraie boîte mail, ils arrivent dans la boîte de test.",
+      "localMailLink": "Ouvrir la boîte de test"
     },
     "reset": {
       "title": "Mot de passe oublié",
@@ -150,6 +152,7 @@
       "backToSignIn": "Retour à la connexion"
     },
     "callbackError": "Ce lien est invalide ou a expiré. Demandez-en un nouveau.",
+    "callbackBrowser": "Ce lien a été ouvert dans un autre navigateur que celui de votre demande, donc la connexion n'a pas pu se terminer ici. Si c'était un lien de confirmation, votre e-mail est confirmé : connectez-vous avec votre mot de passe.",
     "validation": {
       "required": "Ce champ est obligatoire.",
       "email": "Adresse e-mail invalide.",

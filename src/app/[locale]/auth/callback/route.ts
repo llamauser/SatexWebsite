@@ -14,6 +14,9 @@ export async function GET(request: Request, { params }: { params: Promise<{ loca
     const supabase = await createServerSupabase();
     const { error } = await supabase.auth.exchangeCodeForSession(code);
     if (!error) return NextResponse.redirect(new URL(next, url.origin));
+    // The link itself was valid (the code was issued) but this browser is not the one that asked for it, so it cannot finish the sign-in.
+    // For a confirmation link the e-mail address is confirmed anyway.
+    return NextResponse.redirect(new URL(`/${locale}/auth/sign-in?error=browser`, url.origin));
   }
   return NextResponse.redirect(new URL(`/${locale}/auth/sign-in?error=link`, url.origin));
 }
