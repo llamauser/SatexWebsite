@@ -55,7 +55,8 @@
       "eyebrow": "Showroom",
       "title": "Entrez dans le showroom SATEX en 3D",
       "body": "Deux étages : les halls de tissus en bas, le studio de création et les bureaux à l'étage. Chaque département affiche son stock en temps réel.",
-      "cta": "Visiter le showroom"
+      "cta": "Visiter le showroom",
+      "imageAlt": "Aperçu du showroom 3D de SATEX : les halls de tissus au rez-de-chaussée, le studio et les bureaux à l'étage"
     },
     "since": {
       "title": "Expert textile depuis {year}",
@@ -1524,6 +1525,7 @@
         "match": "Résultat"
       },
       "progress": "{pct} % terminé",
+      "topicPrefill": "Je cherche des tissus du rayon « {topic} ». Précisez ici l'usage prévu, le toucher et les couleurs souhaitées.",
       "back": "Retour",
       "next": "Continuer",
       "find": "Trouver mon tissu",

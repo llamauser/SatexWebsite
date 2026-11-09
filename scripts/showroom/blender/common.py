@@ -217,6 +217,38 @@ def sphere(name, c, r, mat, parent=None, scale=(1, 1, 1), seg=24):
     return _finish(name, bm, mat, parent, 0)
 
 
+def loft(name, rings, mat, parent=None, seg=28, cap_bottom=True, cap_top=True):
+    """A smooth closed body through elliptical sections, bottom to top. A ring is (y, rx, rz) or (y, rx, rz, cx, cz) in three.js axes."""
+    bm = bmesh.new()
+    layers = []
+    for ring in rings:
+        y, rx, rz = ring[0], ring[1], ring[2]
+        cx, cz = (ring[3], ring[4]) if len(ring) > 3 else (0.0, 0.0)
+        layers.append([bm.verts.new(P(cx + rx * math.cos(2 * math.pi * k / seg), y, cz + rz * math.sin(2 * math.pi * k / seg))) for k in range(seg)])
+    for a, b in zip(layers, layers[1:]):
+        for k in range(seg):
+            bm.faces.new((a[k], a[(k + 1) % seg], b[(k + 1) % seg], b[k]))
+    for layer, wanted, up in ((layers[0], cap_bottom, False), (layers[-1], cap_top, True)):
+        if wanted:
+            ring = rings[0] if not up else rings[-1]
+            centre = bm.verts.new(P(ring[3] if len(ring) > 3 else 0.0, ring[0], ring[4] if len(ring) > 3 else 0.0))
+            for k in range(seg):
+                bm.faces.new((centre, layer[(k + 1) % seg], layer[k]) if up else (centre, layer[k], layer[(k + 1) % seg]))
+    return _finish(name, bm, mat, parent, 0)
+
+
+def segment(name, p0, p1, r0, r1, mat, parent=None, seg=14):
+    """A tapered limb between two points (three.js axes), with rounded ends."""
+    a, b = P(*p0), P(*p1)
+    direction = b - a
+    length = direction.length
+    bm = bmesh.new()
+    bmesh.ops.create_cone(bm, cap_ends=True, cap_tris=False, segments=seg, radius1=r0, radius2=r1, depth=length)
+    bmesh.ops.rotate(bm, verts=bm.verts, cent=(0, 0, 0), matrix=direction.to_track_quat("Z", "Y").to_matrix())
+    bmesh.ops.translate(bm, vec=(a + b) / 2, verts=bm.verts)
+    return _finish(name, bm, mat, parent, 0)
+
+
 def wall(name, x0, x1, y0, y1, z0, z1, mat, parent=None, step=0.25, tile=4.0):
     """A thick wall as a box whose big faces are finely subdivided (for baked ambient occlusion)."""
     return box(name, ((x0 + x1) / 2, (y0 + y1) / 2, (z0 + z1) / 2), (x1 - x0, y1 - y0, z1 - z0), mat, parent, step=step, tile=tile)

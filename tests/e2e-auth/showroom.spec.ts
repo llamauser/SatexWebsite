@@ -33,7 +33,7 @@ test("the plan shows the 11 departments of the database, floor by floor, and the
   const firstFabric = page.getByTestId("panel-fabric").first();
   await expect(firstFabric).toHaveAttribute("href", /\/fr\/catalog\/[a-z0-9-]+$/);
   await expect(page.getByTestId("panel-catalog")).toHaveAttribute("href", /\/fr\/catalog\?category=knits(%2C|,)technical-activewear/);
-  await expect(page.getByTestId("panel-ai")).toHaveAttribute("href", "/fr/match");
+  await expect(page.getByTestId("panel-ai")).toHaveAttribute("href", /^\/fr\/match\?topic=Maille/); // the department goes with the visitor
 
   // cutting room and dock: public, anonymous counters
   await page.locator('[data-testid="plan-department"][data-slug="cutting"]').click();

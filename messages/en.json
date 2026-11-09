@@ -55,7 +55,8 @@
       "eyebrow": "Showroom",
       "title": "Step inside the SATEX showroom in 3D",
       "body": "Two floors: the fabric halls downstairs, the design studio and offices upstairs. Every department shows its stock in real time.",
-      "cta": "Visit the showroom"
+      "cta": "Visit the showroom",
+      "imageAlt": "Preview of the SATEX 3D showroom: the fabric halls on the ground floor, the studio and offices upstairs"
     },
     "since": {
       "title": "Textile expert since {year}",
@@ -1524,6 +1525,7 @@
         "match": "Match"
       },
       "progress": "{pct}% complete",
+      "topicPrefill": "I am looking for fabrics from the “{topic}” department. Tell us here the intended use, the feel and the colors you want.",
       "back": "Back",
       "next": "Continue",
       "find": "Find my fabric",

@@ -1,4 +1,5 @@
 import { ArrowRight, Boxes, Building2, Sparkles } from "lucide-react";
+import Image from "next/image";
 import { getTranslations } from "next-intl/server";
 import { buttonStyles } from "@/components/ui/Button";
 import { Card } from "@/components/ui/Field";
@@ -7,7 +8,6 @@ import { formatMoney, localized } from "@/lib/data/format";
 import { loose } from "@/lib/i18n-loose";
 import { getCategories, getFeaturedFabrics, getPublicSettings } from "@/lib/data/public";
 import { FabricImage } from "./FabricImage";
-import { ShowroomIllustration } from "./ShowroomTeaser";
 
 const wrap = "mx-auto max-w-[1200px] px-4 sm:px-6 lg:px-8";
 const gradient = { background: "var(--primary-gradient)" } as const;
@@ -152,9 +152,9 @@ export async function ShowroomTeaser() {
             {t("cta")}
           </Link>
         </div>
-        <div className="mx-auto w-full max-w-md">
-          <ShowroomIllustration />
-        </div>
+        <Link href="/showroom" className="mx-auto block w-full max-w-xl overflow-hidden rounded-lg border border-border shadow-card transition hover:-translate-y-0.5">
+          <Image src="/showroom/preview.webp" alt={t("imageAlt")} width={1400} height={923} sizes="(min-width: 768px) 560px, 100vw" className="h-auto w-full" />
+        </Link>
       </Card>
     </section>
   );

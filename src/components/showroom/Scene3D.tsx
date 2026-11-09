@@ -9,6 +9,7 @@ import {
   CAMERA, FLOOR_D, FLOOR_W, baseZoom, centerOf, clampTarget, departmentStock, floorY, isVisibleFloor,
   type FloorMode, type ShowroomData, type ShowroomDepartment,
 } from "@/lib/showroom/model";
+import { contactShadowCanvas, SHADOWED_PROPS } from "@/lib/showroom/contact-shadow";
 import { departmentPlacements, type Placement } from "@/lib/showroom/placements";
 
 type V3 = [number, number, number];
@@ -54,7 +55,9 @@ function LoadingProgress() {
 }
 
 // ------------------------------------------------------------------ the prop library
-interface Part { geometry: THREE.BufferGeometry; material: THREE.Material; rel: THREE.Matrix4; tint: boolean }
+/** Which color of a placement tints a material: the rolls' fabric, and the clothes, skin and hair of people. */
+const TINTS: Record<string, "color" | "color2" | "skin" | "hair"> = { roll_fabric: "color", person_top: "color", person_bottom: "color2", person_skin: "skin", person_hair: "hair" };
+interface Part { geometry: THREE.BufferGeometry; material: THREE.Material; rel: THREE.Matrix4; tint: "color" | "color2" | "skin" | "hair" | null }
 type Library = Map<string, Part[]>;
 
 /** Every `prop_<name>` of props.glb as the meshes it is made of, with the transform of each inside its prop (the exporter may have quantized it into the node). */
@@ -70,7 +73,7 @@ function useLibrary(): Library {
       root.traverse((o) => {
         if (o instanceof THREE.Mesh) {
           const material = o.material as THREE.Material;
-          parts.push({ geometry: o.geometry, material, rel: inverse.clone().multiply(o.matrixWorld), tint: material.name === "roll_fabric" });
+          parts.push({ geometry: o.geometry, material, rel: inverse.clone().multiply(o.matrixWorld), tint: TINTS[material.name] ?? null });
         }
       });
       lib.set(root.name.slice(5), parts);
@@ -96,7 +99,7 @@ function PartInstances({ part, items }: { part: Part; items: Placement[] }) {
       else o.scale.setScalar(it.s ?? 1);
       o.updateMatrix();
       mesh.setMatrixAt(i, m.multiplyMatrices(o.matrix, part.rel));
-      if (part.tint) mesh.setColorAt(i, color.set(it.color ?? "#ffffff"));
+      if (part.tint) mesh.setColorAt(i, color.set(it[part.tint] ?? "#ffffff"));
     });
     mesh.instanceMatrix.needsUpdate = true;
     if (mesh.instanceColor) mesh.instanceColor.needsUpdate = true;
@@ -147,12 +150,69 @@ function useWorld(data: ShowroomData, floor: FloorMode): [string, Placement[]][]
       const ox = dep.layout.x + dep.layout.w / 2, oz = dep.layout.z + dep.layout.d / 2, oy = floorY(dep.floor) + (dep.floor === 1 ? 0.15 : 0);
       for (const p of [...placed.props, ...placed.rolls]) {
         const list = byProp.get(p.prop) ?? [];
-        list.push({ ...p, x: p.x + ox, z: p.z + oz, y: (p.y ?? 0) + oy });
+        list.push({ ...p, x: p.x + ox, z: p.z + oz, y: (p.y ?? 0) + oy, lift: p.y ?? 0 });
         byProp.set(p.prop, list);
       }
     }
     return [...byProp];
   }, [data, floor]);
+}
+
+// ------------------------------------------------------------------ the dark patch under things (they would look as if they floated otherwise)
+/** Floor outline of a prop (x, z of its middle and its size, in the prop's own space), from the geometry of all its parts. */
+function footprint(parts: Part[]): { cx: number; cz: number; w: number; d: number } | null {
+  const box = new THREE.Box3();
+  for (const part of parts) {
+    part.geometry.computeBoundingBox();
+    if (part.geometry.boundingBox) box.union(part.geometry.boundingBox.clone().applyMatrix4(part.rel));
+  }
+  if (box.isEmpty()) return null;
+  const size = box.getSize(new THREE.Vector3()), centre = box.getCenter(new THREE.Vector3());
+  return size.x < 0.12 && size.z < 0.12 ? null : { cx: centre.x, cz: centre.z, w: size.x, d: size.z };
+}
+
+function ContactShadows({ world, library }: { world: [string, Placement[]][]; library: Library }) {
+  const ref = useRef<THREE.InstancedMesh>(null);
+  const invalidate = useThree((s) => s.invalidate);
+  const texture = useMemo(() => new THREE.CanvasTexture(contactShadowCanvas()), []);
+  useEffect(() => () => texture.dispose(), [texture]);
+  const patches = useMemo(() => {
+    const list: { x: number; y: number; z: number; ry: number; w: number; d: number }[] = [];
+    for (const [name, placements] of world) {
+      const parts = SHADOWED_PROPS.has(name) ? library.get(name) : undefined;
+      const outline = parts ? footprint(parts) : null;
+      if (!outline) continue;
+      for (const p of placements) {
+        if ((p.lift ?? 0) > 0.05) continue; // on a shelf, a seat or a desk: the thing below it is already shaded
+        const [sx, , sz] = Array.isArray(p.s) ? p.s : [p.s ?? 1, 1, p.s ?? 1];
+        const ry = p.ry ?? 0, cos = Math.cos(ry), sin = Math.sin(ry), cx = outline.cx * sx, cz = outline.cz * sz;
+        list.push({ x: p.x + cx * cos + cz * sin, y: (p.y ?? 0) - (p.lift ?? 0) + 0.03, z: p.z - cx * sin + cz * cos, ry, w: outline.w * sx + 0.34, d: outline.d * sz + 0.34 });
+      }
+    }
+    return list;
+  }, [world, library]);
+  useLayoutEffect(() => {
+    const mesh = ref.current;
+    if (!mesh) return;
+    const o = new THREE.Object3D();
+    o.rotation.order = "YXZ";
+    patches.forEach((patch, i) => {
+      o.position.set(patch.x, patch.y, patch.z);
+      o.rotation.set(-Math.PI / 2, patch.ry, 0); // lying flat, then turned like the object
+      o.scale.set(patch.w, patch.d, 1);
+      o.updateMatrix();
+      mesh.setMatrixAt(i, o.matrix);
+    });
+    mesh.instanceMatrix.needsUpdate = true;
+    invalidate();
+  }, [patches, invalidate]);
+  if (patches.length === 0) return null;
+  return (
+    <instancedMesh key={patches.length} ref={ref} args={[undefined, undefined, patches.length]} renderOrder={3} frustumCulled={false}>
+      <planeGeometry args={[1, 1]} />
+      <meshBasicMaterial map={texture} transparent depthWrite={false} toneMapped={false} polygonOffset polygonOffsetFactor={-3} />
+    </instancedMesh>
+  );
 }
 
 // ------------------------------------------------------------------ the building around them
@@ -245,6 +305,7 @@ function Scene({ data, selected, hovered, floor, onSelect, onHover }: Props) {
             dimmed={d.floor === 0 && !isVisibleFloor(floor, 0)} onSelect={onSelect} onHover={onHover} />
         ))}
         {world.map(([name, items]) => library.get(name)?.map((part, i) => <PartInstances key={`${name}${i}`} part={part} items={items} />))}
+        <ContactShadows world={world} library={library} />
       </Suspense>
       <MapControls ref={controls} makeDefault enableDamping={false} target={CAMERA.target as unknown as [number, number, number]} minPolarAngle={CAMERA.pitch} maxPolarAngle={CAMERA.pitch}
         minAzimuthAngle={CAMERA.yaw - CAMERA.yawRange} maxAzimuthAngle={CAMERA.yaw + CAMERA.yawRange} minZoom={zoom0 * 0.6} maxZoom={zoom0 * 2.2} zoomSpeed={0.8} screenSpacePanning={false} />

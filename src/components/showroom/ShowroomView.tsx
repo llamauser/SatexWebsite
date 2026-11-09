@@ -11,7 +11,17 @@ import { cn } from "@/lib/utils";
 import { DepartmentPanel } from "./DepartmentPanel";
 import { FloorPlan2D } from "./FloorPlan2D";
 
-const Scene3D = dynamic(() => import("./Scene3D"), { ssr: false, loading: () => <div className="flex h-full items-center justify-center text-text-muted" role="status">…</div> });
+const Scene3D = dynamic(() => import("./Scene3D"), {
+  ssr: false,
+  // a picture of the finished scene while the 3D code arrives
+  loading: () => (
+    <div className="relative flex h-full items-center justify-center text-text-muted" role="status">
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img src="/showroom/preview.webp" alt="" className="absolute inset-0 h-full w-full object-cover opacity-60" />
+      <span className="relative rounded-full bg-white/90 px-4 py-2 text-sm font-semibold text-slate-700 shadow">…</span>
+    </div>
+  ),
+});
 const VIEW_KEY = "satex.showroom.view";
 
 /** If the 3D scene fails (no GPU, lost context), the plan takes over instead of an empty page. */

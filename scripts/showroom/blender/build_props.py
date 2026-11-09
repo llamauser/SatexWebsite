@@ -11,6 +11,7 @@ import sys
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from common import *  # noqa: E402,F401,F403
+from figures import dress_form, forklift, person  # noqa: E402
 
 RACK = SPEC["rack"]
 ROLL = RACK["roll"]
@@ -38,6 +39,15 @@ screen = flat_mat("monitor_screen", "#16222F", rough=0.3, emission="#24476E", em
 linen = flat_mat("mannequin_linen", "#D9CBB4", rough=0.85)
 ruler = flat_mat("ruler_yellow", "#E6B422", rough=0.5)
 core_mat = flat_mat("roll_core", "#B98F5C", rough=0.9)
+red = flat_mat("tail_light", "#B01818", rough=0.4, emission="#FF2020", emission_strength=1.5)
+lamp = flat_mat("head_light", "#FFF6E0", rough=0.3, emission="#FFF2CC", emission_strength=3.0)
+# people: white base materials that the site tints for each person
+skin = flat_mat("person_skin", "#FFFFFF", rough=0.7)
+top = flat_mat("person_top", "#FFFFFF", rough=0.85)
+bottom = flat_mat("person_bottom", "#FFFFFF", rough=0.85)
+hair = flat_mat("person_hair", "#FFFFFF", rough=0.6)
+shoe = flat_mat("person_shoe", "#1C1F24", rough=0.6)
+board = flat_mat("clipboard", "#C69663", rough=0.8)
 tag = flat_mat("roll_tag", "#F2F2EF", rough=0.7)
 fabric = tex_mat("roll_fabric", "fabric_pattern_05", tint="#FFFFFF", rough=0.92, normal=1.0)
 fabric.node_tree.nodes["Principled BSDF"].inputs["Sheen Weight"].default_value = 0.5
@@ -118,33 +128,6 @@ def build_pallet_load():
     box("film", (0, 0.14 + 0.45, 0), (1.18, 0.9, 0.78), wrap, e, bevel=0.03)
 
 
-# ---------------------------------------------------------------- forklift (forks point to +z)
-def build_forklift():
-    e = new_prop("forklift")
-    box("chassis", (0, 0.5, 0.1), (1.05, 0.5, 1.6), yellow, e, bevel=0.04)
-    box("counterweight", (0, 0.72, -0.78), (1.1, 0.76, 0.5), yellow, e, bevel=0.06)
-    box("floor_plate", (0, 0.78, 0.35), (0.9, 0.04, 0.8), steel_dark, e)
-    for sx in (-1, 1):
-        for z in (-0.45, 0.4):
-            box(f"post_{sx}_{z}", (sx * 0.46, 1.4, z), (0.05, 1.3, 0.05), steel_dark, e)
-    box("roof", (0, 2.07, -0.02), (1.05, 0.05, 1.0), steel_dark, e, bevel=0.012)
-    box("seat", (0, 1.0, -0.38), (0.42, 0.12, 0.42), seat, e, bevel=0.02)
-    box("seat_back", (0, 1.25, -0.6), (0.42, 0.42, 0.08), seat, e, bevel=0.02)
-    cyl("steering", (0, 1.28, 0.12), 0.15, 0.03, "y", seat, e, seg=24)
-    box("column", (0, 1.05, 0.2), (0.05, 0.4, 0.05), steel_dark, e)
-    cyl("beacon", (0.3, 2.14, -0.2), 0.06, 0.1, "y", amber, e, seg=14)
-    for sx in (-1, 1):
-        box(f"mast_{sx}", (sx * 0.32, 1.0, 0.92), (0.08, 2.0, 0.08), steel_dark, e)
-        box(f"fork_{sx}", (sx * 0.3, 0.06, 1.55), (0.12, 0.05, 1.1), steel, e, bevel=0.008)
-        box(f"fork_up_{sx}", (sx * 0.3, 0.45, 1.03), (0.12, 0.8, 0.05), steel, e, bevel=0.008)
-    box("mast_top", (0, 1.95, 0.92), (0.72, 0.07, 0.07), steel_dark, e)
-    box("mast_mid", (0, 1.1, 0.92), (0.72, 0.06, 0.06), steel_dark, e)
-    box("carriage", (0, 0.4, 1.0), (0.84, 0.5, 0.04), steel_dark, e)
-    for sx in (-1, 1):
-        cyl(f"wheel_f_{sx}", (sx * 0.52, 0.33, 0.62), 0.33, 0.22, "x", rubber, e, seg=24)
-        cyl(f"wheel_b_{sx}", (sx * 0.46, 0.26, -0.7), 0.26, 0.18, "x", rubber, e, seg=24)
-
-
 # ---------------------------------------------------------------- office desk with a monitor
 def build_desk():
     e = new_prop("desk")
@@ -168,17 +151,6 @@ def build_meeting_table():
     for sx in (-1, 1):
         box(f"leg_{sx}", (sx * 1.1, 0.36, 0), (0.07, 0.72, 0.9), steel_dark, e)
     box("stretcher", (0, 0.2, 0), (2.2, 0.04, 0.05), steel_dark, e)
-
-
-def build_mannequin():
-    e = new_prop("mannequin")
-    cyl("base", (0, 0.015, 0), 0.26, 0.03, "y", steel_dark, e)
-    cyl("pole", (0, 0.55, 0), 0.018, 1.05, "y", steel, e, seg=12)
-    sphere("torso", (0, 1.25, 0), 0.16, linen, e, scale=(1.0, 1.9, 0.72))
-    sphere("hips", (0, 1.0, 0), 0.17, linen, e, scale=(1.05, 1.0, 0.8))
-    cyl("neck", (0, 1.58, 0), 0.04, 0.1, "y", linen, e, seg=12)
-    sphere("shoulders", (0, 1.5, 0), 0.19, linen, e, scale=(1.0, 0.35, 0.5))
-    cyl("cap", (0, 1.64, 0), 0.025, 0.03, "y", steel, e, seg=12)
 
 
 # ---------------------------------------------------------------- Poly Haven models, cleaned up for the web
@@ -258,10 +230,14 @@ build_rack()
 build_roll()
 build_cutting_table()
 build_pallet_load()
-build_forklift()
+fork = new_prop("forklift")
+forklift(fork, dict(yellow=yellow, steel_dark=steel_dark, steel=steel, rubber=rubber, seat=seat, amber=amber, lamp=lamp, red=red))
+form = new_prop("mannequin")
+dress_form(form, dict(linen=linen, steel=steel, steel_dark=steel_dark, rubber=rubber))
+for pose in ("standing", "walking", "holding", "seated"):
+    person(new_prop(f"person_{pose}"), pose, dict(skin=skin, top=top, bottom=bottom, hair=hair, shoe=shoe, board=board))
 build_desk()
 build_meeting_table()
-build_mannequin()
 only = a.get("only")
 for src, (tris, name) in PH.items():
     if only and name not in str(only).split(","):

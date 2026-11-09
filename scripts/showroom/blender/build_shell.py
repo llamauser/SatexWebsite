@@ -140,18 +140,18 @@ n = 22
 rise, run = MZTOP / n, (zt - zb) / n
 for k in range(n):
     top = rise * (k + 1)
-    add(box(f"step_{k}", ((x0 + x1) / 2, top / 2, zb + run * (k + 0.5)), (x1 - x0, top, run), stair_tread, ground, step=0.4, tile=1.5))
+    add(box(f"step_{k}", ((x0 + x1) / 2, top / 2, zb + run * (k + 0.5)), (x1 - x0, top, run), stair_tread, mezz, step=0.4, tile=1.5))
 for side, xx in (("l", x0 + 0.03), ("r", x1 - 0.03)):
     # stringer plus handrail on the open (right) side
     pass
-add(box("stair_rail_post_0", (x1 - 0.04, 0.55, zb + run * 0.5), (0.05, 1.1, 0.05), chrome, ground, tile=0), bake=False)
+add(box("stair_rail_post_0", (x1 - 0.04, 0.55, zb + run * 0.5), (0.05, 1.1, 0.05), chrome, mezz, tile=0), bake=False)
 for k in range(0, n, 3):
-    add(box(f"stair_rail_post_{k + 1}", (x1 - 0.04, rise * (k + 1) + 0.55, zb + run * (k + 0.5)), (0.05, 1.1, 0.05), chrome, ground, tile=0), bake=False)
+    add(box(f"stair_rail_post_{k + 1}", (x1 - 0.04, rise * (k + 1) + 0.55, zb + run * (k + 0.5)), (0.05, 1.1, 0.05), chrome, mezz, tile=0), bake=False)
 # the handrail follows the slope: one rotated box
 import math as _m  # noqa: E402
 slope = _m.atan2(MZTOP, zt - zb)
 length = _m.hypot(MZTOP, zt - zb)
-hr = box("stair_hand", (x1 - 0.04, MZTOP / 2 + 1.1, (zb + zt) / 2), (0.07, 0.05, length), chrome, ground, tile=0)
+hr = box("stair_hand", (x1 - 0.04, MZTOP / 2 + 1.1, (zb + zt) / 2), (0.07, 0.05, length), chrome, mezz, tile=0)
 hr.rotation_euler = (slope, 0, 0)  # Blender rotates about X: positive tilts towards the back
 hr.location = P(x1 - 0.04, MZTOP / 2 + 1.1, (zb + zt) / 2)
 

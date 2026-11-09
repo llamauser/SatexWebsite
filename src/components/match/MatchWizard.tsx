@@ -56,7 +56,7 @@ function Chips({ options, selected, onToggle, max, label }: { options: readonly 
   );
 }
 
-export function MatchWizard() {
+export function MatchWizard({ topic }: { topic?: string }) {
   const t = useTranslations("match.wizard");
   const locale = useLocale();
   const router = useRouter();
@@ -73,6 +73,8 @@ export function MatchWizard() {
     } catch {
       /* storage can be unavailable: the wizard simply starts empty */
     }
+    // coming from a department of the showroom: its name starts the description (what the visitor already wrote is kept)
+    if (topic) setS((v) => (v.description.trim() === "" ? { ...v, description: t("topicPrefill", { topic }) } : v));
     setLoaded(true);
     return () => abort.current?.abort();
   }, []);

@@ -47,7 +47,7 @@ export function DepartmentPanel({ department, data, onClose }: { department: Sho
           )}
           <div className="mt-4 flex flex-wrap gap-3">
             {department.categorySlugs[0] && <Link href={{ pathname: "/catalog", query: { category: department.categorySlugs.join(",") } }} className={buttonStyles()} style={{ background: "var(--primary-gradient)" }} data-testid="panel-catalog">{t("panel.catalog")}</Link>}
-            <Link href="/match" className={buttonStyles({ variant: "secondary" })} data-testid="panel-ai">{t("panel.ai")}</Link>
+            <Link href={{ pathname: "/match", query: { topic: name.slice(0, 80) } }} className={buttonStyles({ variant: "secondary" })} data-testid="panel-ai">{t("panel.ai")}</Link>
           </div>
         </>
       )}

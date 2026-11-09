@@ -46,3 +46,11 @@ Inspired by the video: an isometric, stylized two-floor warehouse (fabric halls 
 - Budget: < 150 draw calls (instanced props), < 1.5 MB JS for the showroom chunk (the models, about 6 MB, are loaded separately), 60 fps on a mid laptop, ≥ 30 fps on a mid phone.
 - A static pre-rendered image (`public/showroom/preview.webp`, made from a screenshot) is used on the home page teaser and as the loading placeholder.
 - Accessibility: the department list is also rendered as an accessible HTML list (screen readers and keyboard navigation), synced with the 3D selection.
+
+## 6. Polish pass (people, props, shadows)
+
+- **Figures**: `scripts/showroom/blender/figures.py` builds the people (standing, walking, holding a clipboard, seated), the tailor's dress form and the forklift. Clothes, skin and hair are separate tintable materials: `Placement` carries `color`, `color2`, `skin`, `hair` and the scene tints each instance (`personAt` in `src/lib/showroom/placements.ts` picks the palettes from a seed, so the people are always the same ones).
+- **Contact shadows**: `src/lib/showroom/contact-shadow.ts` makes one soft canvas texture; `ContactShadows` in `Scene3D.tsx` lays one instanced plane under every prop listed in `SHADOWED_PROPS`, sized from the footprint of its parts. No shadow maps, so phones pay almost nothing.
+- **Ask the AI**: each department panel links to `/match?topic=<department name>`; the matcher pre-fills its description (`match.wizard.topicPrefill`) when the box is still empty.
+- **Preview image**: `public/showroom/preview.webp` (a render of the finished scene) is shown on the home page and as the placeholder while the 3D code loads. Regenerate it after any big change to the scene.
+- Rebuild the GLBs with the Blender scripts (`build_props.py`, `build_shell.py`) then `scripts/showroom/optimize.mjs`.
