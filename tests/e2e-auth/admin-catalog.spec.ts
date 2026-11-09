@@ -216,9 +216,9 @@ test("the fabric list searches, filters and switches a fabric off", async ({ pag
   await expect(page.getByTestId("fabrics-empty")).toBeVisible();
   await page.getByTestId("fabric-state").selectOption("all");
   const row = page.getByTestId("fabric-row").filter({ hasText: "IMP-001" });
-  await row.getByTestId("fabric-active").check();
+  await row.getByTestId("fabric-active").click(); // the box follows the database after the round trip, so it is clicked, not "checked"
   await expect.poll(async () => withDb(async (c) => (await c.query(`select is_active from public.fabrics where sku = 'IMP-001'`)).rows[0].is_active)).toBe(true);
-  await row.getByTestId("fabric-active").uncheck();
+  await row.getByTestId("fabric-active").click();
   await expect.poll(async () => withDb(async (c) => (await c.query(`select is_active from public.fabrics where sku = 'IMP-001'`)).rows[0].is_active)).toBe(false);
 });
 

@@ -3,7 +3,8 @@ import { withDb } from "./helpers";
 
 test.use({ locale: "fr-FR" });
 
-const prefer = (page: Page, view: "2d" | "3d") => page.addInitScript((v) => localStorage.setItem("satex.showroom.view", v), view);
+// only the first visit is forced: a later choice made on the page (and kept in the browser) must survive a reload
+const prefer = (page: Page, view: "2d" | "3d") => page.addInitScript((v) => { if (localStorage.getItem("satex.showroom.view") === null) localStorage.setItem("satex.showroom.view", v); }, view);
 
 test("the plan shows the 11 departments of the database, floor by floor, and the panels say true things", async ({ page }) => {
   await prefer(page, "2d");

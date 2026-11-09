@@ -28,7 +28,7 @@ export function ClientsAdmin() {
     void (async () => {
       const sb = await loadBrowserSupabase();
       if (!sb) return setFailed(true);
-      const { data, error } = await sb.from("clients").select("id, company_name, country, created_at, is_demo, quotes(count), orders(count), sample_requests(count), profiles(full_name, phone)").order("created_at", { ascending: false }).limit(1000);
+      const { data, error } = await sb.from("clients").select("id, company_name, country, created_at, is_demo, quotes(count), orders(count), sample_requests(count), profiles!client_id(full_name, phone)").order("created_at", { ascending: false }).limit(1000);
       if (error) return setFailed(true);
       setRows(data as unknown as ClientRow[]);
     })();
@@ -91,7 +91,7 @@ export function ClientDetail({ id }: { id: string }) {
   const load = useCallback(async () => {
     const sb = await loadBrowserSupabase();
     if (!sb) return setMissing(true);
-    const { data } = await sb.from("clients").select("id, company_name, tax_id, website, country, notes_internal, created_at, profiles(full_name, phone, preferred_locale), addresses(kind, line1, line2, city, postal_code, country), quotes(id, ref, status, total, currency, created_at, submitted_at), orders(id, ref, status, total, currency, created_at), sample_requests(id, ref, status, created_at)").eq("id", id).maybeSingle();
+    const { data } = await sb.from("clients").select("id, company_name, tax_id, website, country, notes_internal, created_at, profiles!client_id(full_name, phone, preferred_locale), addresses(kind, line1, line2, city, postal_code, country), quotes(id, ref, status, total, currency, created_at, submitted_at), orders(id, ref, status, total, currency, created_at), sample_requests(id, ref, status, created_at)").eq("id", id).maybeSingle();
     if (!data) return setMissing(true);
     const d = data as unknown as Detail;
     setClient(d);

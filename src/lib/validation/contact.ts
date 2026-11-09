@@ -1,3 +1,4 @@
+import "@/lib/validation/zod-jitless";
 import { z } from "zod";
 
 export const contactSchema = z.object({

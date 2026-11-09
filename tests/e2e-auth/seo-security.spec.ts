@@ -105,7 +105,7 @@ test("no page breaks its own Content-Security-Policy (public, signed-in and admi
   };
   for (const p of ["/fr", "/fr/catalog", "/fr/catalog/linen-plain-160", "/fr/match", "/fr/about", "/fr/contact", "/fr/legal/privacy", "/fr/auth/sign-in", "/ar", "/en/catalog"]) await visit(p);
 
-  await page.addInitScript(() => localStorage.setItem("satex.showroom.view", "3d"));
+  await page.addInitScript(() => { if (localStorage.getItem("satex.showroom.view") === null) localStorage.setItem("satex.showroom.view", "3d"); });
   await visit("/fr/showroom");
   await page.locator('[data-testid="department-chip"][data-slug="knits"]').click();
   await page.getByTestId("floor-1").click();

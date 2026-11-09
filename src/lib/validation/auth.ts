@@ -1,3 +1,4 @@
+import "@/lib/validation/zod-jitless";
 import { z } from "zod";
 
 /** Error messages are i18n keys under `auth.validation.*` (the form translates them). */

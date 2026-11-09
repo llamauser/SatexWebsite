@@ -124,7 +124,7 @@ test("send: PDF stored, status 'sent', e-mail and notification; the client downl
   await expect(page.getByTestId("send-quote")).toHaveCount(0);
   await expect(page.getByTestId("line-meters")).toHaveCount(0);
   // the button opens a signed link in a new tab (a headless browser downloads a PDF instead of showing it): read the request itself
-  const opened = page.context().waitForEvent("request", (r) => r.url().includes("/object/sign/quote-pdfs/"));
+  const opened = page.context().waitForEvent("request", (r) => r.url().includes("/object/sign/quote-pdfs/") && r.url().includes("token="));
   await page.getByTestId("download-pdf").click();
   const pdf = await request.get((await opened).url());
   expect(pdf.status()).toBe(200);
