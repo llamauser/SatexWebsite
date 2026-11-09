@@ -41,6 +41,29 @@ node scripts/supabase-env.mjs > .env.local
 printf "NEXT_PUBLIC_SITE_URL=http://localhost:3000\nAI_PROVIDER=fake\nEMBED_PROVIDER=fake\nEMAIL_PROVIDER=log\nCRON_SECRET=local-secret\n" >> .env.local
 ```
 
+### Using Ollama instead of the fake AI (this PC)
+Install Ollama (ollama.com), start it, and download the two models once:
+```bash
+ollama pull bge-m3      # embeddings (1024 numbers: this is what the database expects)
+ollama pull qwen3:8b    # understands the search brief, writes the explanations, translates
+```
+`qwen3:8b` needs about 8 GB of free memory; on a weaker PC use a smaller model (for example `qwen3:4b`) and put its name in `OLLAMA_CHAT_MODEL`.
+Then use these lines in `.env.local` **in place of** the `AI_PROVIDER` / `EMBED_PROVIDER` lines of step 4:
+
+PowerShell:
+```powershell
+Add-Content .env.local "AI_PROVIDER=ollama"
+Add-Content .env.local "EMBED_PROVIDER=ollama"
+Add-Content .env.local "OLLAMA_BASE_URL=http://localhost:11434"
+Add-Content .env.local "OLLAMA_CHAT_MODEL=qwen3:8b"
+Add-Content .env.local "EMBEDDING_MODEL=bge-m3"
+```
+(If `AI_PROVIDER=fake` is already in the file, delete those two `fake` lines.) Check Ollama answers: open http://localhost:11434 (it says "Ollama is running").
+The first search is slow while the model loads into memory. Local models are weaker than Claude, especially in Arabic: results are good enough for a demo, not the final quality.
+
+**If the database was already seeded with the fake AI**, rebuild the search data: open Supabase Studio (http://127.0.0.1:54323) → SQL editor → run
+`delete from public.embeddings; update public.fabrics set name = name;` and keep the job runner of step 7 running: each fabric is embedded again by Ollama (a few minutes for 30 fabrics).
+
 ## 5. Fill the database with demo data
 ```bash
 pnpm db:seed
