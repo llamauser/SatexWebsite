@@ -5,6 +5,7 @@ import { useLocale, useTranslations } from "next-intl";
 import { useEffect, useRef, useState } from "react";
 import { AddToQuote } from "@/components/cart/AddToQuote";
 import { ReserveStock } from "@/components/reservations/ReserveStock";
+import { RequestSample } from "@/components/samples/RequestSample";
 import { loadBrowserSupabase } from "@/lib/db/browser-lazy";
 import { formatNumber } from "@/lib/data/format";
 import { stockLevel } from "@/lib/catalog/params";
@@ -129,6 +130,7 @@ export function ColorStock({
 
       {current && <AddToQuote key={current.id} colorId={current.id} moqM={moqM} availableM={availability[current.id] ?? null} />}
       {current && <ReserveStock key={`reserve-${current.id}`} colorId={current.id} moqM={moqM} availableM={availability[current.id] ?? null} />}
+      {current && <RequestSample key={`sample-${current.id}`} colorId={current.id} />}
     </div>
   );
 }
