@@ -4,6 +4,7 @@ import { getTranslations, setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
 import { MatchWizard } from "@/components/match/MatchWizard";
 import { BlobBackground } from "@/components/layout/BlobBackground";
+import { Link } from "@/i18n/navigation";
 import { routing } from "@/i18n/routing";
 import { alternatesFor } from "@/lib/seo";
 
@@ -27,6 +28,7 @@ export default async function MatchPage({ params }: Props) {
       <header className="mx-auto mb-8 max-w-2xl text-center">
         <h1 className="font-display text-4xl font-bold">{t("title")}</h1>
         <p className="mt-2 text-text-muted">{t("lead")}</p>
+        <p className="mt-3 text-sm"><Link href="/snap" className="text-primary hover:underline" data-testid="to-snap">{t("snapLink")}</Link></p>
       </header>
       <MatchWizard />
     </main>

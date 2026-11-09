@@ -25,10 +25,10 @@ export interface OwnerRef {
   token: string | null;
 }
 
-export async function createSession(sb: SupabaseClient, owner: OwnerRef, locale: string, input: WizardInput): Promise<string> {
+export async function createSession(sb: SupabaseClient, owner: OwnerRef, locale: string, input: WizardInput, mode: "wizard" | "snap" = "wizard"): Promise<string> {
   const { data, error } = await sb
     .from("match_sessions")
-    .insert({ user_id: owner.userId, session_token: owner.userId ? null : owner.token, locale, mode: "wizard", input })
+    .insert({ user_id: owner.userId, session_token: owner.userId ? null : owner.token, locale, mode, input })
     .select("id")
     .single();
   if (error) throw new Error(`create session: ${error.message}`);

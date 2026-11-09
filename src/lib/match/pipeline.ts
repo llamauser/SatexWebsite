@@ -1,4 +1,4 @@
-import { pickTop, scoreCandidate } from "./score";
+import { pickTop, scoreCandidate, type Weights } from "./score";
 import type { Candidate, ScoredCandidate, Spec } from "./schema";
 
 /**
@@ -24,7 +24,7 @@ export interface RankOutcome {
 const distinctFabrics = (c: Candidate[]) => new Set(c.map((x) => x.fabric_id)).size;
 
 /** Fewer than 3 fabrics found: relax, in order, the weight window, the construction, the fibers to avoid (and tell the user). */
-export async function retrieveAndRank(spec: Spec, fetchCandidates: FetchCandidates, opts: { requiredM?: number; excludeColorIds?: string[]; limit?: number } = {}): Promise<RankOutcome> {
+export async function retrieveAndRank(spec: Spec, fetchCandidates: FetchCandidates, opts: { requiredM?: number; excludeColorIds?: string[]; limit?: number; weights?: Weights } = {}): Promise<RankOutcome> {
   const base = { requiredM: opts.requiredM ?? 0, excludeColorIds: opts.excludeColorIds ?? [] };
   const filter: Spec = structuredClone(spec);
   const relaxed: Relaxation[] = [];
@@ -42,6 +42,6 @@ export async function retrieveAndRank(spec: Spec, fetchCandidates: FetchCandidat
     candidates = await fetchCandidates({ ...base, spec: structuredClone(filter) });
   }
   // scoring always uses the ORIGINAL spec, so relaxed matches honestly score lower
-  const scored = candidates.map((c) => scoreCandidate(spec, c));
+  const scored = candidates.map((c) => scoreCandidate(spec, c, opts.weights));
   return { results: pickTop(scored, opts.limit ?? 5), relaxed, scanned: candidates.length };
 }

@@ -1496,7 +1496,8 @@
         "invalid": "Please check your answers: the description needs at least 10 characters.",
         "rate": "Too many searches for now. Try again in an hour or contact us.",
         "server": "The search is temporarily unavailable. Please try again in a moment."
-      }
+      },
+      "snapLink": "Have a photo? Try Snap & Match"
     },
     "results": {
       "eyebrow": "Your match",
@@ -1935,5 +1936,50 @@
       "contact": "Contact us",
       "placeholder": "Choose a department to see its live stock, its fabrics and today's figures."
     }
+  },
+  "snap": {
+    "title": "Snap & Match",
+    "lead": "Drop a photo of a garment or a fabric: we find the in-stock fabrics that look like it.",
+    "drop": "Drag a photo here",
+    "formats": "JPG, PNG, WebP or HEIC · 8 MB maximum",
+    "choose": "Choose a file",
+    "camera": "Take a photo",
+    "previewAlt": "Your photo",
+    "remove": "Remove the photo",
+    "questions": "Two quick questions",
+    "questionsHint": "A photo cannot show the season or the stretch. You can skip these questions.",
+    "season": {
+      "label": "For which season?",
+      "spring_summer": "Spring-summer",
+      "autumn_winter": "Autumn-winter",
+      "all_season": "All year"
+    },
+    "stretch": {
+      "label": "Does it need stretch?",
+      "none": "No",
+      "some": "A little",
+      "a_lot": "A lot"
+    },
+    "submit": "Find fabrics",
+    "running": "This takes a few seconds.",
+    "stage": {
+      "understanding": "Looking at your photo…",
+      "searching": "Searching the stock…",
+      "ranking": "Ranking the fabrics…",
+      "explaining": "Explaining our choices…"
+    },
+    "error": {
+      "type": "This file is not an accepted photo (JPG, PNG, WebP or HEIC).",
+      "size": "The photo is over 8 MB.",
+      "read": "This photo cannot be opened. Try a JPG or a PNG.",
+      "notTextile": "We could not see a fabric in this photo. Try a closer photo of the fabric.",
+      "rate": "Too many searches right now. Please try again later.",
+      "unsupported": "This image could not be read. Try another photo.",
+      "server": "The search failed. Please try again."
+    },
+    "privacy": "Your photo is used only for this search. Its metadata (location, device) is removed and it is deleted automatically after 30 days.",
+    "toWizard": "Prefer to describe your project? Search by questions",
+    "yourPhoto": "Your photo",
+    "fromPhoto": "These fabrics resemble your photo: colors, look and likely use. Refine them with the filters below."
   }
 }

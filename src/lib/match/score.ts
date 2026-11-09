@@ -13,6 +13,14 @@ export const WEIGHTS = {
   color: 0.05,
 } as const;
 
+export type Weights = Record<keyof typeof WEIGHTS, number>;
+
+/**
+ * A photo says little about weight or fibers but a lot about color and look, so a Snap & Match search lets color and
+ * structure count for more (docs/08b-phase2-4-features.md §A: image + color + spec).
+ */
+export const SNAP_WEIGHTS: Weights = { semantic: 0.15, gsm: 0.05, fiber: 0.05, stretch: 0.1, use_season: 0.1, structure: 0.15, feel: 0.1, color: 0.35 };
+
 const clamp01 = (v: number) => Math.min(1, Math.max(0, v));
 const STRETCH_ORDER = ["none", "mechanical", "two_way", "four_way"];
 
@@ -84,7 +92,7 @@ export function budgetMultiplier(spec: Spec, price: number | null): number {
 }
 
 /** Score one in-stock color against the spec. Components without information in the spec are left out and their weight is shared by the rest. */
-export function scoreCandidate(spec: Spec, c: Candidate): ScoredCandidate {
+export function scoreCandidate(spec: Spec, c: Candidate, weights: Weights = WEIGHTS): ScoredCandidate {
   const price = c.price === null ? null : Number(c.price);
   const components: Components = {
     semantic: semanticScore(c.text_sim),
@@ -99,11 +107,11 @@ export function scoreCandidate(spec: Spec, c: Candidate): ScoredCandidate {
   };
   let weight = 0;
   let sum = 0;
-  for (const key of Object.keys(WEIGHTS) as (keyof typeof WEIGHTS)[]) {
+  for (const key of Object.keys(weights) as (keyof typeof WEIGHTS)[]) {
     const v = components[key];
     if (v === null) continue;
-    weight += WEIGHTS[key];
-    sum += WEIGHTS[key] * v;
+    weight += weights[key];
+    sum += weights[key] * v;
   }
   const score = (weight > 0 ? sum / weight : 0) * components.budget;
   return { candidate: c, score, pct: Math.round(Math.min(score, 0.99) * 100), components };

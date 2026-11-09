@@ -50,11 +50,22 @@ export default async function MatchSessionPage({ params }: Props) {
   }
   const owner = isOwner(session, { userId, token: (await cookies()).get("satex_match")?.value ?? null });
   const settings = await getPublicSettings();
+  // a Snap & Match search shows the photo that started it, to its owner only (the link can be shared; the photo is private)
+  const snapPath = (session.input as unknown as { snapPath?: string | null }).snapPath;
+  const photoUrl = owner && snapPath ? ((await sb.storage.from("snap-uploads").createSignedUrl(snapPath, 3600)).data?.signedUrl ?? null) : null;
+  const ts = await getTranslations("snap");
   const results: ResultView[] = (iteration.results ?? []).map((r) => ({ ...r, imageUrl: r.imagePath ? storageUrl(r.imagePath) : null }));
 
   return (
     <main className="mx-auto max-w-[1000px] px-4 py-10 sm:px-6 lg:px-8">
       <BlobBackground />
+      {photoUrl && (
+        <figure className="mx-auto mb-8 flex max-w-xl items-center gap-4 rounded-md border border-border bg-surface p-3" data-testid="snap-photo">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src={photoUrl} alt={ts("yourPhoto")} className="size-24 rounded-sm border border-border object-cover" />
+          <figcaption className="text-sm text-text-muted">{ts("fromPhoto")}</figcaption>
+        </figure>
+      )}
       <MatchResults
         sessionId={session.id}
         input={session.input}

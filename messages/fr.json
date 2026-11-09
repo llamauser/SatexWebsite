@@ -1496,7 +1496,8 @@
         "invalid": "Vérifiez vos réponses : la description doit faire au moins 10 caractères.",
         "rate": "Trop de recherches pour le moment. Réessayez dans une heure ou contactez-nous.",
         "server": "La recherche est momentanément indisponible. Réessayez dans un instant."
-      }
+      },
+      "snapLink": "Vous avez une photo ? Essayez Snap & Match"
     },
     "results": {
       "eyebrow": "Votre match",
@@ -1935,5 +1936,50 @@
       "contact": "Nous contacter",
       "placeholder": "Choisissez un département pour voir son stock en direct, ses tissus et ses chiffres du jour."
     }
+  },
+  "snap": {
+    "title": "Snap & Match",
+    "lead": "Déposez la photo d'un vêtement ou d'un tissu : nous trouvons les tissus en stock qui lui ressemblent.",
+    "drop": "Glissez une photo ici",
+    "formats": "JPG, PNG, WebP ou HEIC · 8 Mo maximum",
+    "choose": "Choisir un fichier",
+    "camera": "Prendre une photo",
+    "previewAlt": "Votre photo",
+    "remove": "Retirer la photo",
+    "questions": "Deux questions rapides",
+    "questionsHint": "Une photo ne montre ni la saison ni l'élasticité. Vous pouvez ignorer ces questions.",
+    "season": {
+      "label": "Pour quelle saison ?",
+      "spring_summer": "Printemps-été",
+      "autumn_winter": "Automne-hiver",
+      "all_season": "Toute l'année"
+    },
+    "stretch": {
+      "label": "Faut-il de l'élasticité ?",
+      "none": "Non",
+      "some": "Un peu",
+      "a_lot": "Beaucoup"
+    },
+    "submit": "Trouver des tissus",
+    "running": "Cela prend quelques secondes.",
+    "stage": {
+      "understanding": "Nous regardons votre photo…",
+      "searching": "Nous cherchons dans le stock…",
+      "ranking": "Nous classons les tissus…",
+      "explaining": "Nous expliquons nos choix…"
+    },
+    "error": {
+      "type": "Ce fichier n'est pas une photo acceptée (JPG, PNG, WebP ou HEIC).",
+      "size": "La photo dépasse 8 Mo.",
+      "read": "Impossible d'ouvrir cette photo. Essayez un JPG ou un PNG.",
+      "notTextile": "Nous n'avons pas vu de tissu sur cette photo. Essayez une photo plus proche du tissu.",
+      "rate": "Trop de recherches pour le moment. Réessayez plus tard.",
+      "unsupported": "Cette image n'a pas pu être lue. Essayez une autre photo.",
+      "server": "La recherche a échoué. Réessayez."
+    },
+    "privacy": "Votre photo sert uniquement à cette recherche. Elle est nettoyée de ses métadonnées (lieu, appareil) et supprimée automatiquement après 30 jours.",
+    "toWizard": "Préférez décrire votre projet ? Recherche par questions",
+    "yourPhoto": "Votre photo",
+    "fromPhoto": "Ces tissus ressemblent à votre photo : couleurs, aspect et usage probable. Précisez avec les filtres ci-dessous."
   }
 }
