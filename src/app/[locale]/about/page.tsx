@@ -33,7 +33,7 @@ export default async function AboutPage({ params }: Props) {
     <main className="mx-auto max-w-[1200px] px-4 py-12 sm:px-6 lg:px-8">
       <BlobBackground />
       <header className="max-w-3xl">
-        <p className="text-xs font-semibold uppercase tracking-[0.18em] text-accent-beige">{t("eyebrow", { year: settings.foundedYear })}</p>
+        <p className="text-xs font-semibold uppercase tracking-[0.18em] text-accent-beige-strong">{t("eyebrow", { year: settings.foundedYear })}</p>
         <h1 className="mt-2 font-display text-4xl font-bold sm:text-5xl">{t("title")}</h1>
         <p className="mt-4 text-lg text-text-muted">{t("lead")}</p>
       </header>

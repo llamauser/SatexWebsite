@@ -52,7 +52,7 @@ export function Dashboard() {
           const n = Number(kpis[c.key]);
           return (
             <li key={c.key}>
-              <Link href={c.href} className={cn("block rounded-md border bg-surface p-5 hover:border-primary", n > 0 ? "border-border" : "border-border opacity-80")} data-testid={`kpi-${c.key}`} data-value={n}>
+              <Link href={c.href} className={cn("block rounded-md border bg-surface p-5 hover:border-primary", n > 0 ? "border-border" : "border-border border-dashed")} data-testid={`kpi-${c.key}`} data-value={n}>
                 <span className="block font-display text-4xl font-bold tabular-nums" dir="ltr">{n}</span>
                 <span className="mt-1 block font-medium">{t(`cards.${c.key}`)}</span>
                 <span className="block text-sm text-text-muted">{t(`hints.${c.key}`)}</span>

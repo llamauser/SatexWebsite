@@ -82,7 +82,7 @@ export function MatchResults({
 
   return (
     <div>
-      <p className="text-xs font-semibold uppercase tracking-[0.18em] text-accent-beige">{t("eyebrow")}</p>
+      <p className="text-xs font-semibold uppercase tracking-[0.18em] text-accent-beige-strong">{t("eyebrow")}</p>
       <h1 className="mt-1 font-display text-4xl font-bold">{t("title")}</h1>
 
       {chips.length > 0 && (

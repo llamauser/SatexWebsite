@@ -128,7 +128,7 @@ export default async function FabricPage({ params }: Props) {
         />
 
         <div>
-          <p className="text-xs font-semibold uppercase tracking-[0.18em] text-accent-beige" dir="ltr">{fabric.sku}</p>
+          <p className="text-xs font-semibold uppercase tracking-[0.18em] text-accent-beige-strong" dir="ltr">{fabric.sku}</p>
           <h1 className="mt-1 font-display text-3xl font-bold sm:text-4xl">{name}</h1>
           <p className="mt-3 text-text-muted">{localized(fabric.shortDescription, locale)}</p>
 

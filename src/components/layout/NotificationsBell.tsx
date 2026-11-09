@@ -90,12 +90,12 @@ export function NotificationsBell() {
         data-testid="bell-button"
       >
         <Bell className="size-5" aria-hidden />
-        {unread > 0 && (
-          <span className="absolute end-1 top-1 flex min-w-4 items-center justify-center rounded-full bg-danger px-1 text-[10px] font-bold leading-4 text-white" data-testid="bell-count">
-            {unread > 9 ? "9+" : unread}
-          </span>
-        )}
       </button>
+      {unread > 0 && (
+        <span aria-hidden="true" className="pointer-events-none absolute end-1 top-1 flex min-w-4 items-center justify-center rounded-full bg-danger px-1 text-[10px] font-bold leading-4 text-white" data-testid="bell-count">
+          {unread > 9 ? "9+" : unread}
+        </span>
+      )}
       {open && (
         <div role="menu" className="absolute end-0 z-40 mt-2 w-80 max-w-[90vw] rounded-md border border-border bg-surface shadow-pop" data-testid="bell-panel">
           <div className="flex items-center justify-between border-b border-border px-4 py-2.5">

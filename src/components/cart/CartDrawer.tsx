@@ -146,9 +146,9 @@ export default function CartDrawer({ onClose }: { onClose: () => void }) {
               <dl className="space-y-1 text-sm" data-testid="cart-totals">
                 <div className="flex justify-between"><dt className="text-text-muted">{t("subtotal")}</dt><dd>{money(totals.subtotal)}</dd></div>
                 <div className="flex justify-between font-semibold"><dt>{t("total", { vat: Math.round(state.vatRate * 100) })}</dt><dd data-testid="cart-total">{money(totals.total)}</dd></div>
-                <p className="text-xs text-text-muted">{t("estimateNote")}</p>
               </dl>
             )}
+            {priced && <p className="text-xs text-text-muted">{t("estimateNote")}</p>}
             {state.mode === "client" ? (
               <>
                 <label className="block text-sm font-medium">

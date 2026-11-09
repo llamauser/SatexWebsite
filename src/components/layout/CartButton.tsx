@@ -31,7 +31,7 @@ export function CartButton() {
   }, [refresh]);
 
   return (
-    <>
+    <div className="relative">
       <button
         type="button"
         onClick={() => setOpen(true)}
@@ -41,13 +41,13 @@ export function CartButton() {
         data-testid="cart-button"
       >
         <ShoppingBag className="size-5" aria-hidden />
-        {count > 0 && (
-          <span className="absolute end-0.5 top-0.5 flex min-w-4 items-center justify-center rounded-full bg-primary px-1 text-[10px] font-bold leading-4 text-white" data-testid="cart-count">
-            {count}
-          </span>
-        )}
       </button>
+      {count > 0 && (
+        <span aria-hidden="true" className="pointer-events-none absolute end-0.5 top-0.5 flex min-w-4 items-center justify-center rounded-full bg-primary px-1 text-[10px] font-bold leading-4 text-white" data-testid="cart-count">
+          {count}
+        </span>
+      )}
       {open && <CartDrawer onClose={() => setOpen(false)} />}
-    </>
+    </div>
   );
 }

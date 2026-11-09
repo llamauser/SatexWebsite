@@ -143,7 +143,7 @@ export async function ShowroomTeaser() {
     <section className={`${wrap} py-12`} aria-labelledby="showroom-title">
       <Card className="grid items-center gap-8 md:grid-cols-2">
         <div>
-          <p className="text-xs font-semibold uppercase tracking-[0.18em] text-accent-beige">{t("eyebrow")}</p>
+          <p className="text-xs font-semibold uppercase tracking-[0.18em] text-accent-beige-strong">{t("eyebrow")}</p>
           <h2 id="showroom-title" className="mt-2 font-display text-3xl font-bold">
             {t("title")}
           </h2>
