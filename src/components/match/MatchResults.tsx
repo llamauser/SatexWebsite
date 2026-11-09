@@ -4,6 +4,7 @@ import { ThumbsDown, ThumbsUp } from "lucide-react";
 import Image from "next/image";
 import { useLocale, useTranslations } from "next-intl";
 import { useState } from "react";
+import { AddToQuote } from "@/components/cart/AddToQuote";
 import { buttonStyles } from "@/components/ui/Button";
 import { Alert } from "@/components/ui/Field";
 import { Link, useRouter } from "@/i18n/navigation";
@@ -166,7 +167,8 @@ export function MatchResults({
                     ))}
                   </dl>
                   <p className="mt-1 text-xs text-text-muted" dir="ltr">{compositionShort(r.composition)}</p>
-                  <div className="mt-5 flex flex-wrap gap-3">
+                  <div className="mt-5 flex flex-wrap items-center gap-3">
+                    <AddToQuote colorId={r.colorId} moqM={r.moqM ?? 1} defaultMeters={input.requiredM ?? undefined} compact />
                     <Link href={{ pathname: "/contact", query: { ref: r.sku } }} className={buttonStyles()} style={{ background: "var(--primary-gradient)" }}>
                       {t("actions.ask")}
                     </Link>

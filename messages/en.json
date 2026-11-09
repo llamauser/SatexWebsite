@@ -176,7 +176,8 @@
     "nav": {
       "label": "Customer area",
       "overview": "Overview",
-      "profile": "Profile"
+      "profile": "Profile",
+      "quotes": "Quotes"
     },
     "overview": {
       "loading": "Loading…",
@@ -825,6 +826,120 @@
         "stretch": "Note: it stretches less than you wanted.",
         "use": "Note: it is less suited to the intended use.",
         "price": "Note: its price is above your budget."
+      }
+    }
+  },
+  "cart": {
+    "open": "Open my quote request",
+    "count": "{count, plural, one {# line} other {# lines}}",
+    "add": {
+      "button": "Add to quote",
+      "quantity": "Quantity (m)",
+      "min": "minimum {m} m",
+      "added": "{m} m added to your quote request.",
+      "partial": "Only {m} m in stock: the lead time for the rest will be confirmed.",
+      "problem": {
+        "min": "Minimum {m} m.",
+        "step": "In steps of 0.5 m.",
+        "max": "Maximum 10,000 m.",
+        "invalid": "Invalid quantity.",
+        "error": "Could not add right now. Please try again."
+      }
+    },
+    "drawer": {
+      "title": "My quote request",
+      "close": "Close",
+      "loading": "Loading…",
+      "empty": "Your quote request is empty.",
+      "browse": "Browse the catalog",
+      "remove": "Remove this line",
+      "meters": "Meters",
+      "unit": "{price} / m",
+      "priceHidden": "Prices visible after sign-in",
+      "partial": "Only {m} m in stock: lead time to be confirmed for the rest.",
+      "subtotal": "Subtotal excl. VAT",
+      "total": "Total incl. VAT ({vat}%)",
+      "estimateNote": "Estimate: the final quote is prepared by our team.",
+      "message": "Message for our team (optional)",
+      "submit": "Send my quote request",
+      "error": "Could not send right now. Please try again.",
+      "signInToSubmit": "Sign in or create an account to send your request. Your selection is kept.",
+      "signIn": "Sign in to send",
+      "submitted": "Your request was sent. Our team will reply shortly.",
+      "viewQuote": "View my request",
+      "problem": {
+        "min": "Minimum {m} m.",
+        "step": "In steps of 0.5 m.",
+        "max": "Maximum 10,000 m.",
+        "invalid": "Invalid quantity."
+      }
+    }
+  },
+  "quotes": {
+    "status": {
+      "draft": "Draft",
+      "submitted": "Submitted",
+      "in_review": "In review",
+      "sent": "Quote received",
+      "accepted": "Accepted",
+      "rejected": "Declined",
+      "expired": "Expired",
+      "cancelled": "Cancelled",
+      "converted": "Ordered"
+    },
+    "list": {
+      "title": "My quotes",
+      "filter": "Status",
+      "all": "All",
+      "loading": "Loading…",
+      "error": "Could not load your quotes.",
+      "none": "You have no quote request yet.",
+      "noneForFilter": "No quote with this status.",
+      "browse": "Browse the catalog",
+      "lines": "{count, plural, one {# line} other {# lines}}",
+      "validUntil": "Valid until {date}"
+    },
+    "detail": {
+      "loading": "Loading…",
+      "missing": "This quote could not be found.",
+      "back": "← All my quotes",
+      "fabric": "Fabric",
+      "meters": "Quantity",
+      "unit": "Price / m",
+      "lineTotal": "Total excl. VAT",
+      "subtotal": "Subtotal excl. VAT",
+      "discount": "Discount ({pct}%)",
+      "vat": "VAT ({pct}%)",
+      "total": "Total incl. VAT",
+      "progress": "Progress",
+      "timeline": {
+        "created": "Created",
+        "submitted": "Request sent",
+        "sent": "Quote sent by our team",
+        "accepted": "Accepted",
+        "rejected": "Declined",
+        "expired": "Expired"
+      },
+      "validUntil": "Valid until {date}.",
+      "yourMessage": "Your message",
+      "reason": "Reason for declining: {reason}",
+      "decision": "Your decision",
+      "decisionHelp": "Accept this quote to start the order, or decline it.",
+      "accept": "Accept the quote",
+      "reject": "Decline",
+      "rejectReason": "Reason (optional)",
+      "rejectConfirm": "Confirm decline",
+      "cancel": "Cancel",
+      "error": "Could not do that right now. Please try again.",
+      "closed": {
+        "submitted": "Our team is reviewing your request.",
+        "in_review": "Our team is preparing your quote.",
+        "accepted": "You accepted this quote. Our team is preparing the order.",
+        "rejected": "You declined this quote.",
+        "expired": "This quote has expired. Contact us to get a new one.",
+        "cancelled": "This request was cancelled.",
+        "converted": "This quote became an order.",
+        "other": "No action is possible right now."
       }
     }
   }

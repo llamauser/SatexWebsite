@@ -176,7 +176,8 @@
     "nav": {
       "label": "Espace client",
       "overview": "Vue d'ensemble",
-      "profile": "Profil"
+      "profile": "Profil",
+      "quotes": "Devis"
     },
     "overview": {
       "loading": "Chargement…",
@@ -825,6 +826,120 @@
         "stretch": "Attention : il est moins extensible que souhaité.",
         "use": "Attention : il est moins adapté à l'usage visé.",
         "price": "Attention : son prix dépasse votre budget."
+      }
+    }
+  },
+  "cart": {
+    "open": "Ouvrir ma demande de devis",
+    "count": "{count, plural, one {# ligne} other {# lignes}}",
+    "add": {
+      "button": "Ajouter au devis",
+      "quantity": "Quantité (m)",
+      "min": "minimum {m} m",
+      "added": "{m} m ajoutés à votre demande de devis.",
+      "partial": "Seulement {m} m en stock : le délai pour le reste sera confirmé.",
+      "problem": {
+        "min": "Minimum {m} m.",
+        "step": "Par pas de 0,5 m.",
+        "max": "Maximum 10 000 m.",
+        "invalid": "Quantité invalide.",
+        "error": "Impossible d'ajouter pour le moment. Réessayez."
+      }
+    },
+    "drawer": {
+      "title": "Ma demande de devis",
+      "close": "Fermer",
+      "loading": "Chargement…",
+      "empty": "Votre demande de devis est vide.",
+      "browse": "Parcourir le catalogue",
+      "remove": "Retirer cette ligne",
+      "meters": "Mètres",
+      "unit": "{price} / m",
+      "priceHidden": "Prix visibles après connexion",
+      "partial": "Seulement {m} m en stock : délai à confirmer pour le reste.",
+      "subtotal": "Sous-total HT",
+      "total": "Total TTC (TVA {vat} %)",
+      "estimateNote": "Estimation : le devis définitif est établi par notre équipe.",
+      "message": "Message pour notre équipe (facultatif)",
+      "submit": "Envoyer ma demande de devis",
+      "error": "Envoi impossible pour le moment. Réessayez.",
+      "signInToSubmit": "Connectez-vous ou créez un compte pour envoyer votre demande. Votre sélection est conservée.",
+      "signIn": "Se connecter pour envoyer",
+      "submitted": "Votre demande a bien été envoyée. Notre équipe vous répond rapidement.",
+      "viewQuote": "Voir ma demande",
+      "problem": {
+        "min": "Minimum {m} m.",
+        "step": "Par pas de 0,5 m.",
+        "max": "Maximum 10 000 m.",
+        "invalid": "Quantité invalide."
+      }
+    }
+  },
+  "quotes": {
+    "status": {
+      "draft": "Brouillon",
+      "submitted": "Envoyée",
+      "in_review": "En étude",
+      "sent": "Devis reçu",
+      "accepted": "Accepté",
+      "rejected": "Refusé",
+      "expired": "Expiré",
+      "cancelled": "Annulé",
+      "converted": "Commandé"
+    },
+    "list": {
+      "title": "Mes devis",
+      "filter": "Statut",
+      "all": "Tous",
+      "loading": "Chargement…",
+      "error": "Impossible de charger vos devis.",
+      "none": "Vous n'avez pas encore de demande de devis.",
+      "noneForFilter": "Aucun devis avec ce statut.",
+      "browse": "Parcourir le catalogue",
+      "lines": "{count, plural, one {# ligne} other {# lignes}}",
+      "validUntil": "Valable jusqu'au {date}"
+    },
+    "detail": {
+      "loading": "Chargement…",
+      "missing": "Ce devis est introuvable.",
+      "back": "← Tous mes devis",
+      "fabric": "Tissu",
+      "meters": "Quantité",
+      "unit": "Prix / m",
+      "lineTotal": "Total HT",
+      "subtotal": "Sous-total HT",
+      "discount": "Remise ({pct} %)",
+      "vat": "TVA ({pct} %)",
+      "total": "Total TTC",
+      "progress": "Suivi",
+      "timeline": {
+        "created": "Créé",
+        "submitted": "Demande envoyée",
+        "sent": "Devis envoyé par notre équipe",
+        "accepted": "Accepté",
+        "rejected": "Refusé",
+        "expired": "Expiré"
+      },
+      "validUntil": "Valable jusqu'au {date}.",
+      "yourMessage": "Votre message",
+      "reason": "Motif du refus : {reason}",
+      "decision": "Votre décision",
+      "decisionHelp": "Acceptez ce devis pour lancer la commande, ou refusez-le.",
+      "accept": "Accepter le devis",
+      "reject": "Refuser",
+      "rejectReason": "Motif (facultatif)",
+      "rejectConfirm": "Confirmer le refus",
+      "cancel": "Annuler",
+      "error": "Action impossible pour le moment. Réessayez.",
+      "closed": {
+        "submitted": "Notre équipe étudie votre demande.",
+        "in_review": "Notre équipe prépare votre devis.",
+        "accepted": "Vous avez accepté ce devis. Notre équipe prépare la commande.",
+        "rejected": "Vous avez refusé ce devis.",
+        "expired": "Ce devis a expiré. Contactez-nous pour en obtenir un nouveau.",
+        "cancelled": "Cette demande a été annulée.",
+        "converted": "Ce devis est devenu une commande.",
+        "other": "Aucune action n'est possible pour le moment."
       }
     }
   }

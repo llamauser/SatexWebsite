@@ -3,6 +3,7 @@ import { Link } from "@/i18n/navigation";
 import { AccountMenu } from "./AccountMenu";
 import { LanguageSwitcher } from "./LanguageSwitcher";
 import { DesktopNav, MobileNav } from "./MainNav";
+import { CartButton } from "./CartButton";
 import { LazyBell } from "./LazyBell";
 
 /** The quote cart icon arrives with P1-10. */
@@ -21,6 +22,7 @@ export function Header() {
           <div className="hidden md:block">
             <LanguageSwitcher />
           </div>
+          <CartButton />
           <LazyBell />
           <AccountMenu />
           <MobileNav />
