@@ -1,0 +1,11 @@
+sku,name_fr,name_en,name_ar,category,construction,structure,composition,gsm,width_cm,stretch,stretch_pct,finish,uses,seasons,tags,moq_m,base_price_per_m,is_active,colors,price_tiers
+IMP-001,Jersey coton bio 160,Organic cotton jersey 160,جيرسي قطن عضوي 160,knits,knit,jersey,cotton:100,160,170,none,,,t_shirts|kidswear,all_season,bio|basics,5,8.4,false,NAT:Naturel:#EDE6D6|BLK:Noir:#111111,50:7.9|200:7.4
+IMP-002,Piqué polo 220,Polo piqué 220,بيكيه بولو 220,knits,knit,pique,cotton:95|elastane:5,220,160,mechanical,15,,polos|activewear,spring_summer,polo,5,10.2,false,WHT:Blanc:#FFFFFF|NVY:Marine:#1F2A44,100:9.6
+IMP-003,Popeline chemise 115,Shirt poplin 115,بوبلين قمصان 115,shirting,woven,poplin,cotton:100,115,145,none,,,shirts,all_season,chemise,10,7.8,false,WHT:Blanc:#FFFFFF|SKY:Ciel:#A9C7E8,
+IMP-004,Lin lavé 180,Washed linen 180,كتان مغسول 180,natural-fibers,woven,plain,linen:100,180,140,none,,lavé,shirts|dresses|trousers,spring_summer,lin,10,15.9,false,SND:Sable:#D8C7A3|OLV:Olive:#6B7A4B,
+IMP-005,Maille mesh sport 140,Sport mesh 140,شبك رياضي 140,technical-activewear,knit,mesh,polyester:100,140,150,mechanical,10,,activewear|sportswear,spring_summer,sport,5,6.5,false,BLK:Noir:#111111|RED:Rouge:#C62828,100:6.1
+IMP-006,Denim brut 12oz,Raw denim 12oz,دنيم خام 12 أونصة,denim,woven,denim,cotton:100,400,150,none,,,jeans|jackets,all_season,denim,20,12.6,false,IND:Indigo:#26365E,100:11.9
+IMP-007,Satin soie 85 (erreur volontaire : 90 %),Silk satin 85 (deliberate error: 90%),ساتان حرير 85,eveningwear,woven,satin,silk:90,85,140,none,,,eveningwear|dresses,all_season,soie,5,34.5,false,IVR:Ivoire:#F5EFE0,
+IMP-008,Gabardine laine 250,Wool gabardine 250,جبردين صوف 250,suiting,woven,gabardine,wool:100,250,150,none,,,suits|trousers,autumn_winter,laine,5,27.3,false,CHR:Anthracite:#3A3D42|NVY:Marine:#1F2A44,50:26
+IMP-009,Velours ameublement 450,Upholstery velvet 450,مخمل تنجيد 450,upholstery,woven,velvet,polyester:100,450,140,none,,,upholstery|curtains,autumn_winter,velours,10,16.8,false,EMR:Émeraude:#0F6B4F|BRG:Bordeaux:#6D1F2E,
+IMP-010,Doublure antistatique 70,Anti-static lining 70,بطانة 70,linings,woven,plain,polyester:100,70,150,none,,,linings|jackets,all_season,doublure,20,3.2,false,BLK:Noir:#111111|GRY:Gris:#8A8D91,200:2.9
