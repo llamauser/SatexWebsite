@@ -1,3 +1,4 @@
+import { Analytics } from "@vercel/analytics/next";
 import type { Metadata } from "next";
 import { hasLocale, NextIntlClientProvider } from "next-intl";
 import { getTranslations, setRequestLocale } from "next-intl/server";
@@ -8,6 +9,7 @@ import { Header } from "@/components/layout/Header";
 import { clientMessages } from "@/i18n/client-messages";
 import { localeDirection, routing } from "@/i18n/routing";
 import "../globals.css";
+import { siteUrl } from "@/lib/seo";
 
 // "optional": if Inter is not ready for the first paint the fallback stays for this view (metrics-matched by next/font),
 // so the body text is never re-painted late by a font swap. The font is cached for the next page.
@@ -37,8 +39,11 @@ export async function generateMetadata({ params }: Pick<Props, "params">): Promi
   if (!hasLocale(routing.locales, locale)) return {};
   const t = await getTranslations({ locale, namespace: "metadata" });
   return {
+    metadataBase: new URL(siteUrl()),
     title: { default: t("title"), template: `%s | ${t("title")}` },
     description: t("description"),
+    openGraph: { type: "website", siteName: t("title"), locale: locale === "ar" ? "ar_AR" : locale === "en" ? "en_GB" : "fr_FR" },
+    twitter: { card: "summary_large_image" },
   };
 }
 
@@ -63,6 +68,8 @@ export default async function LocaleLayout({ children, params }: Props) {
           <div id="main-content">{children}</div>
           <Footer />
         </NextIntlClientProvider>
+        {/* Vercel Web Analytics: cookieless, so no consent banner. Only on Vercel (the script is served by Vercel itself). */}
+        {process.env.VERCEL ? <Analytics /> : null}
       </body>
     </html>
   );

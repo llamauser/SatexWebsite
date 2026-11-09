@@ -26,6 +26,7 @@ export function SettingsAdmin() {
   const [confirm, setConfirm] = useState("");
   const [purging, setPurging] = useState(false);
   const [purged, setPurged] = useState<Record<string, number> | null>(null);
+  const [monitoring, setMonitoring] = useState<"idle" | "busy" | "off" | "sent" | "error">("idle");
 
   const load = useCallback(async () => {
     const sb = await loadBrowserSupabase();
@@ -57,6 +58,17 @@ export function SettingsAdmin() {
     if (results.some((r) => r.error)) return setMsg({ kind: "error", text: t("saveError") });
     setMsg({ kind: "success", text: t("saved", { n: updates.length }) });
     await load();
+  }
+
+  async function testMonitoring() {
+    setMonitoring("busy");
+    try {
+      const res = await fetch("/api/admin/sentry-test", { method: "POST" });
+      const body = (await res.json()) as { sent?: boolean };
+      setMonitoring(!res.ok ? "error" : body.sent ? "sent" : "off");
+    } catch {
+      setMonitoring("error");
+    }
   }
 
   async function purge() {
@@ -104,6 +116,13 @@ export function SettingsAdmin() {
           <Button type="button" loading={saving === g} onClick={() => void saveGroup(g)} data-testid={`save-${g}`}>{t("save")}</Button>
         </Section>
       ))}
+
+      <Section title={t("monitoring.title")} hint={t("monitoring.hint")} testId="monitoring">
+        <div className="flex flex-wrap items-center gap-3">
+          <Button type="button" variant="secondary" loading={monitoring === "busy"} onClick={() => void testMonitoring()} data-testid="sentry-test">{t("monitoring.test")}</Button>
+          {monitoring !== "idle" && monitoring !== "busy" && <span role="status" className={monitoring === "sent" ? "text-sm text-success" : "text-sm text-warning"} data-testid="sentry-result">{t(`monitoring.${monitoring}`)}</span>}
+        </div>
+      </Section>
 
       <Section title={t("danger")} hint={t("purgeHint")} testId="purge-demo">
         {purged ? (

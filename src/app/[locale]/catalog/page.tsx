@@ -15,6 +15,7 @@ import { pageCount, parseCatalogParams } from "@/lib/catalog/params";
 import { getCatalogCategories, searchCatalog } from "@/lib/data/catalog";
 import { localized } from "@/lib/data/format";
 import { getPublicSettings } from "@/lib/data/public";
+import { alternatesFor } from "@/lib/seo";
 
 type Props = {
   params: Promise<{ locale: string }>;
@@ -25,7 +26,7 @@ export async function generateMetadata({ params }: Pick<Props, "params">): Promi
   const { locale } = await params;
   if (!hasLocale(routing.locales, locale)) return {};
   const t = await getTranslations({ locale, namespace: "catalog" });
-  return { title: t("title"), description: t("lead") };
+  return { title: t("title"), description: t("lead"), alternates: alternatesFor(locale, "/catalog") };
 }
 
 export default async function CatalogPage({ params, searchParams }: Props) {

@@ -1,0 +1,38 @@
+name: Weekly database backup
+
+# A second copy of the production database, outside Supabase (docs/11-non-functional.md §7).
+# Needs the repository secret SUPABASE_DB_URL (the "Session pooler" connection string of the production project).
+# The dump is stored as a private workflow artifact for 30 days; copy it to your own storage if you need it longer.
+on:
+  schedule:
+    - cron: "17 3 * * 0"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  dump:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Check the secret is set
+        env:
+          DB_URL: ${{ secrets.SUPABASE_DB_URL }}
+        run: |
+          if [ -z "$DB_URL" ]; then echo "SUPABASE_DB_URL is not set: nothing to back up."; exit 1; fi
+      - name: Install the PostgreSQL client
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y postgresql-client
+      - name: Dump the public schema and its data
+        env:
+          DB_URL: ${{ secrets.SUPABASE_DB_URL }}
+        run: |
+          pg_dump "$DB_URL" --no-owner --no-privileges --schema=public --format=custom --file=satex-$(date +%F).dump
+          ls -lh satex-*.dump
+      - uses: actions/upload-artifact@v4
+        with:
+          name: satex-database-backup
+          path: satex-*.dump
+          retention-days: 30

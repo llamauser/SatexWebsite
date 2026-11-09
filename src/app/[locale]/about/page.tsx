@@ -8,6 +8,7 @@ import { Card } from "@/components/ui/Field";
 import { Link } from "@/i18n/navigation";
 import { routing } from "@/i18n/routing";
 import { getPublicSettings } from "@/lib/data/public";
+import { alternatesFor } from "@/lib/seo";
 
 type Props = { params: Promise<{ locale: string }> };
 
@@ -15,7 +16,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale } = await params;
   if (!hasLocale(routing.locales, locale)) return {};
   const t = await getTranslations({ locale, namespace: "about" });
-  return { title: t("title"), description: t("lead") };
+  return { title: t("title"), description: t("lead"), alternates: alternatesFor(locale, "/about") };
 }
 
 const DEPARTMENTS = ["fabricHalls", "cutting", "shipping", "studio"] as const;

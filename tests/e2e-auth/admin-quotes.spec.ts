@@ -1,4 +1,4 @@
-﻿import { expect, test, type APIRequestContext } from "@playwright/test";
+import { expect, test, type APIRequestContext } from "@playwright/test";
 import { seededPassword, signInOk, withDb } from "./helpers";
 
 test.use({ locale: "fr-FR" });
@@ -123,12 +123,13 @@ test("send: PDF stored, status 'sent', e-mail and notification; the client downl
   // no more editing, but the PDF can be opened
   await expect(page.getByTestId("send-quote")).toHaveCount(0);
   await expect(page.getByTestId("line-meters")).toHaveCount(0);
-  const [popup] = await Promise.all([page.waitForEvent("popup"), page.getByTestId("download-pdf").click()]);
-  const pdf = await request.get(popup.url());
+  // the button opens a signed link in a new tab (a headless browser downloads a PDF instead of showing it): read the request itself
+  const opened = page.context().waitForEvent("request", (r) => r.url().includes("/object/sign/quote-pdfs/"));
+  await page.getByTestId("download-pdf").click();
+  const pdf = await request.get((await opened).url());
   expect(pdf.status()).toBe(200);
   expect(pdf.headers()["content-type"]).toContain("application/pdf");
   expect((await pdf.body()).subarray(0, 5).toString()).toBe("%PDF-");
-  await popup.close();
 
   // the client is told (e-mail + bell), reads the PDF, accepts
   await runJobs(request);

@@ -1,5 +1,6 @@
 import type { NextConfig } from "next";
 import createNextIntlPlugin from "next-intl/plugin";
+import { CAMERA_PAGES, cameraPermissionsPolicy, securityHeaders } from "./src/lib/security-headers";
 
 const withNextIntl = createNextIntlPlugin("./src/i18n/request.ts");
 
@@ -28,6 +29,14 @@ const nextConfig: NextConfig = {
   images: { remotePatterns: supabaseImagePattern(), formats: ["image/avif", "image/webp"] },
   // The quote PDF is rendered on the server with react-pdf, which reads the font files at run time: make sure they ship with the route.
   serverExternalPackages: ["@react-pdf/renderer"],
+  async headers() {
+    const opts = { supabaseUrl: process.env.NEXT_PUBLIC_SUPABASE_URL, dev: process.env.NODE_ENV !== "production", production: process.env.NODE_ENV === "production" };
+    return [
+      { source: "/:path*", headers: securityHeaders(opts) },
+      // later rules win for the same header: the camera pages relax only the Permissions-Policy
+      ...CAMERA_PAGES.map((source) => ({ source, headers: [{ key: "Permissions-Policy", value: cameraPermissionsPolicy }] })),
+    ];
+  },
   outputFileTracingIncludes: { "/api/admin/quotes/[id]/send": ["./assets/fonts/**/*"] },
 };
 

@@ -6,6 +6,7 @@ import { ShowroomView } from "@/components/showroom/ShowroomView";
 import { getShowroomData } from "@/lib/data/showroom";
 import { clientMessages } from "@/i18n/client-messages";
 import { routing } from "@/i18n/routing";
+import { alternatesFor } from "@/lib/seo";
 
 type Props = { params: Promise<{ locale: string }> };
 
@@ -13,7 +14,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale } = await params;
   if (!hasLocale(routing.locales, locale)) return {};
   const t = await getTranslations({ locale, namespace: "showroom" });
-  return { title: t("title"), description: t("lead") };
+  return { title: t("title"), description: t("lead"), alternates: alternatesFor(locale, "/showroom") };
 }
 
 export default async function ShowroomPage({ params }: Props) {

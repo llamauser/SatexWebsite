@@ -1,4 +1,4 @@
-﻿import { expect, test, type APIRequestContext } from "@playwright/test";
+import { expect, test, type APIRequestContext } from "@playwright/test";
 import { seededPassword, signInOk, withDb } from "./helpers";
 
 test.use({ locale: "fr-FR" });
@@ -72,7 +72,7 @@ test("messages: the contact form messages can be marked as handled", async ({ pa
   const card = page.getByTestId("message-card").filter({ hasText: `${MARK}@example.com` });
   await expect(card).toBeVisible();
   await expect(card.getByTestId("message-text")).toContainText("informations sur vos lins");
-  await card.getByTestId("message-handled").check();
+  await card.getByTestId("message-handled").click(); // the card leaves the "to handle" list as soon as it is handled
   await expect(card).toHaveCount(0); // gone from "to handle"
   await page.getByTestId("message-filter").selectOption("handled");
   await expect(page.getByTestId("message-card").filter({ hasText: `${MARK}@example.com` })).toHaveAttribute("data-handled", "true");

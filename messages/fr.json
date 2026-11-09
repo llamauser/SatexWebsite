@@ -616,7 +616,15 @@
       "purgeConfirm": "Tapez {word} pour confirmer",
       "purge": "Supprimer les données de démonstration",
       "purged": "Supprimé : {fabrics} tissu(s), {clients} client(s), {quotes} devis, {orders} commande(s). Tissus conservés (encore utilisés) : {kept}.",
-      "purgeError": "La suppression a échoué."
+      "purgeError": "La suppression a échoué.",
+      "monitoring": {
+        "title": "Surveillance des erreurs",
+        "hint": "Envoie une erreur de test au service de suivi des erreurs (Sentry) pour vérifier qu'il est bien branché.",
+        "test": "Envoyer une erreur de test",
+        "sent": "Erreur de test envoyée : vérifiez qu'elle apparaît dans Sentry.",
+        "off": "La surveillance est désactivée : la variable SENTRY_DSN n'est pas définie.",
+        "error": "L'envoi a échoué."
+      }
     },
     "users": {
       "adminOnly": "Cette page est réservée aux administrateurs.",

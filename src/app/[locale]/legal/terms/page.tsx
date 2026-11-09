@@ -5,13 +5,14 @@ import { notFound } from "next/navigation";
 import { LegalPage } from "@/components/layout/LegalPage";
 import { LEGAL } from "@/content/legal";
 import { routing } from "@/i18n/routing";
+import { alternatesFor } from "@/lib/seo";
 
 type Props = { params: Promise<{ locale: string }> };
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale } = await params;
   if (!hasLocale(routing.locales, locale)) return {};
-  return { title: LEGAL.terms[locale].title };
+  return { title: LEGAL.terms[locale].title, alternates: alternatesFor(locale, "/legal/terms") };
 }
 
 export default async function Page({ params }: Props) {

@@ -1,6 +1,10 @@
 import { NextIntlClientProvider } from "next-intl";
 import { AccountNav } from "@/components/account/AccountNav";
 import { clientMessages } from "@/i18n/client-messages";
+import { NOINDEX } from "@/lib/seo";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = { robots: NOINDEX };
 
 export default async function AccountLayout({ children }: { children: React.ReactNode }) {
   return (
