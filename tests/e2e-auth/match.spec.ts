@@ -174,8 +174,10 @@ test("refine with a chip, vote, and share the link", async ({ page, browser }) =
 
   await page.getByTestId("feedback-up").click();
   await expect(page.getByTestId("feedback")).toContainText("Merci pour votre retour");
-  const feedback = await withDb(async (c) => (await c.query(`select feedback from public.match_sessions where id = $1`, [url.split("/").pop()])).rows[0].feedback);
-  expect(feedback).toBe(1);
+  // the vote is saved by a background request: wait for it
+  await expect
+    .poll(async () => withDb(async (c) => (await c.query(`select feedback from public.match_sessions where id = $1`, [url.split("/").pop()])).rows[0].feedback), { timeout: 10_000 })
+    .toBe(1);
 
   // anyone with the link sees the results, but cannot refine or vote
   const other = await browser.newContext({ locale: "fr-FR" });

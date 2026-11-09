@@ -20,7 +20,7 @@ test.describe("home page", () => {
     await page.goto("/fr");
     await page.getByRole("link", { name: "Lancer la recherche" }).click();
     await expect(page).toHaveURL(/\/fr\/match$/);
-    await expect(page.getByRole("heading", { level: 1, name: "Recherche IA" })).toBeVisible();
+    await expect(page.getByRole("heading", { level: 1, name: "Recherche de tissu par IA" })).toBeVisible();
     await page.goto("/fr");
     await page.getByRole("link", { name: "Nous contacter" }).click();
     await expect(page).toHaveURL(/\/fr\/contact$/);
