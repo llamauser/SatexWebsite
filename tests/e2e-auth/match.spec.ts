@@ -157,9 +157,14 @@ test("the wizard: 5 steps, scanning screen, then the results page", async ({ pag
 
 test("refine with a chip, vote, and share the link", async ({ page, browser }) => {
   // start from a session created through the page so the browser owns it
+  // The saved answers are put in place before the page loads: writing them afterwards races with the wizard, which
+  // saves its own (empty) state as soon as it has hydrated.
+  await page.addInitScript(() => {
+    if (!sessionStorage.getItem("satex.match.v1")) {
+      sessionStorage.setItem("satex.match.v1", JSON.stringify({ step: 4, audience: "women", audienceText: "", styles: ["sporty"], brand: ["performance"], priceTarget: "", description: "Jersey de coton pour t-shirts d'été, 180 GSM", requiredM: "" }));
+    }
+  });
   await page.goto("/fr/match");
-  await page.evaluate(() => sessionStorage.setItem("satex.match.v1", JSON.stringify({ step: 4, audience: "women", audienceText: "", styles: ["sporty"], brand: ["performance"], priceTarget: "", description: "Jersey de coton pour t-shirts d'été, 180 GSM", requiredM: "" })));
-  await page.reload();
   await page.getByTestId("wizard-submit").click();
   await expect(page).toHaveURL(/\/fr\/match\/[0-9a-f-]{36}$/, { timeout: 30_000 });
   const url = page.url();

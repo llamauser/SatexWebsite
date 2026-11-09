@@ -177,7 +177,8 @@
       "label": "Espace client",
       "overview": "Vue d'ensemble",
       "profile": "Profil",
-      "quotes": "Devis"
+      "quotes": "Devis",
+      "reservations": "Réservations"
     },
     "overview": {
       "loading": "Chargement…",
@@ -873,6 +874,32 @@
         "max": "Maximum 10 000 m.",
         "invalid": "Quantité invalide."
       }
+    },
+    "reserve": {
+      "title": "Réserver ce stock",
+      "titleHours": "Réserver pour {hours} h",
+      "help": "Nous gardons ces mètres pour vous, sans engagement. Demandez un devis pour les conserver.",
+      "quantity": "Quantité (m)",
+      "button": "Réserver",
+      "slots": "{used} réservation(s) active(s) sur {max}",
+      "limit": "Vous avez atteint la limite de {max} réservations actives. Annulez-en une ou laissez-la expirer.",
+      "manage": "Gérer mes réservations",
+      "out": "Ce coloris n'est plus disponible à la réservation.",
+      "signInHelp": "Connectez-vous pour réserver ces mètres pendant quelques jours, sans engagement.",
+      "signIn": "Se connecter pour réserver",
+      "done": "{m} m réservés.",
+      "view": "Voir mes réservations",
+      "problem": {
+        "min": "Minimum {m} m.",
+        "step": "Par pas de 0,5 m.",
+        "max": "Maximum 10 000 m.",
+        "invalid": "Quantité invalide.",
+        "stock": "Stock insuffisant : {left} m disponibles.",
+        "limit": "Limite de {max} réservations actives atteinte.",
+        "inactive": "Ce coloris n'est plus disponible.",
+        "auth": "Connectez-vous pour réserver.",
+        "error": "Réservation impossible pour le moment. Réessayez."
+      }
     }
   },
   "quotes": {
@@ -941,6 +968,32 @@
         "converted": "Ce devis est devenu une commande.",
         "other": "Aucune action n'est possible pour le moment."
       }
+    }
+  },
+  "reservations": {
+    "title": "Mes réservations",
+    "intro": "Les mètres réservés sont gardés pour vous jusqu'à la fin du compte à rebours.",
+    "slots": "{used} sur {max} réservations actives",
+    "loading": "Chargement…",
+    "error": "Impossible de charger vos réservations.",
+    "actionError": "Action impossible pour le moment. Réessayez.",
+    "none": "Vous n'avez pas encore de réservation. Réservez des mètres depuis une fiche tissu : ils sont gardés {hours} h.",
+    "browse": "Parcourir le catalogue",
+    "active": "En cours",
+    "history": "Historique",
+    "meters": "{m} m",
+    "until": "jusqu'au {date}",
+    "soon": "Cette réservation expire bientôt.",
+    "toQuote": "Ajouter à mon devis",
+    "cancel": "Annuler la réservation",
+    "added": "Ajouté à votre demande de devis.",
+    "keepHint": "Demandez un devis avant la fin du compte à rebours pour conserver ces mètres.",
+    "full": "Limite de {max} réservations actives atteinte.",
+    "status": {
+      "active": "En cours",
+      "expired": "Expirée",
+      "cancelled": "Annulée",
+      "converted": "Transformée en commande"
     }
   }
 }
