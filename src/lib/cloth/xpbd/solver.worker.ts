@@ -14,7 +14,14 @@ let accumulator = 0;
 const workerScope = globalThis as unknown as { onmessage: ((event: MessageEvent<Request>) => void) | null; postMessage: (message: unknown, transfer?: Transferable[]) => void };
 workerScope.onmessage = (event) => {
   const message = event.data;
-  if (message.type === "init") { solver = new CpuClothSolver(message.n, message.params); accumulator = 0; workerScope.postMessage({ type: "ready", n: solver.n }); return; }
+  if (message.type === "init") {
+    solver = new CpuClothSolver(message.n, message.params);
+    accumulator = 0;
+    workerScope.postMessage({ type: "ready", n: solver.n });
+    const first = solver.positions.slice(); // the starting pose, so there is something to draw before the first step
+    workerScope.postMessage({ type: "frame", positions: first, strainPct: 0 }, [first.buffer]);
+    return;
+  }
   if (!solver) return;
   if (message.type === "mode") { solver.reset(message.mode); return; }
   if (message.type === "grab") { solver.grab(message.index, message.target); return; }

@@ -190,7 +190,7 @@ export default async function FabricPage({ params }: Props) {
 
           {fabric.tags.length > 0 && (
             <ul className="mt-6 flex flex-wrap gap-2" aria-label={t("tags")}>
-              {fabric.tags.map((tag) => (
+              {[...new Set(fabric.tags)].map((tag) => (
                 <li key={tag} className="rounded-full bg-surface-muted px-3 py-1 text-xs text-text-muted" dir="ltr">{tag}</li>
               ))}
             </ul>
@@ -210,7 +210,7 @@ export default async function FabricPage({ params }: Props) {
           </ul>
         </section>
       )}
-      </>} feel={<div className="grid gap-6 lg:grid-cols-2"><FeelCard profile={fabric.feel} /><LazyClothSwatch colors={fabric.colors.map((color) => ({ id: color.id, label: localized(color.name, locale), hex: color.hex }))} gsm={fabric.gsm} feel={fabric.feel} stretchLimitPct={fabric.stretchPct} /></div>} />
+      </>} feel={<div className="grid gap-6 lg:grid-cols-2"><FeelCard profile={fabric.feel} /><LazyClothSwatch colors={fabric.colors.map((color) => ({ id: color.id, label: localized(color.name, locale), hex: color.hex }))} gsm={fabric.gsm} feel={fabric.feel} stretchLimitPct={fabric.stretchPct} structure={fabric.structure} construction={fabric.construction} /></div>} />
     </main>
   );
 }

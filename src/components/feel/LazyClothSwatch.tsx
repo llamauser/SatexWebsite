@@ -15,6 +15,6 @@ const ClothSwatch = dynamic(() => import("./ClothSwatch").then((module) => modul
 });
 
 type ColorOption = { id: string; label: string; hex: string };
-export function LazyClothSwatch(props: { colors: ColorOption[]; gsm: number; feel: FeelScores; stretchLimitPct: number | null }) {
+export function LazyClothSwatch(props: { colors: ColorOption[]; gsm: number; feel: FeelScores; stretchLimitPct: number | null; structure: string; construction: string }) {
   return <ClothSwatch {...props} />;
 }

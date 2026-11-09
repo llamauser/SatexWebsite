@@ -1239,7 +1239,8 @@
         "sheen": { "0": "Matte appearance", "3": "A subtle surface glow", "6": "A clear soft sheen", "8": "A luminous finish" },
         "breathability": { "0": "Warm and close-wearing", "3": "Moderate airflow", "6": "Breathable for daily wear", "8": "Light and airy" }
       },
-      "swatchTitle": "Interactive fabric swatch", "color": "Fabric colors", "loading": "Preparing the interactive preview…", "unsupported": "Interactive preview is not supported on this device.",
+      "swatchTitle": "Interactive fabric swatch",
+      "hint": "Drag the cloth to pull it. The modes drop it on a block or a ball, or blow it in the wind.", "color": "Fabric colors", "loading": "Preparing the interactive preview…", "unsupported": "Interactive preview is not supported on this device.",
       "modes": { "hang": "Hang & pull", "table": "Table drape", "sphere": "Sphere drape", "wind": "Wind", "reset": "Reset" },
       "strain": "Stretch: {value}% · fabric stretch: {limit}", "drapeSummary": "Drape score: {drape} / 10", "windSummary": "Weight: {gsm} GSM · airiness: {air} / 10"
     },

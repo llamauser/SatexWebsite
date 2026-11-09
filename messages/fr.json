@@ -1239,7 +1239,8 @@
         "sheen": { "0": "Aspect mat", "3": "Léger éclat de surface", "6": "Brillance douce et visible", "8": "Finition lumineuse" },
         "breathability": { "0": "Chaud et près du corps", "3": "Aération modérée", "6": "Respirant au quotidien", "8": "Léger et très aéré" }
       },
-      "swatchTitle": "Échantillon de tissu interactif", "color": "Couleurs du tissu", "loading": "Préparation de l'aperçu interactif…", "unsupported": "L'aperçu interactif n'est pas disponible sur cet appareil.",
+      "swatchTitle": "Échantillon de tissu interactif",
+      "hint": "Faites glisser le tissu pour le tirer. Les modes le font tomber sur un bloc ou une sphère, ou le soufflent au vent.", "color": "Couleurs du tissu", "loading": "Préparation de l'aperçu interactif…", "unsupported": "L'aperçu interactif n'est pas disponible sur cet appareil.",
       "modes": { "hang": "Suspendu et étiré", "table": "Tombé sur table", "sphere": "Tombé sur sphère", "wind": "Vent", "reset": "Réinitialiser" },
       "strain": "Étirement : {value} % · extensibilité du tissu : {limit}", "drapeSummary": "Score de tombé : {drape} / 10", "windSummary": "Poids : {gsm} GSM · respirabilité : {air} / 10"
     },
