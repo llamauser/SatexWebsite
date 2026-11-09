@@ -62,11 +62,13 @@ test("a guest builds a cart, signs in, the cart follows, and the request is sent
   await expect(page).toHaveURL(/\/fr\/catalog\/cotton-elastane-pique$/);
   await expect(page.getByTestId("cart-count")).toHaveText("2", { timeout: 15_000 });
 
+  // the badge first shows the guest cart; the merge into the account finishes a moment later
+  await expect.poll(async () => (await draft()).lines.length, { timeout: 15_000 }).toBe(2);
+  await expect.poll(() => page.evaluate(() => localStorage.getItem("satex.cart.v1")), { timeout: 15_000 }).toBeNull();
   const merged = await draft();
   expect(merged.quote?.status).toBe("draft");
   expect(merged.lines.map((l) => [l.slug, Number(l.meters)]).sort()).toEqual([["cotton-elastane-pique", 17.5], ["linen-plain-160", 20]]);
   expect(merged.lines.every((l) => Number(l.unit_price) > 0)).toBe(true);
-  expect(await page.evaluate(() => localStorage.getItem("satex.cart.v1"))).toBeNull(); // the guest cart is gone
 
   // --- send
   await page.getByTestId("cart-button").click();
